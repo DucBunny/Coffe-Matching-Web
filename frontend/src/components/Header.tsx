@@ -1,67 +1,68 @@
 import { Link } from '@tanstack/react-router'
-
-import { useState } from 'react'
-import { Home, Menu, X } from 'lucide-react'
+import { CheckCircle2, Search, User } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false)
-
   return (
-    <>
-      <header className="p-4 flex items-center bg-gray-800 text-white shadow-lg">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
-          aria-label="Open menu"
+    <header className="sticky top-0 z-50 w-full border-b bg-[#FF6347] shadow-md">
+      <div className="container mx-auto flex h-16 items-center justify-between gap-4 px-6">
+        {/* Logo Section */}
+        <Link 
+          to="/" 
+          className="flex items-center gap-2 font-bold text-xl text-white hover:opacity-90 transition-opacity"
         >
-          <Menu size={24} />
-        </button>
-        <h1 className="ml-4 text-xl font-semibold">
-          <Link to="/">
-            <img
-              src="/tanstack-word-logo-white.svg"
-              alt="TanStack Logo"
-              className="h-10"
-            />
-          </Link>
-        </h1>
-      </header>
+          <div className="flex items-center justify-center w-10 h-10 bg-white/10 rounded-lg backdrop-blur-sm">
+            <span className="text-white text-lg">☕</span>
+          </div>
+          <span className="hidden sm:inline-block">Coffee Match</span>
+        </Link>
 
-      <aside
-        className={`fixed top-0 left-0 h-full w-80 bg-gray-900 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-      >
-        <div className="flex items-center justify-between p-4 border-b border-gray-700">
-          <h2 className="text-xl font-bold">Navigation</h2>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
-            aria-label="Close menu"
+        {/* Search Bar */}
+        <div className="flex-1 max-w-2xl relative">
+          <Input
+            type="text"
+            placeholder="何をお探しですか？"
+            className="h-10 pr-10 bg-white/95 backdrop-blur-sm border-white/30 focus-visible:border-white focus-visible:ring-white/30 placeholder:text-gray-500"
+          />
+          <Button
+            size="icon-sm"
+            variant="ghost"
+            className="absolute right-1 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-800 hover:bg-transparent"
           >
-            <X size={24} />
-          </button>
+            <Search size={18} />
+          </Button>
         </div>
 
-        <nav className="flex-1 p-4 overflow-y-auto">
-          <Link
-            to="/"
-            onClick={() => setIsOpen(false)}
-            className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
-            activeProps={{
-              className:
-                'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-            }}
+        {/* Right Section - Navigation */}
+        <div className="flex items-center gap-2">
+          {/* Finished Items Button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            asChild
+            className="text-white hover:bg-white/20 hover:text-white gap-2 hidden md:flex"
           >
-            <Home size={20} />
-            <span className="font-medium">Home</span>
-          </Link>
+            <Link to="/">
+              <CheckCircle2 size={16} />
+              <span className="text-sm">終了済み</span>
+            </Link>
+          </Button>
 
-          {/* Demo Links Start */}
-
-          {/* Demo Links End */}
-        </nav>
-      </aside>
-    </>
+          {/* User Login/Profile */}
+          <Button
+            variant="outline"
+            size="sm"
+            asChild
+            className="bg-white text-[#FF6347] border-white hover:bg-white/90 hover:text-[#FF6347] gap-2"
+          >
+            <Link to="/login">
+              <User size={16} />
+              <span className="hidden sm:inline-block">ログイン</span>
+            </Link>
+          </Button>
+        </div>
+      </div>
+    </header>
   )
 }
