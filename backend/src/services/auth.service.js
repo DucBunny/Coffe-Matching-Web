@@ -10,7 +10,7 @@ import ApiError from '../utils/api-error.js'
 const generateTokens = async (user, deviceInfo) => {
   const expiresIn = process.env.JWT_EXPIRES_IN || '15m'
   const accessToken = jwt.sign(
-    { id: user._id, username: user.username },
+    { id: user._id, username: user.username, email: user.email },
     process.env.JWT_SECRET,
     { expiresIn }
   )
@@ -32,15 +32,7 @@ const generateTokens = async (user, deviceInfo) => {
   }
 }
 
-async function signup({
-  username,
-  password,
-  email,
-  fullname,
-  address,
-  age,
-  styles
-}) {
+async function signup({ email, password, username, address, age, styles }) {
   try {
     if (!username || !password || !email) {
       throw new ApiError(
@@ -63,10 +55,9 @@ async function signup({
     const hashedPassword = await hashPassword(password)
 
     const newUser = await userRepo.createUser({
-      username,
-      password: hashedPassword,
       email,
-      fullname,
+      password: hashedPassword,
+      username,
       address,
       age,
       styles
@@ -97,7 +88,6 @@ async function signin({ email, password, deviceInfo }) {
         id: user._id,
         username: user.username,
         email: user.email,
-        fullname: user.fullname,
         styles: user.styles
       },
       ...tokens

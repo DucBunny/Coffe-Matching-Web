@@ -8,8 +8,8 @@ async function signup(req, res, next) {
       data: {
         user: {
           id: user._id,
-          username: user.username,
-          email: user.email
+          email: user.email,
+          username: user.username
         }
       }
     })
