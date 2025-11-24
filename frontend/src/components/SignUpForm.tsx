@@ -75,8 +75,12 @@ export function SignUpForm({
     onSubmit: async ({ value }) => {
       const data = signUpSchema.parse(value)
       const { email, password, username, address, age } = data
-      await signup(email, password, username, address, age)
-      navigate({ to: '/signin' })
+      try {
+        await signup(email, password, username, address, age)
+        navigate({ to: '/signin' })
+      } catch (error) {
+        console.error('Signup failed:', error)
+      }
     },
   })
 

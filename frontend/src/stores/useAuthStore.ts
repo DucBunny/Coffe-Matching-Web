@@ -27,8 +27,8 @@ export const useAuthStore = create<AuthState>()(
           await authAPI.signup(email, username, password, address, age)
           toast.success('登録が完了しました！ログインしてください。')
         } catch (error) {
-          console.error('Registration error:', error)
           toast.error('登録に失敗しました。もう一度お試しください。')
+          throw error
         } finally {
           set({ loading: false })
         }
@@ -46,10 +46,10 @@ export const useAuthStore = create<AuthState>()(
 
           toast.success('ログインしました！')
         } catch (error) {
-          console.error('Login error:', error)
           toast.error(
             'ログインに失敗しました。認証情報を確認して、もう一度お試しください。',
           )
+          throw error
         } finally {
           set({ loading: false })
         }

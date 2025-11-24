@@ -9,7 +9,7 @@ function AuthLayout() {
   const { accessToken, isAuthenticated } = useAuthStore()
 
   if (!accessToken || !isAuthenticated) {
-    return <Navigate to="/signin" />
+    return <Navigate to="/" />
   }
 
   return <Outlet />
