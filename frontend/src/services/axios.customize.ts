@@ -9,7 +9,30 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    return config
+    // const persistedData = localStorage.getItem("access_token");
+
+    // let token = null;
+    // if (persistedData) {
+    //   try {
+    //     const parsed = JSON.parse(persistedData);
+    //     token = parsed?.state?.accessToken || null; // 👈 lấy đúng token
+    //   } catch (e) {
+    //     console.error("❌ Lỗi parse access_token:", e);
+    //   }
+    // }
+
+
+    // // Thêm header Authorization nếu có token
+    // if (token) {
+    //   config.headers["Authorization"] = `Bearer ${token}`;
+    // }
+
+
+    // // test 
+    const testToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MjFlOGQxYmVlNTcyY2E3MTA3YTlmYSIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3NjM5MTMwMTIsImV4cCI6MTc2Mzk5OTQxMn0.zDZvGXcMW7e-2xmHdyETpaHITeuiHCP8OuQ05uvjDbw'
+    config.headers["Authorization"] = `Bearer ${testToken}`;
+
+    return config;
   },
   function (error) {
     // Do something with request error
