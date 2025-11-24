@@ -36,6 +36,11 @@ function App() {
           Learn TanStack
         </a>
       </header>
+      <div className="grid grid-cols-3 gap-6 bg-red-200">
+        <div className="bg-green-200">A</div>
+        <div className="bg-blue-200">B</div>
+        <div className="bg-yellow-200">C</div>
+      </div>
     </div>
   )
 }
