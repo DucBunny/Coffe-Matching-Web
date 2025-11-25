@@ -110,7 +110,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
         <div>
           <label className="text-sm">年齢</label>
           <Input
-            value={age.toString()}
+            value={age?.toString() || ''}
             readOnly={!isEditing}
             className="mt-1"
             type="number"

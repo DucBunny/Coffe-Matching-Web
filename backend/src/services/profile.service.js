@@ -12,8 +12,8 @@ async function getUserProfile(userId) {
     id: user._id,
     name: user.fullname || user.username,
     email: user.email,
-    address: user.address || "HaNoi",
-    age: user.age || 18,
+    address: user.address,
+    age: user.age,
     avatar: user.avatar,
     styles: user.styles,
   };
