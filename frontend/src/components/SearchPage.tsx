@@ -14,7 +14,6 @@ import { useNavigate } from '@tanstack/react-router'
 
 import cafeDataRaw from '@/data/cafes.json'
 
-// --- Interfaces ---
 export interface Cafe {
   id: number
   name: string
@@ -46,6 +45,9 @@ interface Purpose {
 interface Filters {
   area: string | null
   purpose: string | null
+  priceMin: number | null
+  priceMax: number | null
+  amenities: string[]
 }
 
 const AREAS = [
@@ -62,9 +64,15 @@ const PURPOSES = [
   { id: 'relax', label: 'Thu gian', jpLabel: 'リラックス' },
 ]
 
-const CAFES_DATA: Cafe[] = cafeDataRaw as Cafe[]
+const AMENITY_FILTERS = [
+  { id: 'wifi', label: 'Wi-Fiあり' },
+  { id: 'kids', label: '子どもOK' },
+  { id: 'quiet', label: '静か' },
+  { id: 'ac', label: 'エアコンあり' },
+  { id: 'nosmoke', label: '禁煙席あり' },
+]
 
-// --- Components ---
+const CAFES_DATA: Cafe[] = cafeDataRaw as Cafe[]
 
 interface FilterDropdownProps {
   title: string
@@ -152,15 +160,24 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
 interface FilterSidebarProps {
   filters: Filters
   setFilters: React.Dispatch<React.SetStateAction<Filters>>
+  priceInputs: { min: string; max: string }
+  setPriceInputs: React.Dispatch<
+    React.SetStateAction<{ min: string; max: string }>
+  >
+  onApplyPrice: () => void
+  priceApplied: boolean
+  setPriceApplied: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const FilterSidebar: React.FC<FilterSidebarProps> = ({
   filters,
   setFilters,
+  priceInputs,
+  setPriceInputs,
+  onApplyPrice,
+  priceApplied,
+  setPriceApplied,
 }) => {
-  const toggleBtnClass =
-    'w-full bg-[#444444] text-white py-2.5 px-4 rounded mb-3 text-sm font-bold hover:bg-[#555] transition flex items-center justify-center gap-2'
-
   return (
     <aside className="w-full md:w-64 shrink-0 space-y-6 md:sticky md:top-24 h-fit">
       <FilterDropdown
@@ -186,37 +203,75 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
         <div className="flex items-center gap-2 mb-4">
           <div className="relative flex-1">
-            <span className="absolute left-2 top-2 text-gray-500 text-xs">
-              ¥
+            <span className="absolute right-2 top-2 text-gray-500 text-xs">
+              VND
             </span>
             <input
               type="text"
               placeholder="から"
-              className="w-full border border-gray-300 rounded px-2 py-1.5 pl-5 text-sm focus:outline-none focus:border-[#F26546]"
+              className="w-full border border-gray-300 rounded px-2 py-1.5 pr-10 text-sm focus:outline-none focus:border-[#F26546]"
+              value={priceInputs.min}
+              onChange={(e) => {
+                setPriceInputs((prev) => ({ ...prev, min: e.target.value }))
+                setPriceApplied(false)
+              }}
             />
           </div>
           <span className="text-gray-500">~</span>
           <div className="relative flex-1">
-            <span className="absolute left-2 top-2 text-gray-500 text-xs">
-              ¥
+            <span className="absolute right-2 top-2 text-gray-500 text-xs">
+              VND
             </span>
             <input
               type="text"
               placeholder="まで"
-              className="w-full border border-gray-300 rounded px-2 py-1.5 pl-5 text-sm focus:outline-none focus:border-[#F26546]"
+              className="w-full border border-gray-300 rounded px-2 py-1.5 pr-10 text-sm focus:outline-none focus:border-[#F26546]"
+              value={priceInputs.max}
+              onChange={(e) => {
+                setPriceInputs((prev) => ({ ...prev, max: e.target.value }))
+                setPriceApplied(false)
+              }}
             />
           </div>
         </div>
 
-        <button className="w-full bg-[#FF7F50] text-white font-bold py-2 rounded mb-6 hover:opacity-90 transition shadow-sm">
+        <button
+          onClick={onApplyPrice}
+          className={`w-full text-white font-bold py-2 rounded mb-6 transition shadow-sm ${
+            priceApplied
+              ? 'bg-[#e85f2f] shadow-md ring-2 ring-[#f26546]/40'
+              : 'bg-[#FF7F50] hover:opacity-90'
+          }`}>
           適用
         </button>
 
-        <button className={toggleBtnClass}>Wi-Fiあり</button>
-        <button className={toggleBtnClass}>子どもOK</button>
-        <button className={toggleBtnClass}>静か</button>
-        <button className={toggleBtnClass}>エアコンあり</button>
-        <button className={toggleBtnClass}>禁煙席あり</button>
+        <div className="space-y-2">
+          {AMENITY_FILTERS.map((amenity) => {
+            const isActive = filters.amenities.includes(amenity.id)
+            return (
+              <button
+                key={amenity.id}
+                onClick={() => {
+                  setFilters((prev) => {
+                    const exists = prev.amenities.includes(amenity.id)
+                    return {
+                      ...prev,
+                      amenities: exists
+                        ? prev.amenities.filter((a) => a !== amenity.id)
+                        : [...prev.amenities, amenity.id],
+                    }
+                  })
+                }}
+                className={`w-full py-2.5 px-4 rounded text-sm font-bold transition flex items-center justify-center gap-2 border ${
+                  isActive
+                    ? 'bg-[#F26546] text-white border-[#F26546] shadow-sm'
+                    : 'bg-[#444444] text-white hover:bg-[#555] border-[#444444]'
+                }`}>
+                {amenity.label}
+              </button>
+            )
+          })}
+        </div>
       </div>
     </aside>
   )
@@ -434,27 +489,78 @@ interface SearchPageProps {
 
 const App: React.FC<SearchPageProps> = ({ initialKeyword = '' }) => {
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const [filters, setFilters] = useState<Filters>({ area: null, purpose: null })
+  const [filters, setFilters] = useState<Filters>({
+    area: null,
+    purpose: null,
+    priceMin: null,
+    priceMax: null,
+    amenities: [],
+  })
   const [sortBy, setSortBy] = useState<'default' | 'distance' | 'rating'>(
     'default',
   )
+  const [priceInputs, setPriceInputs] = useState<{ min: string; max: string }>({
+    min: '',
+    max: '',
+  })
 
+  const parsePriceInput = (value: string) => {
+    const numeric = parseInt(value.replace(/[^0-9]/g, ''), 10)
+    return Number.isFinite(numeric) ? numeric : null
+  }
+
+  const [priceApplied, setPriceApplied] = useState<boolean>(false)
+  const handleApplyPrice = () => {
+    const minValue = parsePriceInput(priceInputs.min)
+    const maxValue = parsePriceInput(priceInputs.max)
+    setFilters((prev) => ({ ...prev, priceMin: minValue, priceMax: maxValue }))
+    setPriceApplied(true)
+  }
   // Logic lọc dữ liệu tổng hợp (Filter + Keyword)
   const filteredData = CAFES_DATA.filter((item) => {
-    // 1. Lọc theo Keyword
+    //Lọc theo Keyword
     const normalizedKeyword = initialKeyword.toLowerCase().trim()
     const matchSearch =
       !normalizedKeyword ||
       item.name.toLowerCase().includes(normalizedKeyword) ||
       item.address.toLowerCase().includes(normalizedKeyword)
 
-    // 2. Lọc theo Dropdown
+    //Lọc theo Dropdown
     const matchArea = filters.area ? item.area === filters.area : true
     const matchPurpose = filters.purpose
       ? item.purpose === filters.purpose
       : true
 
-    return matchSearch && matchArea && matchPurpose
+    const matchAmenities = (() => {
+      if (!filters.amenities.length) return true
+      const cafeAmenities = item.amenities || []
+
+      return filters.amenities.every((need) => {
+        if (need === 'kids') return cafeAmenities.includes('kids')
+        if (need === 'nosmoke') return cafeAmenities.includes('nosmoke')
+        return cafeAmenities.includes(need)
+      })
+    })()
+
+    //Lọc theo giá
+    const matchPrice = (() => {
+      const { priceMin, priceMax } = filters
+      if (priceMin === null && priceMax === null) return true
+      if (!item.priceRange) return false
+
+      const [rangeMinStr, rangeMaxStr] = item.priceRange.split('-')
+      const rangeMin = parseInt(rangeMinStr, 10)
+      const rangeMax = parseInt(rangeMaxStr, 10)
+      if (Number.isNaN(rangeMin) || Number.isNaN(rangeMax)) return false
+
+      if (priceMin !== null && rangeMax < priceMin) return false
+      if (priceMax !== null && rangeMin > priceMax) return false
+      return true
+    })()
+
+    return (
+      matchSearch && matchArea && matchPurpose && matchAmenities && matchPrice
+    )
   })
 
   // Sort dữ liệu theo rating (từ cao đến thấp)
@@ -483,7 +589,15 @@ const App: React.FC<SearchPageProps> = ({ initialKeyword = '' }) => {
   return (
     <div className="min-h-screen bg-[#F9F9F9] flex flex-col font-sans w-full">
       <div className="w-full flex flex-col md:flex-row gap-8 p-4 md:px-8 md:py-8 relative">
-        <FilterSidebar filters={filters} setFilters={setFilters} />
+        <FilterSidebar
+          filters={filters}
+          setFilters={setFilters}
+          priceInputs={priceInputs}
+          setPriceInputs={setPriceInputs}
+          onApplyPrice={handleApplyPrice}
+          priceApplied={priceApplied}
+          setPriceApplied={setPriceApplied}
+        />
         <MainContent
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}

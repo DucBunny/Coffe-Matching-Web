@@ -9,7 +9,7 @@
     "purpose": "study",
     "description": "広くて開放的な空間で、グループ作業や勉強に最適です。Wi-Fiが強く、電源コンセントも多く設置されています。",
     "phone": "090-1234-5678",
-    "priceRange": "50-100",
+    "priceRange": "50000-100000",
     "amenities": ["wifi", "parking", "quiet", "ac", "outdoor"],
     "features": [
       "高速無料Wi-Fi",
@@ -82,6 +82,7 @@
     "purpose": "work",
     "description": "モダンで若々しいデザイン。オフィスワーカーやフリーランサーに最適な場所です。",
     "phone": "024-3939-3939",
+    "priceRange": "30000-70000",
     "features": [
       "静かな空間",
       "非常に強いWi-Fi",
@@ -109,7 +110,7 @@
     "purpose": "work",
     "description": "世界的ブランドでプロフェッショナルなサービス基準。高級感のある空間です。",
     "phone": "024-7777-8888",
-    "priceRange": "100-200",
+    "priceRange": "100000-200000",
     "amenities": ["wifi", "ac", "quiet", "power"],
     "features": ["国際ブランド", "高級感ある空間", "多様なドリンクメニュー"],
     "images": [
@@ -128,7 +129,7 @@
     "purpose": "date",
     "description": "温かくロマンチックな空間で、デートにぴったりのカフェです。",
     "phone": "098-765-4321",
-    "priceRange": "70-150",
+    "priceRange": "70000-150000",
     "amenities": ["wifi", "ac", "music", "outdoor"],
     "features": ["ロマンチックな雰囲気", "穏やかな音楽", "美しい装飾"],
     "images": [
@@ -147,7 +148,7 @@
     "purpose": "study",
     "description": "静かなブックカフェで、本の世界に没頭できる空間です。",
     "phone": "091-234-5678",
-    "priceRange": "40-80",
+    "priceRange": "40000-80000",
     "amenities": ["wifi", "quiet", "power", "books"],
     "features": ["豊富な本", "完全な静けさ", "レトロな雰囲気"],
     "images": [
@@ -166,7 +167,7 @@
     "purpose": "relax",
     "description": "独特なレトロスタイルで、古きハノイを感じられる空間です。",
     "phone": "024-3333-4444",
-    "priceRange": "30-60",
+    "priceRange": "30000-60000",
     "amenities": ["wifi", "outdoor", "vintage"],
     "features": [
       "レトロスタイル",
@@ -189,7 +190,7 @@
     "purpose": "work",
     "description": "ダラット産の高品質コーヒー、インダストリアル空間が魅力。",
     "phone": "090-999-8888",
-    "priceRange": "50-100",
+    "priceRange": "50000-100000",
     "amenities": ["wifi", "power", "ac", "quiet"],
     "features": ["純粋なコーヒー", "開放的な空間", "仕事向け"],
     "images": [
@@ -208,7 +209,7 @@
     "purpose": "relax",
     "description": "伝統的な味わいの茶とコーヒーが有名です。",
     "phone": "1800-6779",
-    "priceRange": "40-90",
+    "priceRange": "40000-90000",
     "amenities": ["wifi", "ac", "parking"],
     "features": ["深い味の紅茶", "迅速なサービス", "便利な立地"],
     "images": [
@@ -227,7 +228,7 @@
     "purpose": "date",
     "description": "ヨーロッパ風の白い邸宅で、広い庭付きの高級カフェです。",
     "phone": "024-6666-7777",
-    "priceRange": "150-300",
+    "priceRange": "150000-300000",
     "amenities": ["wifi", "outdoor", "ac", "parking", "luxury"],
     "features": ["フランス建築", "庭園スペース", "美味しいスイーツ"],
     "images": [
@@ -246,7 +247,7 @@
     "purpose": "study",
     "description": "学生に人気の便利なカフェスタイル。",
     "phone": "1900-1234",
-    "priceRange": "20-50",
+    "priceRange": "20000-50000",
     "amenities": ["wifi", "power", "ac", "spacious"],
     "features": ["手頃な価格", "安定したWi-Fi", "座席数が多い"],
     "images": [
@@ -265,7 +266,7 @@
     "purpose": "relax",
     "description": "ハノイらしいストリートコーヒーで、街並みを眺めながら楽しめます。",
     "phone": "098-888-8888",
-    "priceRange": "15-40",
+    "priceRange": "15000-40000",
     "amenities": ["outdoor", "street"],
     "features": ["ストリートコーヒー", "歩道席あり", "涼しい空間"],
     "images": [

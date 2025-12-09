@@ -20,10 +20,7 @@ import {
   Volume2,
 } from 'lucide-react'
 
-// Import dữ liệu từ file JSON
 import cafeDataRaw from '@/data/cafes.json'
-
-// --- Interfaces ---
 
 export interface Cafe {
   id: number
@@ -48,10 +45,7 @@ export interface Cafe {
   }[]
 }
 
-// Ép kiểu dữ liệu
 const CAFES_DATA: Cafe[] = cafeDataRaw as Cafe[]
-
-// --- Sub Components ---
 
 interface ReviewFormProps {
   onAddReview: (review: {
@@ -61,9 +55,8 @@ interface ReviewFormProps {
   }) => void
 }
 
-// Constants cho validation
 const MAX_REVIEW_LENGTH = 500
-const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
+const MAX_FILE_SIZE = 5 * 1024 * 1024
 const ALLOWED_FILE_TYPES = [
   'image/jpeg',
   'image/png',
@@ -394,10 +387,8 @@ const DetailView: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
 
   return (
     <div className="w-full p-4 md:p-8 space-y-8 bg-white md:bg-transparent">
-      {/* 1. Hero Section */}
       <div className="bg-white md:rounded-xl md:shadow-md md:p-8 border border-gray-100 overflow-hidden w-full">
         <div className="flex flex-col md:flex-row gap-8">
-          {/* Main Image Carousel */}
           <div className="w-full md:w-1/2 aspect-video bg-gray-100 rounded-lg relative group overflow-hidden border border-gray-100">
             <div className="w-full h-full flex items-center justify-center bg-gray-200 relative overflow-hidden">
               {displayImage ? (
@@ -410,7 +401,6 @@ const DetailView: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
                 <ImageIcon size={64} className="text-gray-400" />
               )}
 
-              {/* Navigation Buttons */}
               {cafe.images && cafe.images.length > 1 && (
                 <>
                   <button
@@ -430,7 +420,6 @@ const DetailView: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
                     <ChevronRight size={24} />
                   </button>
 
-                  {/* Dots Indicator */}
                   <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
                     {cafe.images.map((_, idx) => (
                       <div
@@ -503,7 +492,6 @@ const DetailView: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
         </div>
       </div>
 
-      {/* 2. Features */}
       {cafe.features && cafe.features.length > 0 && (
         <SectionCard title="お店の機能" icon={<Check size={18} />}>
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -514,7 +502,6 @@ const DetailView: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
         </SectionCard>
       )}
 
-      {/* 3. Photos */}
       {cafe.images && cafe.images.length > 0 && (
         <SectionCard title="お店の写真" icon={<Camera size={18} />}>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
@@ -534,7 +521,6 @@ const DetailView: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
         </SectionCard>
       )}
 
-      {/* 4. Menu */}
       {cafe.menu && cafe.menu.length > 0 && (
         <SectionCard title="お店のメニュー" icon={<Coffee size={18} />}>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
@@ -568,7 +554,6 @@ const DetailView: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
         </SectionCard>
       )}
 
-      {/* 5. Reviews */}
       <SectionCard title="カフェの評価" icon={<Star size={18} />}>
         <ReviewForm onAddReview={handleAddReview} />
 
