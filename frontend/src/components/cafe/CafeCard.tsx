@@ -1,6 +1,7 @@
-import { useNavigate } from "@tanstack/react-router"
-import { Bookmark, ImageIcon, Star } from "lucide-react"
-import type { Cafe } from "@/types/cafe"
+import { useNavigate } from '@tanstack/react-router'
+import { Bookmark, ImageIcon, Star } from 'lucide-react'
+import type { Cafe } from '@/types/cafe'
+import { useState } from 'react'
 
 const AREAS = [
   { id: 'hbt', label: 'Hai Ba Trung', jpLabel: 'ハイバーチュン区' },
@@ -16,13 +17,13 @@ const PURPOSES = [
   { id: 'relax', label: 'Thu gian', jpLabel: 'リラックス' },
 ]
 
-
 const CafeCard: React.FC<{
   data: Cafe
   userLocation: { lat: number; lng: number } | null
   showDistance: boolean
 }> = ({ data, userLocation, showDistance }) => {
   const navigate = useNavigate()
+  const [isFavorite, setIsFavorite] = useState(false)
   const areaInfo = AREAS.find((a) => a.id === data.area)
   const purposeInfo = PURPOSES.find((p) => p.id === data.purpose)
 
@@ -88,9 +89,16 @@ const CafeCard: React.FC<{
           />
         )}
 
-        <div className="absolute top-2 right-2 text-[#F26546] bg-white rounded-full p-1 shadow-sm">
-          <Bookmark size={16} fill="#F26546" />
-        </div>
+        <button
+          onClick={(e) => {
+            e.stopPropagation()
+            setIsFavorite(!isFavorite)
+          }}
+          className={`absolute top-2 right-2 rounded-full p-1 shadow-sm transition ${
+            isFavorite ? 'text-[#F26546] bg-white' : 'text-gray-400 bg-white'
+          }`}>
+          <Bookmark size={16} fill={isFavorite ? '#F26546' : 'white'} />
+        </button>
 
         {purposeInfo && (
           <div className="absolute bottom-2 left-2 bg-black/60 text-white text-[10px] px-2 py-1 rounded backdrop-blur-sm">
