@@ -1,6 +1,12 @@
 import { Link, useNavigate } from '@tanstack/react-router'
 import { CheckCircle2, Search, User, X, MapPin } from 'lucide-react'
 import { useAuthStore } from '../stores/useAuthStore'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from './ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
 import logo from '/logo.png'
 import { useState, useEffect, useRef } from 'react'
@@ -175,14 +181,25 @@ export default function Header({
           </Button>
 
           {isAuthenticated ? (
-            <Button
-              onClick={signout}
-              variant="outline"
-              size="sm"
-              className="bg-white text-[#FF6347] border-white hover:bg-white/90 hover:text-[#FF6347] gap-2 cursor-pointer">
-              <User size={16} />
-              <span className="hidden sm:inline-block">ログアウト</span>
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="bg-white text-[#FF6347] border-white hover:bg-white/90 hover:text-[#FF6347] gap-2 cursor-pointer">
+                  <User size={16} />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem>
+                  <Link to="/profile" className="w-full block">
+                    プロフィール
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={signout}>
+                  ログアウト
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           ) : (
             <Button
               variant="outline"
