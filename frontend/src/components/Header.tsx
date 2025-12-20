@@ -23,12 +23,8 @@ interface CafeSimple {
 
 const CAFES_DATA: Array<CafeSimple> = cafeDataRaw as Array<CafeSimple>
 
-export default function Header({
-  isAuthenticated = false,
-}: {
-  isAuthenticated?: boolean
-}) {
-  const { signout } = useAuthStore()
+export default function Header() {
+  const { signout, isAuthenticated } = useAuthStore()
   const navigate = useNavigate()
 
   // --- Search Logic State ---
@@ -193,18 +189,18 @@ export default function Header({
                     プロフィール
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={signout}>
+                <DropdownMenuItem onClick={signout} className="cursor-pointer">
                   ログアウト
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Button className="bg-white text-[#FF6347] hover:bg-white/90 hover:text-[#FF6347]">
-              <Link to="/signin" className="flex items-center gap-2">
+            <Link to="/signin" className="flex items-center gap-2">
+              <Button className="bg-white text-[#FF6347] hover:bg-white/90">
                 <LogIn />
                 <span className="hidden sm:inline-block">ログイン</span>
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           )}
         </div>
       </div>

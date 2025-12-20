@@ -10,7 +10,7 @@ export const Route = createFileRoute('/detail')({
 function Detail() {
   return (
     <div className="text-center">
-      <Header isAuthenticated={true} />
+      <Header />
       <DetailPage />
       <Footer />
     </div>

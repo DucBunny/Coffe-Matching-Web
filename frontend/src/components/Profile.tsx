@@ -142,7 +142,7 @@ export default function ProfilePage() {
 
   return (
     <div>
-      <div className="grid min-h-[calc(100vh-160px)] w-full grid-cols-1 space-y-6 p-6 md:grid-cols-3 md:gap-6">
+      <div className="grid w-full grid-cols-1 space-y-6 p-6 md:grid-cols-3 md:gap-6">
         <div className="col-span-1">
           <ProfileInfo
             name={profileUser?.name ?? ''}

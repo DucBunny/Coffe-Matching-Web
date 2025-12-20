@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import FilterSidebar from './search/filter/FilterSidebar'
 import MainContent from './search/MainSearch'
 import type { Cafe } from '@/types/cafe'
@@ -14,11 +14,11 @@ interface Filters {
 
 const CAFES_DATA: Array<Cafe> = cafeDataRaw as Array<Cafe>
 
-interface SearchPageProps {
+export default function SearchPage({
+  initialKeyword = '',
+}: {
   initialKeyword?: string
-}
-
-const App: React.FC<SearchPageProps> = ({ initialKeyword = '' }) => {
+}) {
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [filters, setFilters] = useState<Filters>({
     area: null,
@@ -146,9 +146,10 @@ const App: React.FC<SearchPageProps> = ({ initialKeyword = '' }) => {
   // Reset về trang 1 khi filter hoặc sort thay đổi
   useEffect(() => {
     setCurrentPage(1)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [filters, initialKeyword, sortBy])
 
-  const ITEMS_PER_PAGE = 10
+  const ITEMS_PER_PAGE = 9
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE
   const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem)
@@ -178,8 +179,8 @@ const App: React.FC<SearchPageProps> = ({ initialKeyword = '' }) => {
   }
 
   return (
-    <div className="min-h-screen bg-[#F9F9F9] flex flex-col font-sans w-full">
-      <div className="w-full flex flex-col md:flex-row gap-8 p-4 md:px-8 md:py-8 relative">
+    <div className="flex w-full flex-col font-sans">
+      <div className="relative flex w-full flex-col gap-8 p-4 md:flex-row md:px-8 md:py-8">
         <FilterSidebar
           filters={filters}
           setFilters={setFilters}
@@ -203,5 +204,3 @@ const App: React.FC<SearchPageProps> = ({ initialKeyword = '' }) => {
     </div>
   )
 }
-
-export default App

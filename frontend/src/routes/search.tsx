@@ -20,10 +20,12 @@ function Search() {
   const { keyword } = Route.useSearch()
 
   return (
-    <div className="text-center">
-      <Header isAuthenticated={true} />
-      {/* Truyền keyword xuống component con */}
-      <SearchPage initialKeyword={keyword || ''} />
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main className="flex-1">
+        {/* Truyền keyword xuống component con */}
+        <SearchPage initialKeyword={keyword || ''} />
+      </main>
       <Footer />
     </div>
   )

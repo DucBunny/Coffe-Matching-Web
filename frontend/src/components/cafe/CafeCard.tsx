@@ -1,7 +1,7 @@
 import { useNavigate } from '@tanstack/react-router'
 import { Bookmark, ImageIcon, Star } from 'lucide-react'
-import type { Cafe } from '@/types/cafe'
 import { useState } from 'react'
+import type { Cafe } from '@/types/cafe'
 
 const AREAS = [
   { id: 'hbt', label: 'Hai Ba Trung', jpLabel: 'ハイバーチュン区' },

@@ -125,12 +125,13 @@ body {
 }
 
 ::-webkit-scrollbar {
-  z-index: 40;
   width: 6px;
+  background: #ff6347;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #ffffff;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
