@@ -24,7 +24,7 @@ export default function HistoryItem({
 
   return (
     <div
-      className={`flex min-h-32 items-stretch overflow-hidden rounded-3xl border bg-white shadow-sm transition-all duration-300 ${
+      className={`flex h-32 items-stretch overflow-hidden rounded-3xl border bg-white shadow-sm transition-all duration-300 ${
         isSelected
           ? 'border-orange-400 shadow-xl ring-4 ring-orange-500/5'
           : 'border-[#F9F9FB] hover:border-orange-100 hover:shadow-lg'

@@ -1,8 +1,9 @@
-import 'dotenv/config'
 import connectDB from '@/config/db.js'
 import seedUsers from './seed-user.js'
 import seedShops from './seed-shops.js'
 import seedReviews from './seed-reviews.js'
+import seedFavorites from './seed-favorites.js'
+import seedHistory from './seed-history.js'
 import RefreshToken from '@/models/RefreshToken.js'
 
 const runSeeds = async () => {
@@ -11,9 +12,12 @@ const runSeeds = async () => {
 
     console.log('--- Start Seeding ---')
     await RefreshToken.deleteMany()
+
     await seedUsers()
     await seedShops()
     await seedReviews()
+    await seedFavorites()
+    await seedHistory()
 
     console.log('--- Seeding Completed ---')
     process.exit()

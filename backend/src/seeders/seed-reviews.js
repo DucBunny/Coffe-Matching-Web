@@ -1,11 +1,10 @@
-import 'dotenv/config'
 import Review from '@/models/Review.js'
 import Shop from '@/models/Shop.js'
 import User from '@/models/User.js'
 
 const rawShopsData = [
   {
-    name: 'Highlands Coffee',
+    name: 'ハイランズコーヒー',
     reviews: [
       {
         rating: 5,

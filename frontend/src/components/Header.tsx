@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from '@tanstack/react-router'
-import { LogIn, MapPin, Search, User, X } from 'lucide-react'
+import { Bookmark, LogIn, MapPin, Search, User, X } from 'lucide-react'
 import { useAuthStore } from '../stores/useAuthStore'
 import {
   DropdownMenu,
@@ -101,7 +101,8 @@ export default function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between gap-4 px-6">
         {/* Logo */}
         <Link
-          to={isAuthenticated ? '/home' : '/'}
+          // to={isAuthenticated ? '/home' : '/'}
+          to="/"
           className="flex items-center gap-2 transition-opacity hover:opacity-90">
           <img
             src={logo}
@@ -173,8 +174,8 @@ export default function Header() {
               <Link to="/favourite" className="flex items-center">
                 <Button
                   variant="outline"
-                  className="border-transparent bg-transparent hover:bg-white/20">
-                  <i className="fa-solid fa-bookmark text-white"></i>
+                  className="border-transparent bg-[#ff644b] hover:bg-white/20">
+                  <Bookmark className="text-white" fill="white" />
                 </Button>
               </Link>
 

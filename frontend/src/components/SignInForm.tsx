@@ -58,7 +58,8 @@ export function SignInForm({
       const { email, password } = value
       try {
         await signin(email, password)
-        navigate({ to: '/home' })
+        // navigate({ to: '/home' })
+        navigate({ to: '/' })
       } catch (error) {
         console.error('Login failed:', error)
       }
