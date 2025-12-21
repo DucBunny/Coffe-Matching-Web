@@ -28,7 +28,7 @@ export default function DetailPage() {
   })
 
   const [selectedCafe, setSelectedCafe] = useState<Cafe | null>(null)
-  const params = useParams({ from: '/_auth/detail/$id' })
+  const params = useParams({ from: '/_guest/detail/$id' })
   const idParam = params.id
 
   useEffect(() => {

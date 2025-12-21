@@ -7,7 +7,7 @@ const searchSchema = z.object({
   keyword: z.string().optional(), // keyword là tùy chọn
 })
 
-export const Route = createFileRoute('/_auth/search')({
+export const Route = createFileRoute('/_guest/search')({
   // Validate params từ URL
   validateSearch: (search) => searchSchema.parse(search),
   component: Search,
