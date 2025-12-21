@@ -1,7 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
 import logo from '/logo.svg'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 
 export const Route = createFileRoute('/_auth/home')({
   component: Home,
@@ -9,17 +7,13 @@ export const Route = createFileRoute('/_auth/home')({
 
 function Home() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <main className="flex flex-1 flex-col items-center justify-center bg-[#282c34] text-[calc(10px+2vmin)] text-white">
-        <img
-          src={logo}
-          className="pointer-events-none h-[40vmin] animate-[spin_20s_linear_infinite]"
-          alt="logo"
-        />
-        <p>Welcome to the Home Page!</p>
-      </main>
-      <Footer />
+    <div className="flex w-full flex-col items-center justify-center text-[calc(10px+2vmin)]">
+      <img
+        src={logo}
+        className="pointer-events-none h-[40vmin] animate-[spin_20s_linear_infinite]"
+        alt="logo"
+      />
+      <p>Welcome to the Home Page!</p>
     </div>
   )
 }

@@ -68,7 +68,7 @@ const CafeCard: React.FC<{
     data.images && data.images.length > 0 ? data.images[0] : null
 
   const handleClick = () => {
-    navigate({ to: '/detail', search: { id: data.id } })
+    navigate({ to: '/detail/$id', params: { id: String(data.id) } })
   }
 
   return (

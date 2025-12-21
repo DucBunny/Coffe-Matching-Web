@@ -113,7 +113,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
           className={`mb-6 w-full rounded py-2 font-bold text-white shadow-sm transition ${
             priceApplied
               ? 'bg-[#e85f2f] shadow-md ring-2 ring-[#f26546]/40'
-              : 'bg-[#FF7F50] hover:opacity-90'
+              : 'bg-[#ff6347] hover:opacity-90'
           }`}>
           適用
         </button>

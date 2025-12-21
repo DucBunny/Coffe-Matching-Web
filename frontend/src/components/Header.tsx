@@ -170,7 +170,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           {isAuthenticated ? (
             <div className="flex gap-2">
-              <Link to="/history" className="flex items-center">
+              <Link to="/favourite" className="flex items-center">
                 <Button
                   variant="outline"
                   className="border-transparent bg-transparent hover:bg-white/20">
@@ -186,19 +186,17 @@ export default function Header() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuItem>
+                  <DropdownMenuItem asChild>
                     <Link to="/profile" className="block w-full">
                       マイページ
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
+                  <DropdownMenuItem asChild>
                     <Link to="/history" className="block w-full">
                       履歴
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem
-                    onClick={signout}
-                    className="cursor-pointer">
+                  <DropdownMenuItem onClick={signout}>
                     ログアウト
                   </DropdownMenuItem>
                 </DropdownMenuContent>

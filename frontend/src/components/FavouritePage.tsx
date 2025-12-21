@@ -5,7 +5,7 @@ import PaginationButton from './pagination/PaginationButtonProps'
 import type { Cafe } from '@/types/cafe'
 import cafeDataRaw from '@/data/cafes.json'
 
-const FavoritePage = () => {
+export default function FavoritePage() {
   const CAFES_DATA: Array<Cafe> = cafeDataRaw as Array<Cafe>
   const [currentPage, setCurrentPage] = useState(1)
   const ITEMS_PER_PAGE = 10
@@ -31,17 +31,17 @@ const FavoritePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#F9F9F9] flex flex-col font-sans w-full">
-      <div className="w-full flex flex-col md:flex-row gap-8 p-4 md:px-8 md:py-8 relative">
+    <div className="flex min-h-screen w-full flex-col bg-[#F9F9F9] font-sans">
+      <div className="relative flex w-full flex-col gap-8 p-4 md:flex-row md:px-8 md:py-8">
         <main className="flex-1">
-          <div className="flex justify-center mb-8">
-            <div className="bg-[#FF6347] text-white  px-12 py-3 rounded text-xl font-bold shadow-sm text-center relative">
+          <div className="mb-8 flex justify-center">
+            <div className="relative rounded bg-[#FF6347] px-12 py-3 text-center text-xl font-bold text-white shadow-sm">
               お気に入りのカフェ
             </div>
           </div>
 
           {cafeDataRaw.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-8">
+            <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
               {cafeDataRaw.map((item) => (
                 <CafeCard
                   key={item.id}
@@ -52,7 +52,7 @@ const FavoritePage = () => {
               ))}
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center py-20 text-gray-500 bg-white rounded-lg border border-dashed border-gray-300">
+            <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-gray-300 bg-white py-20 text-gray-500">
               <Search size={48} className="mb-4 text-gray-300" />
               <p className="text-lg font-bold">
                 適切なカフェが見つかりませんでした。
@@ -64,11 +64,11 @@ const FavoritePage = () => {
           )}
 
           {totalPages > 1 && (
-            <div className="flex justify-center items-center gap-2 mb-8 mt-8 select-none">
+            <div className="mt-8 mb-8 flex items-center justify-center gap-2 select-none">
               <button
                 onClick={handlePrev}
                 disabled={currentPage === 1}
-                className="p-2 rounded-md border border-gray-200 text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
+                className="cursor-pointer rounded-md border border-gray-200 p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900 disabled:cursor-not-allowed disabled:opacity-50">
                 <ChevronLeft size={18} />
               </button>
 
@@ -86,7 +86,7 @@ const FavoritePage = () => {
               <button
                 onClick={handleNext}
                 disabled={currentPage === totalPages}
-                className="p-2 rounded-md border border-gray-200 text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
+                className="cursor-pointer rounded-md border border-gray-200 p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900 disabled:cursor-not-allowed disabled:opacity-50">
                 <ChevronRight size={18} />
               </button>
             </div>
@@ -96,5 +96,3 @@ const FavoritePage = () => {
     </div>
   )
 }
-
-export default FavoritePage
