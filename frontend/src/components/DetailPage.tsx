@@ -1,43 +1,66 @@
-import React, {useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import MainDetail from './detail/MainDetail'
-import type { Cafe } from '@/types/cafe'
-import cafeDataRaw from '@/data/cafes.json'
+import { getShopById } from '@/services/search.api'
 
+interface DetailProp {
+  shopId: string
+}
 
-const CAFES_DATA: Array<Cafe> = cafeDataRaw as Array<Cafe>
-
-const DetailPage: React.FC = () => {
-  const [selectedCafe, setSelectedCafe] = useState<Cafe | null>(null)
+const DetailPage = ({ shopId }: DetailProp) => {
+  const [selectedCafe, setSelectedCafe] = useState<IShop | null>(null)
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Lấy ID từ URL (query param ?id=...)
-    const params = new URLSearchParams(window.location.search)
-    const idParam = params.get('id')
+    const fetchShopDetail = async () => {
+      try {
+        setLoading(true)
+        setError(null)
 
-    if (idParam) {
-      const foundCafe = CAFES_DATA.find((c) => c.id === Number(idParam))
-      if (foundCafe) {
-        setSelectedCafe(foundCafe)
-      } else {
-        // Fallback nếu ID không tồn tại: Chọn quán đầu tiên
-        setSelectedCafe(CAFES_DATA[0])
+        const response = await getShopById(shopId)
+        console.log('rés', response)
+        if (response.data.success && response.data.data) {
+          const shop = response.data.data
+
+          setSelectedCafe(shop)
+        } else {
+          setError('Không thể tải thông tin cửa hàng')
+        }
+      } catch (err) {
+        console.error('Error fetching shop detail:', err)
+        setError('Lỗi khi tải dữ liệu')
+      } finally {
+        setLoading(false)
       }
-    } else {
-      // Fallback nếu không có ID: Chọn quán đầu tiên
-      setSelectedCafe(CAFES_DATA[0])
     }
+
+    fetchShopDetail()
   }, [])
 
-  if (!selectedCafe) {
+  if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        Loading...
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-[#F26546]"></div>
+          <p>読み込み中...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !selectedCafe) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="text-center text-red-600">
+          <p className="text-lg font-bold">{error || 'エラーが発生しました'}</p>
+          <p className="mt-2 text-sm">ページを再度読み込んでください</p>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[#F9F9F9] flex flex-col font-sans w-full text-gray-800">
+    <div className="flex min-h-screen w-full flex-col bg-[#F9F9F9] font-sans text-gray-800">
       <MainDetail cafe={selectedCafe} />
     </div>
   )

@@ -10,7 +10,7 @@ export const Route = createFileRoute('/_auth/favourite')({
 function Favorite() {
   return (
     <>
-      <Header isAuthenticated={true} />
+      <Header />
       <FavoritePage />
       <Footer />
     </>

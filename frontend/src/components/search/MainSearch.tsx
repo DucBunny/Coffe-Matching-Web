@@ -1,17 +1,19 @@
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react'
 import CafeCard from '../cafe/CafeCard'
 import PaginationButton from '../pagination/PaginationButtonProps'
-import type { Cafe } from '@/types/cafe'
+
+type SortType = 'distance' | 'rating' | null
 
 interface MainContentProps {
   currentPage: number
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>
-  cafes: Array<Cafe>
+  cafes: Array<IShop>
   totalItems: number
-  sortBy: { distance: boolean; rating: boolean }
+  sortBy: SortType
   onSortChange: (type: 'distance' | 'rating') => void
   userLocation: { lat: number; lng: number } | null
   showDistance: boolean
+  loading?: boolean
 }
 
 const MainContent: React.FC<MainContentProps> = ({
@@ -23,8 +25,10 @@ const MainContent: React.FC<MainContentProps> = ({
   onSortChange,
   userLocation,
   showDistance,
+  loading = false,
 }) => {
-  const ITEMS_PER_PAGE = 9
+  // Vì API đã xử lý pagination, nên không cần slice dữ liệu
+  const ITEMS_PER_PAGE = 12
   const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE) || 1
 
   const handlePrev = () => {
@@ -54,7 +58,7 @@ const MainContent: React.FC<MainContentProps> = ({
           <button
             onClick={() => onSortChange('distance')}
             className={`flex-1 rounded px-8 py-1.5 text-sm font-bold transition sm:flex-none ${
-              sortBy.distance
+              sortBy === "distance"
                 ? 'bg-[#F26546] text-white'
                 : 'bg-[#444] text-white hover:bg-[#555]'
             }`}>
@@ -63,7 +67,7 @@ const MainContent: React.FC<MainContentProps> = ({
           <button
             onClick={() => onSortChange('rating')}
             className={`flex-1 rounded px-8 py-1.5 text-sm font-bold transition sm:flex-none ${
-              sortBy.rating
+              sortBy === "rating"
                 ? 'bg-[#F26546] text-white'
                 : 'bg-[#444] text-white hover:bg-[#555]'
             }`}>
@@ -73,15 +77,20 @@ const MainContent: React.FC<MainContentProps> = ({
       </div>
 
       {cafes.length > 0 ? (
-        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {cafes.map((item) => (
             <CafeCard
-              key={item.id}
+              key={item._id}
               data={item}
               userLocation={userLocation}
               showDistance={showDistance}
             />
           ))}
+        </div>
+      ) : loading ? (
+        <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-gray-300 bg-white py-20 text-gray-500">
+          <div className="mb-4 h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-[#F26546]"></div>
+          <p className="text-lg font-bold">読み込み中...</p>
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-gray-300 bg-white py-20 text-gray-500">
@@ -95,7 +104,7 @@ const MainContent: React.FC<MainContentProps> = ({
         </div>
       )}
 
-      {totalPages > 1 && (
+      {totalPages > 0 && (
         <div className="mt-8 mb-8 flex items-center justify-center gap-2 select-none">
           <button
             onClick={handlePrev}

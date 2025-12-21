@@ -1,7 +1,6 @@
 import { useNavigate } from '@tanstack/react-router'
 import { Bookmark, ImageIcon, Star } from 'lucide-react'
 import { useState } from 'react'
-import type { Cafe } from '@/types/cafe'
 
 const AREAS = [
   { id: 'hbt', label: 'Hai Ba Trung', jpLabel: 'ハイバーチュン区' },
@@ -18,14 +17,14 @@ const PURPOSES = [
 ]
 
 const CafeCard: React.FC<{
-  data: Cafe
+  data: IShop
   userLocation: { lat: number; lng: number } | null
   showDistance: boolean
 }> = ({ data, userLocation, showDistance }) => {
   const navigate = useNavigate()
   const [isFavorite, setIsFavorite] = useState(false)
   const areaInfo = AREAS.find((a) => a.id === data.area)
-  const purposeInfo = PURPOSES.find((p) => p.id === data.purpose)
+  // const purposeInfo = PURPOSES.find((p) => p.id === data.purpose)
 
   // Calculate distance
   const calculateDistance = (
@@ -48,12 +47,12 @@ const CafeCard: React.FC<{
   }
 
   const distance =
-    userLocation && data.lat && data.lng
+    userLocation && data.location.coordinates[0] && data.location.coordinates[1]
       ? calculateDistance(
           userLocation.lat,
           userLocation.lng,
-          data.lat,
-          data.lng,
+          data.location.coordinates[1],
+          data.location.coordinates[0],
         )
       : null
 
@@ -64,11 +63,10 @@ const CafeCard: React.FC<{
     return `${distKm.toFixed(1)}km`
   }
 
-  const displayImage =
-    data.images && data.images.length > 0 ? data.images[0] : null
+  const displayImage = data.images.length > 0 ? data.images[0] : null
 
   const handleClick = () => {
-    navigate({ to: '/detail', search: { id: data.id } })
+    navigate({ to: '/detail', search: { id: data._id } })
   }
 
   return (
@@ -100,11 +98,11 @@ const CafeCard: React.FC<{
           <Bookmark size={16} fill={isFavorite ? '#F26546' : 'white'} />
         </button>
 
-        {purposeInfo && (
+        {/* {purposeInfo && (
           <div className="absolute bottom-2 left-2 rounded bg-black/60 px-2 py-1 text-[10px] text-white backdrop-blur-sm">
             {purposeInfo.jpLabel}
           </div>
-        )}
+        )} */}
       </div>
 
       <div className="flex flex-1 flex-col p-3">
@@ -121,7 +119,9 @@ const CafeCard: React.FC<{
         </div>
 
         <div className="mt-auto space-y-1 text-xs text-gray-600">
-          <p className="text-left">営業時間: {data.hours}</p>
+          <p className="text-left">
+            営業時間: {data.hours.open} ~ {data.hours.close}
+          </p>
           <p className="line-clamp-1 text-left">住所: {data.address}</p>
           <p className="text-left font-semibold text-gray-500">
             {areaInfo ? `${areaInfo.jpLabel} (${areaInfo.label})` : 'Hanoi'}

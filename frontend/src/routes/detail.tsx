@@ -8,10 +8,11 @@ export const Route = createFileRoute('/detail')({
 })
 
 function Detail() {
+  const search: any = Route.useSearch()
   return (
     <div className="text-center">
       <Header />
-      <DetailPage />
+      <DetailPage shopId={search.id} />
       <Footer />
     </div>
   )

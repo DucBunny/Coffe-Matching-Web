@@ -3,9 +3,15 @@ import ApiError from '@/utils/api-error.js'
 
 export const authMiddleware = (req, res, next) => {
   // Whitelist paths that do not require authentication
-  const whitelists = ['auth/signin', 'auth/signup', 'auth/refresh-token']
-  if (whitelists.find((path) => '/api-v1/' + path === req.originalUrl))
+  const whitelists = [
+    'auth/signin',
+    'auth/signup',
+    'auth/refresh-token',
+    'search'
+  ]
+  if (whitelists.some((path) => req.path.includes(path))) {
     return next()
+  }
 
   try {
     const auth = req.headers['authorization'] || req.headers['Authorization']
