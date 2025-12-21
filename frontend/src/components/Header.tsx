@@ -10,18 +10,7 @@ import {
 } from './ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
 import logo from '/logo.png'
-
-// Import data để gợi ý (Autocomplete)
-import cafeDataRaw from '@/data/cafes.json'
-
-// Định nghĩa lại interface Cafe gọn nhẹ cho việc gợi ý
-interface CafeSimple {
-  id: number
-  name: string
-  address: string
-}
-
-const CAFES_DATA: Array<CafeSimple> = cafeDataRaw as Array<CafeSimple>
+import { getShopBySearch } from '@/services/search.api'
 
 export default function Header() {
   const { signout, isAuthenticated } = useAuthStore()
@@ -29,23 +18,30 @@ export default function Header() {
 
   // --- Search Logic State ---
   const [inputValue, setInputValue] = useState('')
-  const [suggestions, setSuggestions] = useState<Array<CafeSimple>>([])
+  const [suggestions, setSuggestions] = useState<Array<IShop>>([])
   const [showSuggestions, setShowSuggestions] = useState(false)
   const searchRef = useRef<HTMLDivElement>(null)
 
   // 1. Debounce Logic: Tìm gợi ý sau 300ms
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (inputValue.trim()) {
-        const lowerInput = inputValue.toLowerCase()
-        const matched = CAFES_DATA.filter(
-          (cafe) =>
-            cafe.name.toLowerCase().includes(lowerInput) ||
-            cafe.address.toLowerCase().includes(lowerInput),
-        ).slice(0, 5) // Giới hạn 5 kết quả
-        setSuggestions(matched)
+    const timer = setTimeout(async () => {
+      const keyword = inputValue.trim()
+
+      if (!keyword) {
+        setSuggestions([])
+        setShowSuggestions(false)
+        return
+      }
+
+      try {
+        const res = await getShopBySearch({
+          keyword,
+        })
+
+        setSuggestions(res.data.data ?? [])
         setShowSuggestions(true)
-      } else {
+      } catch (error) {
+        console.error('Header search error:', error)
         setSuggestions([])
         setShowSuggestions(false)
       }
@@ -147,7 +143,7 @@ export default function Header() {
               <ul>
                 {suggestions.map((cafe) => (
                   <li
-                    key={cafe.id}
+                    key={cafe._id}
                     onClick={() => handleSuggestionClick(cafe.name)}
                     className="flex cursor-pointer items-center gap-3 border-b border-gray-100 px-4 py-3 text-left transition-colors last:border-0 hover:bg-orange-50">
                     <Search size={16} className="shrink-0 text-gray-400" />
