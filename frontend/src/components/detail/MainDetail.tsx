@@ -19,29 +19,25 @@ import FeatureItem from './FeatureItem'
 import ReviewForm from './ReviewForm'
 import type { Cafe } from '@/types/cafe'
 
-const MainDetail: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
+const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [reviews, setReviews] = useState(cafe.reviews || [])
-
+  // const [reviews, setReviews] = useState(cafe.reviews || [])
   const [pageIndex, setPageIndex] = useState(0)
   const itemsPerPage = 4
-  const totalPages = Math.max(
-    1,
-    Math.ceil((cafe.features || []).length / itemsPerPage),
-  )
+  const totalPages = Math.max(1, Math.ceil(cafe.features.length / itemsPerPage))
 
   const [menuPageIndex, setMenuPageIndex] = useState(0)
   const menuItemsPerPage = 6
   const menuTotalPages = Math.max(
     1,
-    Math.ceil((cafe.menu || []).length / menuItemsPerPage),
+    Math.ceil(cafe.menu.length / menuItemsPerPage),
   )
 
   const [thumbPageIndex, setThumbPageIndex] = useState(0)
   const thumbItemsPerPage = 6
   const thumbTotalPages = Math.max(
     1,
-    Math.ceil((cafe.images || []).length / thumbItemsPerPage),
+    Math.ceil(cafe.images.length / thumbItemsPerPage),
   )
 
   const goPrev = () => setPageIndex((p) => (p - 1 + totalPages) % totalPages)
@@ -55,38 +51,25 @@ const MainDetail: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
     setThumbPageIndex((p) => (p - 1 + thumbTotalPages) % thumbTotalPages)
   const goNextThumb = () => setThumbPageIndex((p) => (p + 1) % thumbTotalPages)
 
-  const nextImage = () => {
-    if (cafe.images && cafe.images.length > 0) {
-      setCurrentImageIndex((prev) => (prev + 1) % cafe.images!.length)
-    }
-  }
-  const prevImage = () => {
-    if (cafe.images && cafe.images.length > 0) {
-      setCurrentImageIndex(
-        (prev) => (prev - 1 + cafe.images!.length) % cafe.images!.length,
-      )
-    }
-  }
-
-  const handleAddReview = (newReview: {
-    rating: number
-    content: string
-    image?: string
-  }) => {
-    const review = {
-      id: reviews.length + 1,
-      user: 'User Name',
-      date: new Date().toLocaleDateString('ja-JP', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-      }),
-      rating: newReview.rating,
-      content: newReview.content,
-      image: newReview.image,
-    }
-    setReviews([review, ...reviews])
-  }
+  // const handleAddReview = (newReview: {
+  //   rating: number
+  //   content: string
+  //   image?: string
+  // }) => {
+  //   const review = {
+  //     id: reviews.length + 1,
+  //     user: 'User Name',
+  //     date: new Date().toLocaleDateString('ja-JP', {
+  //       year: 'numeric',
+  //       month: '2-digit',
+  //       day: '2-digit',
+  //     }),
+  //     rating: newReview.rating,
+  //     content: newReview.content,
+  //     image: newReview.image,
+  //   }
+  //   setReviews([review, ...reviews])
+  // }
 
   // Reset image index khi đổi cafe
   useEffect(() => {
@@ -94,12 +77,24 @@ const MainDetail: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
     setPageIndex(0)
     setMenuPageIndex(0)
     setThumbPageIndex(0)
-  }, [cafe.id])
+  }, [cafe._id])
+
+  const nextImage = () => {
+    if (cafe.images.length > 0) {
+      setCurrentImageIndex((prev) => (prev + 1) % cafe.images.length)
+    }
+  }
+
+  const prevImage = () => {
+    if (cafe.images.length > 0) {
+      setCurrentImageIndex(
+        (prev) => (prev - 1 + cafe.images.length) % cafe.images.length,
+      )
+    }
+  }
 
   const displayImage =
-    cafe.images && cafe.images.length > 0
-      ? cafe.images[currentImageIndex]
-      : null
+    cafe.images.length > 0 ? cafe.images[currentImageIndex] : null
 
   return (
     <div className="w-full space-y-8 bg-white p-4 md:bg-transparent md:p-8">
@@ -117,7 +112,7 @@ const MainDetail: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
                 <ImageIcon size={64} className="text-gray-400" />
               )}
 
-              {cafe.images && cafe.images.length > 1 && (
+              {cafe.images.length > 1 && (
                 <>
                   <button
                     onClick={(e) => {
@@ -186,11 +181,15 @@ const MainDetail: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
               </div>
               <div className="flex items-center gap-3 rounded p-2 transition hover:bg-gray-50">
                 <DollarSign size={20} className="text-[#F26546]" />
-                <span className="font-medium">{cafe.priceRange}</span>
+                <span className="font-medium">
+                  {cafe.priceRange.min} ~ {cafe.priceRange.max}
+                </span>
               </div>
               <div className="flex items-center gap-3 rounded p-2 transition hover:bg-gray-50">
                 <Clock size={20} className="text-[#F26546]" />
-                <span className="font-medium">{cafe.hours}</span>
+                <span className="font-medium">
+                  {cafe.hours.open} ~ {cafe.hours.close}
+                </span>
               </div>
               <div className="flex items-center gap-3 rounded p-2 transition hover:bg-gray-50">
                 <Phone size={20} className="text-[#F26546]" />
@@ -212,7 +211,7 @@ const MainDetail: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
         </div>
       </div>
 
-      {cafe.features && cafe.features.length > 0 && (
+      {cafe.features.length > 0 && (
         <SectionCard title="お店の機能" icon={<Check size={18} />}>
           <div className="relative">
             <div className="overflow-hidden">
@@ -248,7 +247,7 @@ const MainDetail: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
         </SectionCard>
       )}
 
-      {cafe.images && cafe.images.length > 0 && (
+      {cafe.images.length > 0 && (
         <SectionCard title="お店の写真" icon={<Camera size={18} />}>
           <div className="relative">
             <div className="overflow-hidden py-2">
@@ -294,7 +293,7 @@ const MainDetail: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
         </SectionCard>
       )}
 
-      {cafe.menu && cafe.menu.length > 0 && (
+      {cafe.menu.length > 0 && (
         <SectionCard title="お店のメニュー" icon={<Coffee size={18} />}>
           <div className="relative">
             <div className="overflow-hidden py-2">
@@ -348,10 +347,10 @@ const MainDetail: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
         </SectionCard>
       )}
 
-      <SectionCard title="カフェの評価" icon={<Star size={18} />}>
-        <ReviewForm onAddReview={handleAddReview} />
+      {/* <SectionCard title="カフェの評価" icon={<Star size={18} />}> */}
+      {/* <ReviewForm onAddReview={handleAddReview} /> */}
 
-        <div className="w-full space-y-6">
+      {/* <div className="w-full space-y-6">
           {reviews.length > 0 ? (
             reviews.map((review) => (
               <div
@@ -409,8 +408,8 @@ const MainDetail: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
               まだレビューはありません。
             </p>
           )}
-        </div>
-      </SectionCard>
+        </div> */}
+      {/* </SectionCard> */}
     </div>
   )
 }

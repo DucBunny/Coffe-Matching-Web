@@ -4,7 +4,7 @@ import ProfileInfo from './profile/ProfileInfo'
 import StyleSelector from './profile/StyleSelector'
 import { Button } from './ui/button'
 import { ModalChangePassword } from './profile/ModalChangePassword'
-import { getProfile, updatePassword, updateProfile } from '@/services/api'
+import { getProfile, updatePassword, updateProfile } from '@/services/profile.api'
 
 export default function ProfilePage() {
   const baseURLImage = `${import.meta.env.VITE_BASE_URL_BACKEND}/images/avatar`

@@ -1,72 +1,60 @@
-import { useEffect, useRef, useState } from 'react'
-import { useParams } from '@tanstack/react-router'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
 import MainDetail from './detail/MainDetail'
-import type { Cafe } from '@/types/cafe'
-import type { CreateHistory } from '@/types/history'
-import cafeDataRaw from '@/data/cafes.json'
-import { historyAPI } from '@/services/history.api'
-import { useAuthStore } from '@/stores/useAuthStore'
+import { getShopById } from '@/services/search.api'
 
-const CAFES_DATA: Array<Cafe> = cafeDataRaw as Array<Cafe>
+interface DetailProp {
+  shopId: string
+}
 
-export default function DetailPage() {
-  const { user } = useAuthStore()
-  const queryClient = useQueryClient()
-
-  // Ref để lưu lại ID của quán đã được log lịch sử
-  // useRef giữ giá trị xuyên suốt các lần render mà không gây re-render
-  const loggedHistoryRef = useRef<string | number | null>(null)
-
-  const createHistoryMutation = useMutation({
-    mutationFn: ({ userId, shopId }: CreateHistory) =>
-      historyAPI.create(userId, shopId),
-    onSuccess: () => {
-      // Chỉ invalidate khi user thực sự quan tâm đến dữ liệu mới
-      queryClient.invalidateQueries({ queryKey: ['history'] })
-    },
-  })
-
-  const [selectedCafe, setSelectedCafe] = useState<Cafe | null>(null)
-  const params = useParams({ from: '/_guest/detail/$id' })
-  const idParam = params.id
+const DetailPage = ({ shopId }: DetailProp) => {
+  const [selectedCafe, setSelectedCafe] = useState<IShop | null>(null)
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    if (idParam) {
-      const foundCafe = CAFES_DATA.find((c) => c.id === Number(idParam))
+    const fetchShopDetail = async () => {
+      try {
+        setLoading(true)
+        setError(null)
 
-      if (foundCafe) {
-        setSelectedCafe(foundCafe)
+        const response = await getShopById(shopId)
+        console.log('rés', response)
+        if (response.data.success && response.data.data) {
+          const shop = response.data.data
 
-        // --- LOGIC CHẶN GỌI 2 LẦN ---
-        // Kiểm tra:
-        // 1. User phải tồn tại (nếu yêu cầu login mới lưu lịch sử)
-        // 2. Kiểm tra xem ID quán hiện tại đã được log chưa
-        if (user?._id && loggedHistoryRef.current !== idParam) {
-          createHistoryMutation.mutate({
-            userId: user._id,
-            // Lưu ý: Bạn đang hardcode ID ở đây, nên đổi thành ID thật của quán
-            shopId: '6946d19d0229432acb45ac61',
-            // shopId: foundCafe._id || foundCafe.id.toString(), // Ví dụ lấy ID thật
-          })
-
-          // Đánh dấu là đã log cho ID này rồi
-          loggedHistoryRef.current = idParam
+          setSelectedCafe(shop)
+        } else {
+          setError('Không thể tải thông tin cửa hàng')
         }
-      } else {
-        // Fallback nếu ID không tồn tại: Chọn quán đầu tiên
-        setSelectedCafe(CAFES_DATA[0])
+      } catch (err) {
+        console.error('Error fetching shop detail:', err)
+        setError('Lỗi khi tải dữ liệu')
+      } finally {
+        setLoading(false)
       }
-    } else {
-      // Fallback nếu không có ID: Chọn quán đầu tiên
-      setSelectedCafe(CAFES_DATA[0])
     }
-  }, [idParam, user?._id]) // Thêm user?._id vào deps nếu muốn log ngay khi user vừa load xong
 
-  if (!selectedCafe) {
+    fetchShopDetail()
+  }, [])
+
+  if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        Loading...
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-[#F26546]"></div>
+          <p>読み込み中...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !selectedCafe) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="text-center text-red-600">
+          <p className="text-lg font-bold">{error || 'エラーが発生しました'}</p>
+          <p className="mt-2 text-sm">ページを再度読み込んでください</p>
+        </div>
       </div>
     )
   }
@@ -77,3 +65,5 @@ export default function DetailPage() {
     </div>
   )
 }
+
+export default DetailPage
