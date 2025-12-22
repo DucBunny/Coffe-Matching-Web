@@ -6,13 +6,3 @@ import FavoritePage from '@/components/FavoritePage'
 export const Route = createFileRoute('/_auth/favorite')({
   component: Favorite,
 })
-
-function Favorite() {
-  return (
-    <>
-      <Header />
-      <FavoritePage />
-      <Footer />
-    </>
-  )
-}

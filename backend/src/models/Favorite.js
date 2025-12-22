@@ -21,7 +21,7 @@ const FavoriteSchema = new mongoose.Schema(
 )
 
 // prevent duplicate favorites for same user/shop
-FavoriteSchema.index({ user: 1, shop: 1 }, { unique: true })
+FavoriteSchema.index({ user_id: 1, shop_id: 1 }, { unique: true })
 
 const Favorite = mongoose.model('Favorite', FavoriteSchema)
 

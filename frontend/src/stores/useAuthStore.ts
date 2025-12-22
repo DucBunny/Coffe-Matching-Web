@@ -1,8 +1,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { toast } from 'sonner'
-import { authAPI } from '../services/auth.api.js'
-import type { AuthState } from '../types/store.js'
+import type { AuthState } from '@/types/store.js'
+import { authAPI } from '@/services/auth.api.js'
 
 export const useAuthStore = create<AuthState>()(
   persist(

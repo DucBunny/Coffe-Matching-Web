@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from '@tanstack/react-router'
-import { CheckCircle2, LogIn, MapPin, Search, User, X } from 'lucide-react'
+import { Bookmark, LogIn, MapPin, Search, User, X } from 'lucide-react'
 import { useAuthStore } from '../stores/useAuthStore'
 import {
   DropdownMenu,
@@ -13,7 +13,7 @@ import logo from '/logo.png'
 import { getShopBySearch } from '@/services/search.api'
 
 export default function Header() {
-  const { signout, isAuthenticated } = useAuthStore()
+  const { signout, isAuthenticated, user } = useAuthStore()
   const navigate = useNavigate()
 
   // --- Search Logic State ---
@@ -97,7 +97,8 @@ export default function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between gap-4 px-6">
         {/* Logo */}
         <Link
-          to={isAuthenticated ? '/home' : '/'}
+          // to={isAuthenticated ? '/home' : '/'}
+          to="/"
           className="flex items-center gap-2 transition-opacity hover:opacity-90">
           <img
             src={logo}
@@ -164,44 +165,55 @@ export default function Header() {
 
         {/* Right Section */}
         <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="hidden gap-2 text-white hover:bg-white/20 hover:text-white md:flex">
-            <CheckCircle2 size={16} />
-            <span className="text-sm">終了済み</span>
-          </Button>
-
           {isAuthenticated ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button className="bg-white text-[#FF6347] hover:bg-white/90 hover:text-[#FF6347]">
-                  <User size={16} />
+            <div className="flex gap-2">
+              <Link to="/favorite" className="flex items-center">
+                <Button
+                  variant="outline"
+                  className="border-transparent bg-[#ff644b] hover:bg-white/20">
+                  <Bookmark className="text-white" fill="white" />
                 </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>
-                  <Link to="/profile" className="block w-full">
-                    プロフィール
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link to="/favorite" className="block w-full">
-                    お気に入り
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={signout} className="cursor-pointer">
-                  ログアウト
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+              </Link>
+
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button className="bg-white text-[#FF6347] hover:bg-white/90">
+                    {user?.username.split(' ')[0]}
+                    <User size={16} />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem asChild>
+                    <Link to="/profile" className="block w-full">
+                      マイページ
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/history" className="block w-full">
+                      履歴
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={signout}>
+                    ログアウト
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           ) : (
-            <Link to="/signin" className="flex items-center gap-2">
-              <Button className="bg-white text-[#FF6347] hover:bg-white/90">
-                <LogIn />
-                <span className="hidden sm:inline-block">ログイン</span>
-              </Button>
-            </Link>
+            <div className="flex gap-2">
+              <Link to="/signin" className="flex items-center gap-2">
+                <Button className="bg-white text-[#FF6347] hover:bg-white/90">
+                  <span className="hidden sm:inline-block">ログイン</span>
+                </Button>
+              </Link>
+
+              <Link to="/signup" className="flex items-center gap-2">
+                <Button className="bg-white text-[#FF6347] hover:bg-white/90">
+                  <LogIn className="sm:hidden" />
+                  <span className="hidden sm:inline-block">サインアップ</span>
+                </Button>
+              </Link>
+            </div>
           )}
         </div>
       </div>

@@ -84,7 +84,7 @@ const MainContent: React.FC<MainContentProps> = ({
   return (
     <div className="flex-1">
       <div className="mb-8 flex justify-center">
-        <div className="relative rounded bg-[#666] px-12 py-3 text-center text-xl font-bold text-white shadow-sm">
+        <div className="relative rounded bg-[#ff6347] px-12 py-3 text-center text-xl font-bold text-white shadow-sm">
           カフェ検索結果
         </div>
       </div>
@@ -96,7 +96,7 @@ const MainContent: React.FC<MainContentProps> = ({
             onClick={() => onSortChange('distance')}
             className={`flex-1 rounded px-8 py-1.5 text-sm font-bold transition sm:flex-none ${
               sortBy === 'distance'
-                ? 'bg-[#F26546] text-white'
+                ? 'bg-[#ff6347] text-white'
                 : 'bg-[#444] text-white hover:bg-[#555]'
             }`}>
             距離
@@ -105,7 +105,7 @@ const MainContent: React.FC<MainContentProps> = ({
             onClick={() => onSortChange('rating')}
             className={`flex-1 rounded px-8 py-1.5 text-sm font-bold transition sm:flex-none ${
               sortBy === 'rating'
-                ? 'bg-[#F26546] text-white'
+                ? 'bg-[#ff6347] text-white'
                 : 'bg-[#444] text-white hover:bg-[#555]'
             }`}>
             評価
@@ -113,6 +113,7 @@ const MainContent: React.FC<MainContentProps> = ({
         </div>
       </div>
 
+      {/* List of Cafes */}
       {cafes.length > 0 ? (
         <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {cafes.map((item) => (
@@ -143,6 +144,7 @@ const MainContent: React.FC<MainContentProps> = ({
         </div>
       )}
 
+      {/* Pagination */}
       {totalPages > 0 && (
         <div className="mt-8 mb-8 flex items-center justify-center gap-2 select-none">
           <button

@@ -5,6 +5,7 @@ import profileRouter from './profile.route.js'
 import searchRouter from './search.route.js'
 import shopRouter from './shop.route.js'
 import favoriteRouter from './favorite.route.js'
+import historyRouter from './history.route.js'
 
 const router = express.Router()
 
@@ -20,5 +21,6 @@ router.use('/profile', profileRouter)
 router.use('/search', searchRouter)
 router.use('/shop', shopRouter)
 router.use('/favorite', favoriteRouter)
+router.use('/history', historyRouter)
 
 export default router

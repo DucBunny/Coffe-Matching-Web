@@ -28,7 +28,8 @@ export default function Footer() {
     <footer className="w-full bg-[#FF6347] px-12 py-3 text-white">
       <div className="flex justify-between pt-3">
         <Link
-          to={isAuthenticated ? '/home' : '/'}
+          // to={isAuthenticated ? '/home' : '/'}
+          to="/"
           className="flex items-center gap-2 transition-opacity hover:opacity-90">
           <img
             src={logo}

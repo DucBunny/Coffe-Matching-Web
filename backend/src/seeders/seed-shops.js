@@ -1,10 +1,9 @@
-import 'dotenv/config'
 import Shop from '@/models/Shop.js'
 
 const rawShops = [
   {
     id: 1,
-    name: 'Highlands Coffee',
+    name: 'ハイランズコーヒー',
     rating: 4.5,
     hours: '7:00 ~ 23:00',
     address: '16 Le Thanh Nghi',
@@ -31,43 +30,43 @@ const rawShops = [
     ],
     menu: [
       {
-        name: 'Phin Sữa Đá',
+        name: 'フィン・スア・ダー',
         price: '29.000đ',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUKtlhRUNzksfbbzUGBkelT0MxrnhjU-sExw&s'
       },
       {
-        name: 'Trà Sen Vàng',
+        name: 'トラ・セン・ヴァン',
         price: '45.000đ',
         image:
           'https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/HLC_New_logo_5.1_Products__TSV.jpg'
       },
       {
-        name: 'Freeze Trà Xanh',
+        name: '抹茶フリーズ',
         price: '55.000đ',
         image:
           'https://noithatcaphe.vn/images/2022/07/14/freeze-tra-xanh-highlands-coffee-%201.jpg'
       },
       {
-        name: 'Phindi Matcha Dâu',
+        name: 'フィンディ マッチャ ストロベリー',
         price: '69.000đ',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ3vyOozc6PQCP2JT76rSvHZ05NkRYeKzXHQ&s'
       },
       {
-        name: 'Cà Phê Phin Đen Đá',
+        name: 'フィンコーヒー（ブラックアイス）',
         price: '29.000đ',
         image:
           'https://bizweb.dktcdn.net/100/487/455/products/phin-den-da-1698982738181.jpg?v=1724205162483'
       },
       {
-        name: 'Trà Thạch Vải',
+        name: 'ライチゼリーティー',
         price: '49.000đ',
         image:
           'https://www.highlandscoffee.com.vn/vnt_upload/product/HLCPOSTOFFICE_DRAFT/PNG_FINAL/3_MENU_NGUYEN_BAN/Tra_Thach_Vai.jpg'
       },
       {
-        name: 'Freeze Socola',
+        name: 'チョコレートフリーズ',
         price: '55.000đ',
         image:
           'https://www.highlandscoffee.com.vn/vnt_upload/product/04_2023/New_product/HLC_New_logo_5.1_Products__FREEZE_CHOCO.jpg'
@@ -86,7 +85,7 @@ const rawShops = [
   },
   {
     id: 2,
-    name: 'The Coffee House',
+    name: 'ザ・コーヒーハウス',
     rating: 4.8,
     hours: '8:00 ~ 22:30',
     address: '23 Ba Trieu',
@@ -110,19 +109,19 @@ const rawShops = [
     ],
     menu: [
       {
-        name: 'Cà Phê Sữa Đá',
+        name: 'カフェスアダー',
         price: '35.000đ',
         image:
           'https://file.hstatic.net/1000075078/file/blog_adda9e9ccb2a495fb063ec50f0af8cda_grande.jpg'
       },
       {
-        name: 'Trà Đào Cam Sả',
+        name: 'ピーチオレンジ・レモングラスティー',
         price: '49.000đ',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_CWCFnEM4SZQzXLSomUMx8M0t8wwNj53yUQ&s'
       },
       {
-        name: 'Olong Hạt Sen',
+        name: '蓮の実ウーロン茶',
         price: '52.000đ',
         image:
           'https://winci.com.vn/wp-content/uploads/2024/02/Tra-Long-Nhan-Hat-Sen.webp'
@@ -132,7 +131,7 @@ const rawShops = [
   },
   {
     id: 3,
-    name: 'Starbucks Indochina',
+    name: 'スターバックス（インドシナ）',
     rating: 4.9,
     hours: '7:30 ~ 22:00',
     address: '241 Xuan Thuy',
@@ -154,7 +153,7 @@ const rawShops = [
   },
   {
     id: 4,
-    name: 'All Day Coffee',
+    name: 'オールデイコーヒー',
     rating: 4.6,
     hours: '8:00 ~ 23:00',
     address: '37 Quang Trung',
@@ -175,7 +174,7 @@ const rawShops = [
   },
   {
     id: 5,
-    name: 'Tranquil Books',
+    name: 'トランキルブックス',
     rating: 5.0,
     hours: '8:00 ~ 22:00',
     address: '5 Nguyen Quang Bich',
@@ -196,7 +195,7 @@ const rawShops = [
   },
   {
     id: 6,
-    name: 'Cộng Cà Phê',
+    name: 'コン・カフェ',
     rating: 4.4,
     hours: '7:00 ~ 23:30',
     address: '116 Cau Go',
@@ -221,7 +220,7 @@ const rawShops = [
   },
   {
     id: 7,
-    name: 'Là Việt Coffee',
+    name: 'ラ・ヴィエットコーヒー',
     rating: 4.7,
     hours: '7:00 ~ 22:00',
     address: '3 Ngo Quyen',
@@ -242,7 +241,7 @@ const rawShops = [
   },
   {
     id: 8,
-    name: 'Phúc Long',
+    name: 'フックロン',
     rating: 4.2,
     hours: '8:00 ~ 22:00',
     address: '82 Hang Dieu',
@@ -263,7 +262,7 @@ const rawShops = [
   },
   {
     id: 9,
-    name: 'Maison de Blanc',
+    name: 'メゾン・ド・ブラン',
     rating: 4.8,
     hours: '9:00 ~ 21:00',
     address: '5 Tay Ho',
@@ -284,7 +283,7 @@ const rawShops = [
   },
   {
     id: 10,
-    name: 'Twitter Beans',
+    name: 'ツイッタービーンズ',
     rating: 4.3,
     hours: '7:00 ~ 22:00',
     address: '56 Vu Trong Phung',
@@ -305,7 +304,7 @@ const rawShops = [
   },
   {
     id: 11,
-    name: 'Kafa Café',
+    name: 'カファカフェ',
     rating: 4.1,
     hours: '7:00 ~ 23:00',
     address: '101 Ba Trieu',

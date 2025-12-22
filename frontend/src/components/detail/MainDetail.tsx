@@ -24,10 +24,7 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
   // const [reviews, setReviews] = useState(cafe.reviews || [])
   const [pageIndex, setPageIndex] = useState(0)
   const itemsPerPage = 4
-  const totalPages = Math.max(
-    1,
-    Math.ceil(cafe.features.length / itemsPerPage),
-  )
+  const totalPages = Math.max(1, Math.ceil(cafe.features.length / itemsPerPage))
 
   const [menuPageIndex, setMenuPageIndex] = useState(0)
   const menuItemsPerPage = 6
@@ -97,9 +94,7 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
   }
 
   const displayImage =
-    cafe.images.length > 0
-      ? cafe.images[currentImageIndex]
-      : null
+    cafe.images.length > 0 ? cafe.images[currentImageIndex] : null
 
   return (
     <div className="w-full space-y-8 bg-white p-4 md:bg-transparent md:p-8">
@@ -178,7 +173,7 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
             <p className="rounded-r border-l-4 border-[#F26546] bg-gray-50 py-2 pl-4 text-left text-sm leading-relaxed text-gray-600 italic md:text-base">
               {cafe.description || 'Chưa có mô tả chi tiết cho quán này.'}
             </p>
-                  
+
             <div className="space-y-3 text-sm text-gray-700">
               <div className="flex items-center gap-3 rounded p-2 transition hover:bg-gray-50">
                 <MapPin size={20} className="text-[#F26546]" />
@@ -186,11 +181,15 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
               </div>
               <div className="flex items-center gap-3 rounded p-2 transition hover:bg-gray-50">
                 <DollarSign size={20} className="text-[#F26546]" />
-                <span className="font-medium">{cafe.priceRange.min} ~ {cafe.priceRange.max}</span>
+                <span className="font-medium">
+                  {cafe.priceRange.min} ~ {cafe.priceRange.max}
+                </span>
               </div>
               <div className="flex items-center gap-3 rounded p-2 transition hover:bg-gray-50">
                 <Clock size={20} className="text-[#F26546]" />
-                <span className="font-medium">{cafe.hours.open} ~ {cafe.hours.close}</span>
+                <span className="font-medium">
+                  {cafe.hours.open} ~ {cafe.hours.close}
+                </span>
               </div>
               <div className="flex items-center gap-3 rounded p-2 transition hover:bg-gray-50">
                 <Phone size={20} className="text-[#F26546]" />
@@ -259,7 +258,7 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
                   <div
                     key={idx}
                     onClick={() => setCurrentImageIndex(idx)}
-                    className={`w-1/${thumbItemsPerPage} shrink-0 px-2`}>
+                    className={`w-1/6 shrink-0 px-2`}>
                     <div
                       className={`flex aspect-square cursor-pointer items-center justify-center overflow-hidden rounded-lg border bg-gray-100 transition ${currentImageIndex === idx ? 'border-[#F26546] ring-2 ring-[#F26546]/20' : 'border-gray-100 hover:shadow-md'}`}>
                       <img
@@ -302,9 +301,7 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
                 className="flex transition-transform duration-300"
                 style={{ transform: `translateX(-${menuPageIndex * 100}%)` }}>
                 {cafe.menu.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className={`w-1/${menuItemsPerPage} shrink-0 px-2`}>
+                  <div key={idx} className={`w-1/6 shrink-0 px-2`}>
                     <div className="rounded-lg border border-gray-100 bg-white p-2 shadow-sm transition hover:shadow-md">
                       <div className="peer relative mb-2 flex aspect-video items-center justify-center overflow-hidden rounded-md bg-gray-50">
                         <span className="absolute top-2 right-2 z-10 rounded-full bg-[#F26546] px-2 py-0.5 text-xs font-bold text-white shadow-sm">
@@ -351,9 +348,9 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
       )}
 
       {/* <SectionCard title="カフェの評価" icon={<Star size={18} />}> */}
-        {/* <ReviewForm onAddReview={handleAddReview} /> */}
+      {/* <ReviewForm onAddReview={handleAddReview} /> */}
 
-        {/* <div className="w-full space-y-6">
+      {/* <div className="w-full space-y-6">
           {reviews.length > 0 ? (
             reviews.map((review) => (
               <div

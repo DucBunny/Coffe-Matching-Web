@@ -1,11 +1,10 @@
-import 'dotenv/config'
 import Review from '@/models/Review.js'
 import Shop from '@/models/Shop.js'
 import User from '@/models/User.js'
 
 const rawShopsData = [
   {
-    name: 'Highlands Coffee',
+    name: 'ハイランズコーヒー',
     reviews: [
       {
         rating: 5,
@@ -42,8 +41,8 @@ const seedReviews = async () => {
             allUsers[Math.floor(Math.random() * allUsers.length)]
 
           reviewsToInsert.push({
-            user: randomUser._id,
-            shop: dbShop._id,
+            user_id: randomUser._id,
+            shop_id: dbShop._id,
             rating: review.rating,
             content: review.content,
             images: []
