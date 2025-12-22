@@ -1,7 +1,6 @@
-import type { Cafe } from './cafe'
+import type { Shop } from './shop'
 
-// Data required to create a new history entry
-export interface CreateHistory {
+export interface History {
   userId: string | null
   shopId: string
 }
@@ -11,7 +10,7 @@ export interface HistoryEntry {
   id: string
   shopId?: string
   time: string
-  cafe: Cafe
+  shop: Shop
 }
 
 // Grouped history entries by date
