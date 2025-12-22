@@ -74,7 +74,6 @@ export default function SearchPage({
         lat: sortBy === 'distance' ? userLocation?.lat : undefined,
         lng: sortBy === 'distance' ? userLocation?.lng : undefined,
       }
-      console.log('params', params)
       const response = await getShopBySearch(params)
       // console.log("res", response.data.data)
       setShops(response.data.data ?? [])

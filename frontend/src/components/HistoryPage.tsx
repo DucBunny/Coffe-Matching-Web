@@ -166,12 +166,12 @@ export default function HistoryPage() {
 
         {/* Content */}
         {isLoading ? (
-          <div className="flex min-h-[45vh] flex-col items-center justify-center">
+          <div className="flex min-h-[50vh] flex-col items-center justify-center">
             <Loader2 className="size-10 animate-spin text-[#FF6347]" />
             <div className="mt-4 text-[#ff6347]">読み込み中...</div>
           </div>
         ) : historyGroups.length === 0 ? (
-          <div className="flex min-h-[45vh] flex-col items-center justify-center gap-6 text-[#ff6347]/50">
+          <div className="flex min-h-[50vh] flex-col items-center justify-center gap-6 text-[#ff6347]/50">
             <div className="flex size-20 items-center justify-center rounded-full bg-orange-50">
               <Clock className="size-10" />
             </div>

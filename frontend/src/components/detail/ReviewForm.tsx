@@ -1,13 +1,13 @@
-import { Star, Upload, User } from "lucide-react"
-import React, { useState } from "react"
-
-interface ReviewFormProps {
-  onAddReview: (review: {
-    rating: number
-    content: string
-    image?: string
-  }) => void
-}
+import { Star, Upload, User, X } from 'lucide-react'
+import { useRef, useState } from 'react'
+import { useMutation } from '@tanstack/react-query'
+import { z } from 'zod'
+import { useForm } from '@tanstack/react-form'
+import { toast } from 'sonner'
+import { useAuthStore } from '../../stores/useAuthStore'
+import { Button } from '../ui/button'
+import type { AnyFieldApi } from '@tanstack/react-form'
+import { reviewAPI } from '@/services/review.api'
 
 const MAX_REVIEW_LENGTH = 500
 const MAX_FILE_SIZE = 5 * 1024 * 1024
@@ -18,239 +18,259 @@ const ALLOWED_FILE_TYPES = [
   'image/webp',
 ]
 
-const ReviewForm: React.FC<ReviewFormProps> = ({ onAddReview }) => {
-  const [rating, setRating] = useState<number>(0)
+function FieldInfo({ field }: { field: AnyFieldApi }) {
+  return (
+    <>
+      {field.state.meta.isTouched && field.state.meta.errors.length ? (
+        <p className="text-destructive text-xs">
+          {field.state.meta.errors[0]?.message}
+        </p>
+      ) : null}
+      {field.state.meta.isValidating ? '検証中...' : null}
+    </>
+  )
+}
+
+const reviewSchema = z.object({
+  rating: z.number().min(1, '評価を選択してください'),
+  content: z
+    .string()
+    .min(1, 'レビューを入力してください')
+    .max(
+      MAX_REVIEW_LENGTH,
+      `レビューは${MAX_REVIEW_LENGTH}文字以内で入力してください`,
+    ),
+  image: z.string().optional(),
+})
+
+export default function ReviewForm({ shopId }: { shopId: string }) {
+  const { user } = useAuthStore()
   const [hoverRating, setHoverRating] = useState<number>(0)
-  const [reviewText, setReviewText] = useState<string>('')
-  const [uploadedImage, setUploadedImage] = useState<string | null>(null)
-  const fileInputRef = React.useRef<HTMLInputElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [imageError, setImageError] = useState<string | undefined>(undefined)
 
-  // Error states
-  const [errors, setErrors] = useState<{
-    rating?: string
-    content?: string
-    image?: string
-  }>({})
+  const createMutation = useMutation({
+    mutationFn: (newReview: {
+      rating: number
+      content: string
+      image?: string
+    }) =>
+      reviewAPI.create(
+        user?._id || null,
+        shopId,
+        newReview.rating,
+        newReview.content,
+        newReview.image ? [newReview.image] : [],
+      ),
+  })
 
-  // Validate rating
-  const validateRating = () => {
-    if (rating === 0) {
-      setErrors((prev) => ({ ...prev, rating: '評価を選択してください' }))
-      return false
-    }
-    setErrors((prev) => ({ ...prev, rating: undefined }))
-    return true
-  }
+  const form = useForm({
+    defaultValues: { rating: 0, content: '', image: undefined } as any,
+    validators: { onSubmit: reviewSchema as any },
+    onSubmit: async ({ value }) => {
+      if (imageError) return
+      try {
+        await createMutation.mutateAsync({
+          rating: value.rating,
+          content: value.content,
+          image: value.image,
+        })
+        toast.success('レビューを送信しました')
+        form.reset()
+      } catch (err) {
+        console.error('レビュー送信エラー:', err)
+      }
+    },
+  })
 
-  // Validate content
-  const validateContent = (text: string) => {
-    if (!text.trim()) {
-      setErrors((prev) => ({ ...prev, content: 'レビューを入力してください' }))
-      return false
-    }
-    if (text.length > MAX_REVIEW_LENGTH) {
-      setErrors((prev) => ({
-        ...prev,
-        content: `レビューは${MAX_REVIEW_LENGTH}文字以内で入力してください`,
-      }))
-      return false
-    }
-    setErrors((prev) => ({ ...prev, content: undefined }))
-    return true
-  }
-
-  // Handle text change with validation
-  const handleTextChange = (text: string) => {
-    setReviewText(text)
-    if (text.length > 0) {
-      validateContent(text)
-    }
-  }
-
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: AnyFieldApi,
+  ) => {
     const file = e.target.files?.[0]
     if (!file) return
 
-    // Validate file type
     if (!ALLOWED_FILE_TYPES.includes(file.type)) {
-      setErrors((prev) => ({
-        ...prev,
-        image: '画像ファイルのみアップロード可能です (JPEG, PNG, GIF, WebP)',
-      }))
-      if (fileInputRef.current) {
-        fileInputRef.current.value = ''
-      }
+      setImageError(
+        '画像ファイルのみアップロード可能です (JPEG, PNG, GIF, WebP)',
+      )
+      if (fileInputRef.current) fileInputRef.current.value = ''
+      field.handleChange(undefined)
       return
     }
 
-    // Validate file size
     if (file.size > MAX_FILE_SIZE) {
-      setErrors((prev) => ({
-        ...prev,
-        image: `ファイルサイズは${MAX_FILE_SIZE / 1024 / 1024}MB以下にしてください`,
-      }))
-      if (fileInputRef.current) {
-        fileInputRef.current.value = ''
-      }
+      setImageError(
+        `ファイルサイズは${MAX_FILE_SIZE / 1024 / 1024}MB以下にしてください`,
+      )
+      if (fileInputRef.current) fileInputRef.current.value = ''
+      field.handleChange(undefined)
       return
     }
 
-    // Clear image error if validation passes
-    setErrors((prev) => ({ ...prev, image: undefined }))
-
+    setImageError(undefined)
     const reader = new FileReader()
     reader.onloadend = () => {
-      setUploadedImage(reader.result as string)
+      const dataUrl = reader.result as string
+      field.handleChange(dataUrl)
     }
     reader.readAsDataURL(file)
   }
 
-  const handleRemoveImage = () => {
-    setUploadedImage(null)
-    setErrors((prev) => ({ ...prev, image: undefined }))
-    if (fileInputRef.current) {
-      fileInputRef.current.value = ''
-    }
-  }
-
-  const handleSubmit = () => {
-    // Validate all fields
-    const isRatingValid = validateRating()
-    const isContentValid = validateContent(reviewText)
-
-    if (!isRatingValid || !isContentValid) {
-      return
-    }
-
-    // Gọi callback để thêm review
-    onAddReview({
-      rating,
-      content: reviewText,
-      image: uploadedImage || undefined,
-    })
-
-    // Success notification
-    alert('レビューを送信しました！')
-
-    // Reset form
-    setRating(0)
-    setReviewText('')
-    setUploadedImage(null)
+  const handleRemoveImage = (field: AnyFieldApi) => {
+    field.handleChange(undefined)
+    setImageError(undefined)
+    if (fileInputRef.current) fileInputRef.current.value = ''
   }
 
   return (
-    <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 mb-8 w-full">
-      <div className="flex items-center justify-between mb-4">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        form.handleSubmit()
+      }}
+      className="mb-8 w-full rounded-xl border border-gray-100 bg-gray-50 p-4">
+      <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-400">
             <User size={20} />
           </div>
           <div>
-            <span className="font-bold text-sm block text-gray-800 text-left">
-              User Name
+            <span className="block text-sm font-bold text-gray-800">
+              {user ? user.username : ''}
             </span>
             <span className="text-xs text-gray-500">レビューを書く</span>
           </div>
         </div>
+
         <div>
-          <div className="flex gap-1">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <Star
-                key={star}
-                size={24}
-                className={`cursor-pointer transition-all ${
-                  star <= (hoverRating || rating)
-                    ? 'text-[#F26546] fill-[#F26546]'
-                    : 'text-gray-300'
-                } hover:scale-110`}
-                onClick={() => {
-                  setRating(star)
-                  setErrors((prev) => ({ ...prev, rating: undefined }))
-                }}
-                onMouseEnter={() => setHoverRating(star)}
-                onMouseLeave={() => setHoverRating(0)}
-              />
-            ))}
-          </div>
-          {errors.rating && (
-            <p className="text-xs text-red-500 mt-1 text-right">
-              {errors.rating}
-            </p>
-          )}
+          <form.Field
+            name="rating"
+            children={(field) => (
+              <>
+                <div className="flex gap-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star
+                      key={star}
+                      size={24}
+                      className={`cursor-pointer transition-all ${
+                        star <= (hoverRating || field.state.value)
+                          ? 'fill-[#F26546] text-[#F26546]'
+                          : 'text-gray-300'
+                      } hover:scale-110`}
+                      onClick={() => field.handleChange(star)}
+                      onMouseEnter={() => setHoverRating(star)}
+                      onMouseLeave={() => setHoverRating(0)}
+                    />
+                  ))}
+                </div>
+                <FieldInfo field={field} />
+              </>
+            )}
+          />
         </div>
       </div>
 
       <div className="mb-3">
-        <div className="relative">
-          <textarea
-            value={reviewText}
-            onChange={(e) => handleTextChange(e.target.value)}
-            className={`w-full border ${errors.content ? 'border-red-300' : 'border-gray-200'} rounded-lg p-4 pr-12 text-sm focus:outline-none focus:ring-2 ${errors.content ? 'focus:ring-red-200 focus:border-red-400' : 'focus:ring-[#F26546]/20 focus:border-[#F26546]'} min-h-[100px] bg-white transition-all shadow-inner`}
-            placeholder="このカフェはどうでしたか？"
-            maxLength={MAX_REVIEW_LENGTH}
-          />
-          <div className="absolute bottom-3 right-3">
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-              className="hidden"
-              id="review-image-upload"
-            />
-            <label
-              htmlFor="review-image-upload"
-              className="p-2 text-gray-400 hover:text-[#F26546] hover:bg-orange-50 rounded-full transition cursor-pointer inline-flex">
-              <Upload size={20} />
-            </label>
-          </div>
-        </div>
-        <div className="flex justify-between items-center mt-1">
-          <div>
-            {errors.content && (
-              <p className="text-xs text-red-500">{errors.content}</p>
+        <form.Field
+          name="content"
+          children={(field) => (
+            <div className="relative">
+              <textarea
+                value={field.state.value}
+                onChange={(e) => field.handleChange(e.target.value)}
+                className={`w-full border ${
+                  field.state.meta.errors.length
+                    ? 'border-red-300'
+                    : 'border-gray-200'
+                } rounded-lg p-4 pr-12 text-sm focus:ring-2 focus:outline-none ${
+                  field.state.meta.errors.length
+                    ? 'focus:border-red-400 focus:ring-red-200'
+                    : 'focus:border-[#F26546] focus:ring-[#F26546]/20'
+                } min-h-[100px] bg-white shadow-inner transition-all`}
+                placeholder="このカフェはどうでしたか？"
+                maxLength={MAX_REVIEW_LENGTH}
+              />
+
+              <div className="absolute right-0 bottom-6">
+                <form.Field
+                  name="image"
+                  children={(imgField) => (
+                    <>
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload(e, imgField)}
+                        className="hidden"
+                        id="review-image-upload"
+                      />
+                      <label
+                        htmlFor="review-image-upload"
+                        className="inline-flex cursor-pointer rounded-full p-2 text-gray-400 transition hover:text-[#F26546]">
+                        <Upload size={20} />
+                      </label>
+                    </>
+                  )}
+                />
+              </div>
+              <div className="mt-1 flex items-center justify-between">
+                <div>
+                  <FieldInfo field={field} />
+                </div>
+                <p
+                  className={`text-xs ${field.state.value?.length > MAX_REVIEW_LENGTH * 0.9 ? 'text-orange-500' : 'text-gray-400'}`}>
+                  {field.state.value?.length ?? 0}/{MAX_REVIEW_LENGTH}
+                </p>
+              </div>
+            </div>
+          )}
+        />
+      </div>
+
+      <form.Field
+        name="image"
+        children={(field) => (
+          <>
+            {imageError && (
+              <div className="mb-3 rounded-lg border border-red-200 bg-red-50 p-3">
+                <p className="flex items-center gap-2 text-xs text-red-600">
+                  <span className="font-bold">⚠</span>
+                  {imageError}
+                </p>
+              </div>
             )}
-          </div>
-          <p
-            className={`text-xs ${reviewText.length > MAX_REVIEW_LENGTH * 0.9 ? 'text-orange-500' : 'text-gray-400'}`}>
-            {reviewText.length}/{MAX_REVIEW_LENGTH}
-          </p>
-        </div>
+
+            {field.state.value && (
+              <div className="relative mb-3 inline-block">
+                <img
+                  src={field.state.value as string}
+                  alt="Preview"
+                  className="h-32 w-32 rounded-lg border-2 border-gray-200 object-cover"
+                />
+                <button
+                  type="button"
+                  onClick={() => handleRemoveImage(field)}
+                  className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-white shadow-md transition hover:bg-red-600">
+                  <X size={12} />
+                </button>
+              </div>
+            )}
+          </>
+        )}
+      />
+
+      <div className="mt-3 flex justify-end">
+        <form.Subscribe
+          selector={(s) => [s.canSubmit, s.isSubmitting]}
+          children={([canSubmit, isSubmitting]) => (
+            <Button type="submit" disabled={!canSubmit} className="px-6">
+              {isSubmitting ? '送信中...' : '送信'}
+            </Button>
+          )}
+        />
       </div>
-
-      {errors.image && (
-        <div className="mb-3 p-3 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-xs text-red-600 flex items-center gap-2">
-            <span className="font-bold">⚠</span>
-            {errors.image}
-          </p>
-        </div>
-      )}
-
-      {uploadedImage && (
-        <div className="mb-3 relative inline-block">
-          <img
-            src={uploadedImage}
-            alt="Preview"
-            className="w-32 h-32 object-cover rounded-lg border-2 border-gray-200"
-          />
-          <button
-            onClick={handleRemoveImage}
-            className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600 transition shadow-md">
-            ×
-          </button>
-        </div>
-      )}
-
-      <div className="flex justify-end mt-3">
-        <button
-          onClick={handleSubmit}
-          className="bg-[#444] text-white px-6 py-2 rounded-lg text-sm font-bold hover:bg-[#222] transition shadow-sm hover:shadow">
-          送信
-        </button>
-      </div>
-    </div>
+    </form>
   )
 }
-
-export default ReviewForm 

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-const Shop = require('./Shop')
+import Shop from './Shop'
 
 const ReviewSchema = new mongoose.Schema(
   {

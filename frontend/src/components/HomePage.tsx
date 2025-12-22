@@ -182,12 +182,12 @@ const CafeCard: React.FC<CafeCardProps> = ({ cafe }) => {
   const [isSaved, setIsSaved] = useState<boolean>(false)
 
   return (
-    <div className="flex-none w-[260px] sm:w-[280px] lg:w-[230px] xl:w-[245px] bg-white group cursor-pointer transition-all duration-300">
-      <div className="relative aspect-4/3 overflow-hidden rounded-2xl mb-3 shadow-sm">
+    <div className="group w-[260px] flex-none cursor-pointer bg-white transition-all duration-300 sm:w-[280px] lg:w-[230px] xl:w-[245px]">
+      <div className="relative mb-3 aspect-4/3 overflow-hidden rounded-2xl shadow-sm">
         <img
           src={cafe.image}
           alt={cafe.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
             const target = e.target as HTMLImageElement
             target.src =
@@ -200,34 +200,34 @@ const CafeCard: React.FC<CafeCardProps> = ({ cafe }) => {
             e.stopPropagation()
             setIsSaved(!isSaved)
           }}
-          className={`absolute top-3 right-3 p-2.5 rounded-full backdrop-blur-md transition-all duration-300 shadow-sm z-10 ${
+          className={`absolute top-3 right-3 z-10 rounded-full p-2.5 shadow-sm backdrop-blur-md transition-all duration-300 ${
             isSaved
-              ? 'bg-orange-500 text-white scale-110 shadow-orange-200'
-              : 'bg-white/80 text-slate-400 hover:text-orange-500 hover:bg-white'
+              ? 'scale-110 bg-orange-500 text-white shadow-orange-200'
+              : 'bg-white/80 text-slate-400 hover:bg-white hover:text-orange-500'
           }`}>
           {isSaved ? <BookmarkCheck size={16} /> : <Bookmark size={16} />}
         </button>
 
-        <div className="absolute bottom-2.5 left-2.5 px-2 py-0.5 bg-orange-500/90 backdrop-blur-md text-white text-[9px] font-bold rounded-md uppercase tracking-wider">
+        <div className="absolute bottom-2.5 left-2.5 rounded-md bg-orange-500/90 px-2 py-0.5 text-[9px] font-bold tracking-wider text-white uppercase backdrop-blur-md">
           {cafe.category}
         </div>
       </div>
 
       <div className="space-y-1.5 px-1">
-        <div className="flex justify-between items-start gap-2">
-          <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-bold text-slate-900 line-clamp-1 leading-tight group-hover:text-orange-600 transition-colors">
+        <div className="flex items-start justify-between gap-2">
+          <div className="min-w-0 flex-1">
+            <h3 className="line-clamp-1 text-sm leading-tight font-bold text-slate-900 transition-colors group-hover:text-orange-600">
               {cafe.name}
             </h3>
           </div>
 
-          <div className="flex items-center text-orange-500 shrink-0 mt-0.5">
-            <span className="text-xs font-bold mr-0.5">{cafe.rating}</span>
+          <div className="mt-0.5 flex shrink-0 items-center text-orange-500">
+            <span className="mr-0.5 text-xs font-bold">{cafe.rating}</span>
             <Star size={10} fill="currentColor" />
           </div>
         </div>
 
-        <div className="flex items-center text-slate-500 text-[11px] gap-1 pt-0.5">
+        <div className="flex items-center gap-1 pt-0.5 text-[11px] text-slate-500">
           <MapPin size={10} className="shrink-0 text-slate-400" />
           <span className="line-clamp-1">{cafe.location}</span>
         </div>
@@ -262,16 +262,16 @@ const CafeRow: React.FC<CafeRowProps> = ({ cafes }) => {
   }
 
   return (
-    <div className="relative group/row">
+    <div className="group/row relative">
       <button
         onClick={() => scroll('left')}
-        className="absolute -left-3 lg:-left-6 top-1/2 -translate-y-1/2 z-20 bg-white shadow-xl border border-orange-100 p-3 rounded-full text-slate-600 hover:bg-orange-500 hover:text-white transition-all opacity-0 group-hover/row:opacity-100 hidden md:flex items-center justify-center scale-90 hover:scale-100">
+        className="absolute top-1/2 -left-3 z-20 hidden -translate-y-1/2 scale-90 items-center justify-center rounded-full border border-orange-100 bg-white p-3 text-slate-600 opacity-0 shadow-xl transition-all group-hover/row:opacity-100 hover:scale-100 hover:bg-orange-500 hover:text-white md:flex lg:-left-6">
         <ChevronLeft size={22} strokeWidth={2.5} />
       </button>
 
       <div
         ref={scrollRef}
-        className="flex gap-4 lg:gap-5 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-2 px-1"
+        className="scrollbar-hide flex snap-x snap-mandatory gap-4 overflow-x-auto px-1 pb-2 lg:gap-5"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {cafes.map((cafe, idx) => (
           <div key={`${cafe.id}-${idx}`} className="snap-start">
@@ -282,7 +282,7 @@ const CafeRow: React.FC<CafeRowProps> = ({ cafes }) => {
 
       <button
         onClick={() => scroll('right')}
-        className="absolute -right-3 lg:-right-6 top-1/2 -translate-y-1/2 z-20 bg-white shadow-xl border border-orange-100 p-3 rounded-full text-slate-600 hover:bg-orange-500 hover:text-white transition-all opacity-0 group-hover/row:opacity-100 hidden md:flex items-center justify-center scale-90 hover:scale-100">
+        className="absolute top-1/2 -right-3 z-20 hidden -translate-y-1/2 scale-90 items-center justify-center rounded-full border border-orange-100 bg-white p-3 text-slate-600 opacity-0 shadow-xl transition-all group-hover/row:opacity-100 hover:scale-100 hover:bg-orange-500 hover:text-white md:flex lg:-right-6">
         <ChevronRight size={22} strokeWidth={2.5} />
       </button>
     </div>
@@ -294,13 +294,13 @@ const CafeRow: React.FC<CafeRowProps> = ({ cafes }) => {
  */
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#fafaf9] py-12 font-sans text-slate-900 overflow-x-hidden">
-      <div className="max-w-[1440px] mx-auto px-6 space-y-12">
+    <div className="min-h-screen overflow-x-hidden bg-[#fafaf9] py-12 font-sans text-slate-900">
+      <div className="mx-auto max-w-[1440px] space-y-12 px-6">
         {/* Khối: おすすめ (Recommended) */}
-        <section className="bg-white border-2 border-orange-500/20 rounded-[40px] p-6 lg:p-10 shadow-sm shadow-orange-100/50 transition-all hover:border-orange-500/40">
-          <div className="flex items-center justify-between mb-8 pb-2">
+        <section className="rounded-[40px] border-2 border-orange-500/20 bg-white p-6 shadow-sm shadow-orange-100/50 transition-all hover:border-orange-500/40 lg:p-10">
+          <div className="mb-8 flex items-center justify-between pb-2">
             <div className="space-y-1">
-              <h2 className="text-2xl font-black text-orange-500 tracking-tight flex items-center gap-2">
+              <h2 className="flex items-center gap-2 text-2xl font-black tracking-tight text-orange-500">
                 おすすめ
               </h2>
             </div>
@@ -314,14 +314,14 @@ export default function HomePage() {
           {THEMES.map((theme, idx) => (
             <section
               key={`theme-sec-${idx}`}
-              className="bg-white border-2 border-orange-500/20 rounded-[40px] p-6 lg:p-10 shadow-sm shadow-orange-100/50 transition-all hover:border-orange-500/40">
-              <div className="flex items-center justify-between mb-8">
+              className="rounded-[40px] border-2 border-orange-500/20 bg-white p-6 shadow-sm shadow-orange-100/50 transition-all hover:border-orange-500/40 lg:p-10">
+              <div className="mb-8 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div>
                     <h3 className="text-xl font-bold text-orange-500">
                       {theme.title}
                     </h3>
-                    <p className="text-[12px] text-slate-400 font-medium uppercase tracking-wider mt-1">
+                    <p className="mt-1 text-[12px] font-medium tracking-wider text-slate-400 uppercase">
                       {theme.description}
                     </p>
                   </div>

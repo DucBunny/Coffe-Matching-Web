@@ -11,7 +11,8 @@
     /* main resource or payload */
   },
   "meta": {
-    /* optional metadata (pagination, totals, etc.) */ "page": 1,
+    /* optional metadata (pagination, totals, etc.) */
+    "page": 1,
     "limit": 10,
     "total": 123,
     "totalPages": 13
@@ -34,7 +35,12 @@
       /* item */
     }
   ],
-  "meta": { "page": 1, "limit": 10, "total": 45, "totalPages": 5 }
+  "meta": {
+    "page": 1,
+    "limit": 10,
+    "total": 45,
+    "totalPages": 5
+  }
 }
 ```
 
@@ -43,7 +49,10 @@
 ```json
 {
   "success": true,
-  "data": { "id": "64a...", "name": "Cafe A" }
+  "data": {
+    "id": "64a...",
+    "name": "Cafe A"
+  }
 }
 ```
 

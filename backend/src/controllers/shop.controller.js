@@ -1,23 +1,18 @@
 import * as shopService from '@/services/shop.service.js'
+import ApiError from '@/utils/api-error.js'
 
-async function getShopById(req, res) {
+export async function getShopById(req, res, next) {
   try {
     const { id } = req.query
 
     if (!id) {
-      return res.status(400).json({
-        success: false,
-        message: 'Thiếu shop id'
-      })
+      throw new ApiError('Shop ID is required', 400, 'MISSING_SHOP_ID')
     }
 
     const shop = await shopService.handleGetShopById(id)
 
     if (!shop) {
-      return res.status(404).json({
-        success: false,
-        message: 'Không tìm thấy quán'
-      })
+      throw new ApiError('Shop not found', 404, 'SHOP_NOT_FOUND')
     }
 
     return res.status(200).json({
@@ -25,15 +20,6 @@ async function getShopById(req, res) {
       data: shop
     })
   } catch (error) {
-    console.error('ShopController.getShopById error:', error)
-    return res.status(500).json({
-      success: false,
-      message: 'Lỗi khi lấy thông tin quán.',
-      error: error.message
-    })
+    next(error)
   }
-}
-
-export default {
-  getShopById
 }

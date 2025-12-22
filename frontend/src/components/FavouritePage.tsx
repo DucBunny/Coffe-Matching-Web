@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react'
 import CafeCard from './cafe/CafeCard'
 import PaginationButton from './pagination/PaginationButtonProps'
-import type { Cafe } from '@/types/cafe'
+import type { Cafe } from '@/types/shop'
 import cafeDataRaw from '@/data/cafes.json'
 
 export default function FavoritePage() {

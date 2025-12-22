@@ -1,4 +1,5 @@
 import axios from './axios.customize'
+import type { Shop } from '../types/shop'
 
 const getAmenities = async () => {
   return await axios.get<IBackendRes<Array<string>>>('/search/amenities')
@@ -17,9 +18,10 @@ const getShopBySearch = async (params: ISearchShopParams) => {
 }
 
 const getShopById = async (id: string) => {
-  return await axios.get<IBackendRes<IShop>>('/shop', {
+  const res = await axios.get<IBackendRes<Shop>>('/shop', {
     params: { id },
   })
+  return res.data
 }
 
 export { getAmenities, getPurposes, getAreas, getShopBySearch, getShopById }
