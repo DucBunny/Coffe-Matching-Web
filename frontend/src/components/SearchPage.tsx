@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
+import { MapPinned } from 'lucide-react'
 import FilterSidebar from './search/filter/FilterSidebar'
 import MainContent from './search/MainSearch'
 import SelectLocationMap from './search/SelectLocationMap'
+import { Button } from './ui/button'
 import { getShopBySearch } from '@/services/search.api'
 import { ITEMS_PER_PAGE } from '@/util/constant'
-
-type LocationSource = 'gps' | 'manual'
 
 interface Filters {
   area: string | null
@@ -13,12 +13,6 @@ interface Filters {
   priceMin: number | null
   priceMax: number | null
   amenities: Array<string>
-}
-
-interface SelectedLocation {
-  lat: number
-  lng: number
-  source: LocationSource
 }
 
 interface Meta {
@@ -33,8 +27,6 @@ export default function SearchPage({
 }: {
   initialKeyword?: string
 }) {
-  const [selectedLocation, setSelectedLocation] =
-    useState<SelectedLocation | null>(null)
   const [isOpenMap, setIsOpenMap] = useState(false)
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [isLocating, setIsLocating] = useState(false)
@@ -61,6 +53,7 @@ export default function SearchPage({
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [meta, setMeta] = useState<Meta | null>(null)
+  const [currentPlace, setCurrentPlace] = useState('現在地')
 
   // Fetch data từ API
   const fetchShops = async () => {
@@ -166,47 +159,65 @@ export default function SearchPage({
   }
 
   return (
-    <div className="flex w-full flex-col font-sans">
-      <div className="relative flex w-full flex-col gap-8 p-4 md:flex-row md:px-8 md:py-8">
-        <FilterSidebar
-          filters={filters}
-          setFilters={setFilters}
-          priceInputs={priceInputs}
-          setPriceInputs={setPriceInputs}
-          onApplyPrice={handleApplyPrice}
-          priceApplied={priceApplied}
-          setPriceApplied={setPriceApplied}
-        />
-        <MainContent
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          cafes={shops}
-          totalPages={meta?.totalPages ?? 1}
-          sortBy={sortBy}
-          onSortChange={handleSortChange}
-          userLocation={userLocation}
-          showDistance={sortBy === 'distance'}
-          loading={loading}
-        />
-      </div>
-      {/* <button onClick={() => setIsOpenMap(true)}>
-        📍 Chọn vị trí trên bản đồ
-      </button>
-      {isOpenMap && (
-        <div className="modal">
-          <SelectLocationMap
-            onConfirm={(lat, lng) => {
-              console.log('check', lat, lng)
-              setSelectedLocation({
-                lat,
-                lng,
-                source: 'manual',
-              })
-              setIsOpenMap(false)
-            }}
-          />
+    <div className="min-h-screen w-full bg-[#F7F7F7] font-sans">
+      {/* ===== Location bar ===== */}
+      <div className="flex items-center border-b bg-white px-4 py-3 md:px-8">
+        <div className="mr-5 flex items-center gap-2 text-[#FF6A4D]">
+          <MapPinned size={16} />
+          <span>{currentPlace}</span>
         </div>
-      )} */}
+
+        <Button size="sm" variant="outline" onClick={() => setIsOpenMap(true)}>
+          地図で選択
+        </Button>
+      </div>
+
+      {/* ===== Main content ===== */}
+      <div className="flex gap-6 px-4 py-6 md:px-8">
+        {/* Sidebar */}
+        <aside className="hidden w-[260px] shrink-0 md:block">
+          <FilterSidebar
+            filters={filters}
+            setFilters={setFilters}
+            priceInputs={priceInputs}
+            setPriceInputs={setPriceInputs}
+            onApplyPrice={handleApplyPrice}
+            priceApplied={priceApplied}
+            setPriceApplied={setPriceApplied}
+          />
+        </aside>
+
+        {/* Main result */}
+        <main className="flex-1">
+          <MainContent
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            cafes={shops}
+            totalPages={meta?.totalPages ?? 1}
+            sortBy={sortBy}
+            onSortChange={handleSortChange}
+            userLocation={userLocation}
+            showDistance={sortBy === 'distance'}
+            loading={loading}
+          />
+        </main>
+      </div>
+
+      {/* ===== Map Modal ===== */}
+      {isOpenMap && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="w-[95%] rounded-xl bg-white md:w-[700px]">
+            <SelectLocationMap
+              onConfirm={(lat, lng, address) => {
+                setCurrentPlace(address)
+                setUserLocation({ lat, lng })
+                setIsOpenMap(false)
+              }}
+              onClose={() => setIsOpenMap(false)}
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
