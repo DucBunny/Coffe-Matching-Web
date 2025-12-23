@@ -38,6 +38,10 @@ async function updatePassword(userId, newHashedPassword) {
   return updatedUser
 }
 
+async function getAllStylesByUserId(user_id) {
+  return await User.distinct('styles', { _id: user_id }).exec()
+}
+
 export {
   findUserByEmail,
   findUserByUsername,
@@ -46,5 +50,6 @@ export {
   findUserById,
   updateUser,
   deleteUser,
-  updatePassword
+  updatePassword,
+  getAllStylesByUserId
 }

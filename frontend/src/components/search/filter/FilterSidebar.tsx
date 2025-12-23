@@ -2,36 +2,7 @@ import { useEffect, useState } from 'react'
 import FilterDropdown from './FilterDropdown'
 import { Button } from '@/components/ui/button'
 import { getAmenities, getAreas, getPurposes } from '@/services/search.api'
-
-// Bảng tra cứu Tiếng Nhật cho các ID từ Backend
-const AREA_MAP: Record<string, string> = {
-  bd: 'バーディン区',
-  cg: 'カウザイ区',
-  hbt: 'ハイバーチュン区',
-  hk: 'ホアンキエム区',
-}
-
-const PURPOSE_MAP: Record<string, string> = {
-  date: 'デート',
-  relax: 'リラックス',
-  study: '勉強',
-  work: '仕事',
-}
-
-const AMENITY_MAP: Record<string, string> = {
-  ac: 'エアコン',
-  books: '本がある',
-  luxury: '高級感',
-  music: '音楽',
-  outdoor: 'テラス席',
-  parking: '駐車場',
-  power: 'コンセント',
-  quiet: '静か',
-  spacious: '広々',
-  street: '街並み',
-  vintage: 'レトロ',
-  wifi: 'Wi-Fi',
-}
+import { AMENITY_MAP, AREA_MAP, PURPOSE_MAP } from '@/util/constant'
 
 interface Filters {
   area: string | null
@@ -84,7 +55,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
           setAreas(
             areasRes.data.data.map((id: string) => ({
               id,
-              label: AREA_MAP[id] || id, // Hiển thị tiếng Nhật, nếu không tìm thấy thì hiện ID gốc
+              label: AREA_MAP.find((area) => area.id === id)?.jpLabel || id, // Hiển thị tiếng Nhật, nếu không tìm thấy thì hiện ID gốc
             })),
           )
         }
@@ -106,10 +77,12 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
         ) {
           setAmenities(
             amenitiesRes.data.data
-              .filter((id: string | null) => id !== null)
+              .filter(
+                (id: string | null) => id !== null && Boolean(AMENITY_MAP[id]),
+              )
               .map((id: string) => ({
-                id,
-                label: AMENITY_MAP[id] || id,
+                id: id,
+                label: AMENITY_MAP[id],
               })),
           )
         }
@@ -148,7 +121,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
         <div className="mb-4 flex items-center gap-2">
           <div className="relative flex-1">
             <span className="absolute top-2 right-1 text-xs text-gray-500">
-              円
+              đ
             </span>
             <input
               type="text"
@@ -164,7 +137,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
           <span className="text-gray-500">~</span>
           <div className="relative flex-1">
             <span className="absolute top-2 right-1 text-xs text-gray-500">
-              円
+              đ
             </span>
             <input
               type="text"

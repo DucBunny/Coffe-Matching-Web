@@ -48,7 +48,7 @@ const SectionCard: React.FC<{
               onClick={goPrev}
               aria-label="Previous"
               className="absolute top-1/2 -left-5 z-20 hidden size-11 -translate-y-1/2 scale-90 items-center justify-center rounded-full border border-orange-100 bg-white text-slate-600 opacity-0 shadow-xl transition-all group-hover/row:opacity-100 hover:scale-100 hover:bg-[#ff6347] hover:text-white md:flex">
-              <ChevronLeft size={20} strokeWidth={2.5} />
+              <ChevronLeft size={20} strokeWidth={3} />
             </Button>
 
             <Button

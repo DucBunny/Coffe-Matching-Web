@@ -1,12 +1,6 @@
 import { useNavigate } from '@tanstack/react-router'
 import { Bookmark, ImageIcon, Star } from 'lucide-react'
-
-const AREAS = [
-  { id: 'hbt', label: 'Hai Ba Trung', jpLabel: 'ハイバーチュン区' },
-  { id: 'hk', label: 'Hoan Kiem', jpLabel: 'ホアンキエム区' },
-  { id: 'cg', label: 'Cau Giay', jpLabel: 'カウザイ区' },
-  { id: 'bd', label: 'Ba Dinh', jpLabel: 'バーディン区' },
-]
+import { AREA_MAP } from '@/util/constant'
 
 const CafeCard: React.FC<{
   data: IShop
@@ -16,7 +10,7 @@ const CafeCard: React.FC<{
   handleToggle: (id: string) => void
 }> = ({ data, userLocation, showDistance, isFavorite, handleToggle }) => {
   const navigate = useNavigate()
-  const areaInfo = AREAS.find((a) => a.id === data.area)
+  const areaInfo = AREA_MAP.find((a) => a.id === data.area)
 
   const calculateDistance = (
     lat1: number,

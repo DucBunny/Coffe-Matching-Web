@@ -4,7 +4,12 @@ import ProfileInfo from './profile/ProfileInfo'
 import StyleSelector from './profile/StyleSelector'
 import { Button } from './ui/button'
 import { ModalChangePassword } from './profile/ModalChangePassword'
-import { getProfile, updatePassword, updateProfile } from '@/services/profile.api'
+import {
+  getProfile,
+  updatePassword,
+  updateProfile,
+} from '@/services/profile.api'
+import { STYLES } from '@/util/constant'
 
 export default function ProfilePage() {
   const baseURLImage = `${import.meta.env.VITE_BASE_URL_BACKEND}/images/avatar`
@@ -14,32 +19,7 @@ export default function ProfilePage() {
   const [address, setAddress] = useState<string>('')
   const [age, setAge] = useState<number | string>('')
 
-  const [styles] = useState<Array<string>>([
-    '勉強',
-    'デート',
-    '子供向け',
-    '一人',
-    '学生',
-    '大人',
-    'ファミリー',
-    'シニア',
-    '24h',
-    '電源',
-    'Wi-Fi',
-    'ペット',
-    '長居可',
-    '静か',
-    '禁煙',
-    '喫煙席あり',
-    'おしゃれ',
-    '落ち着いた',
-    'モダン',
-    'ナチュラル',
-    'レトロ',
-    '隠れ家',
-    '写真映え',
-    '落ち着いた2',
-  ])
+  const styles = STYLES
 
   const [selected, setSelected] = useState<Array<string>>([])
   const [isEditing, setIsEditing] = useState(false)
@@ -141,8 +121,14 @@ export default function ProfilePage() {
   }
 
   return (
-    <div>
-      <div className="grid w-full grid-cols-1 space-y-6 p-6 md:grid-cols-3 md:gap-6">
+    <div className="p-4 md:p-8">
+      <div className="mb-8 flex justify-center">
+        <div className="border-b-4 border-[#ff6347] pb-1 text-center text-3xl font-bold text-[#ff6347]">
+          マイページ
+        </div>
+      </div>
+
+      <div className="grid w-full grid-cols-1 space-y-6 md:grid-cols-3 md:gap-6">
         <div className="col-span-1">
           <ProfileInfo
             name={profileUser?.name ?? ''}

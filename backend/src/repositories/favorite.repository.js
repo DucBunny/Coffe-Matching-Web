@@ -71,10 +71,16 @@ async function checkFavoriteStatus(user_id, shop_id) {
   return !!favorite
 }
 
+async function getFavoriteShopIdsByUserId(user_id) {
+  const favorites = await Favorite.find({ user_id }).select('shop_id').lean()
+  return favorites.map((fav) => fav.shop_id.toString())
+}
+
 export {
   findFavoriteByUserId,
   addFavorite,
   removeFavorite,
   findAllShopFavorite,
-  checkFavoriteStatus
+  checkFavoriteStatus,
+  getFavoriteShopIdsByUserId
 }

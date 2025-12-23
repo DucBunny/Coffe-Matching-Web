@@ -210,7 +210,7 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
               <div className="flex items-center gap-3 rounded p-2 transition hover:bg-gray-50">
                 <DollarSign size={20} className="text-[#F26546]" />
                 <span className="font-medium">
-                  {cafe.priceRange.min} 円 ~ {cafe.priceRange.max} 円
+                  {cafe.priceRange.min}đ ~ {cafe.priceRange.max}đ
                 </span>
               </div>
               <div className="flex items-center gap-3 rounded p-2 transition hover:bg-gray-50">
@@ -255,7 +255,7 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
           itemsLength={cafe.features.length}
           itemsPerPage={4}>
           {({ pageIndex }) => (
-            <div className="relative overflow-hidden">
+            <div className="overflow-hidden">
               <div
                 className="flex transition-transform duration-300"
                 style={{ transform: `translateX(-${pageIndex * 100}%)` }}>
@@ -278,7 +278,7 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
           itemsLength={cafe.images.length}
           itemsPerPage={6}>
           {({ pageIndex }) => (
-            <div className="relative overflow-hidden">
+            <div className="overflow-hidden">
               <div
                 className="flex transition-transform duration-300"
                 style={{ transform: `translateX(-${pageIndex * 100}%)` }}>
@@ -311,7 +311,7 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
           itemsLength={cafe.menu.length}
           itemsPerPage={6}>
           {({ pageIndex }) => (
-            <div className="relative overflow-hidden">
+            <div className="overflow-hidden">
               <div
                 className="flex transition-transform duration-300"
                 style={{ transform: `translateX(-${pageIndex * 100}%)` }}>
@@ -320,7 +320,7 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
                     <div className="group flex h-full flex-col rounded-lg border border-gray-100 bg-white p-2 transition hover:border-[#F26546]/50">
                       <div className="relative mb-2 flex aspect-video items-center justify-center overflow-hidden rounded-md">
                         <Badge className="absolute top-2 right-2 bg-[#F26546]">
-                          {item.price} 円
+                          {item.price} đ
                         </Badge>
 
                         {item.image ? (

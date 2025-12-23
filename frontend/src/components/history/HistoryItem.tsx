@@ -18,7 +18,7 @@ export default function HistoryItem({
   const handleClick = () => {
     navigate({
       to: '/detail/$id',
-      params: { id: String(item.shopId ?? item.cafe.id) },
+      params: { id: String(item.shopId ?? item.shop._id) },
     })
   }
 
@@ -47,8 +47,8 @@ export default function HistoryItem({
       <div onClick={handleClick} className="flex flex-1 cursor-pointer">
         <div className="m-2 w-24 shrink-0 overflow-hidden rounded-[18px] sm:w-40 md:m-3">
           <img
-            src={(item.cafe.images && item.cafe.images[0]) || ''}
-            alt={item.cafe.name}
+            src={item.shop.images[0] || ''}
+            alt={item.shop.name}
             className="h-full w-full object-cover"
           />
         </div>
@@ -56,21 +56,17 @@ export default function HistoryItem({
         <div className="flex min-w-0 flex-1 flex-col justify-center p-3 pl-2 md:p-5">
           <div className="mb-2 flex items-start justify-between gap-2">
             <h3 className="truncate text-sm font-black md:text-lg">
-              {item.cafe.name}
+              {item.shop.name}
             </h3>
             <Badge className="bg-[#ff6347]">
-              {item.cafe.rating}
+              {item.shop.rating}
               <Star size={12} className="text-white" fill="white" />
             </Badge>
           </div>
 
           <div className="mt-auto space-y-1 text-xs font-medium">
-            <div>
-              {item.cafe.hours
-                ? `${item.cafe.hours.open ?? ''} - ${item.cafe.hours.close ?? ''}`
-                : ''}
-            </div>
-            <span className="truncate">{item.cafe.address}</span>
+            <div>{`${item.shop.hours.open} - ${item.shop.hours.close}`}</div>
+            <span className="truncate">{item.shop.address}</span>
           </div>
         </div>
       </div>

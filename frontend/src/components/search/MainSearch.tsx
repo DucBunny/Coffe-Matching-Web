@@ -91,7 +91,7 @@ const MainContent: React.FC<MainContentProps> = ({
   return (
     <div className="flex-1">
       <div className="mb-8 flex justify-center">
-        <div className="relative rounded bg-[#ff6347] px-12 py-3 text-center text-xl font-bold text-white shadow-sm">
+        <div className="border-b-4 border-[#ff6347] pb-1 text-center text-3xl font-bold text-[#ff6347]">
           カフェ検索結果
         </div>
       </div>
@@ -104,7 +104,7 @@ const MainContent: React.FC<MainContentProps> = ({
             onClick={() => onSortChange('distance')}
             className={`flex-1 rounded px-8 text-sm font-bold transition sm:flex-none ${
               sortBy === 'distance'
-                ? 'bg-[#ff6347] text-white'
+                ? 'bg-[#ff6347] text-white hover:bg-[#ff6347]/80'
                 : 'bg-[#444] text-white hover:bg-[#555]'
             }`}>
             距離
@@ -114,7 +114,7 @@ const MainContent: React.FC<MainContentProps> = ({
             onClick={() => onSortChange('rating')}
             className={`flex-1 rounded px-8 text-sm font-bold transition sm:flex-none ${
               sortBy === 'rating'
-                ? 'bg-[#ff6347] text-white'
+                ? 'bg-[#ff6347] text-white hover:bg-[#ff6347]/80'
                 : 'bg-[#444] text-white hover:bg-[#555]'
             }`}>
             評価

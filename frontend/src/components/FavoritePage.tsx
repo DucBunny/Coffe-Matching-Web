@@ -56,7 +56,7 @@ const FavoritePage = () => {
         <main className="flex-1">
           {/* Header Section */}
           <div className="mb-8 flex justify-center">
-            <div className="rounded bg-[#FF6347] px-12 py-3 text-center text-xl font-bold text-white shadow-sm">
+            <div className="border-b-4 border-[#ff6347] pb-1 text-center text-3xl font-bold text-[#ff6347]">
               お気に入りのカフェ
             </div>
           </div>

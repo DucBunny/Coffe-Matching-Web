@@ -9,6 +9,7 @@ import {
 import L from 'leaflet'
 import { useState } from 'react'
 import { X } from 'lucide-react'
+import { toast } from 'sonner'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 
@@ -87,7 +88,7 @@ export default function SelectLocationMap({ onConfirm, onClose }: Props) {
         address: data[0].display_name,
       })
     } else {
-      alert('住所が見つかりませんでした')
+      toast.error('住所が見つかりませんでした')
     }
   }
 

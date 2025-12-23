@@ -163,8 +163,16 @@ async function getAllAmenities() {
   return await Shop.distinct('amenities').exec()
 }
 
-async function getShopById(id) {
-  return await Shop.findOne({ _id: id })
+async function getShopById(_id) {
+  return await Shop.findOne({ _id })
+}
+
+async function getAllShops() {
+  return await Shop.find({}).lean()
+}
+
+async function getShopsByIds(ids) {
+  return await Shop.find({ _id: { $in: ids } }).lean()
 }
 
 export {
@@ -172,5 +180,7 @@ export {
   getAllAreas,
   getAllPurposes,
   getAllAmenities,
-  getShopById
+  getShopById,
+  getAllShops,
+  getShopsByIds
 }

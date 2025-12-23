@@ -89,3 +89,15 @@ export async function findAllHistories(filters = {}) {
 export async function deleteManyHistories(_ids) {
   return await History.deleteMany({ _id: { $in: _ids } })
 }
+
+export async function getRecentHistory(user_id, daysLimit = 7) {
+  const dateLimit = new Date()
+  dateLimit.setDate(dateLimit.getDate() - daysLimit)
+
+  return await History.find({
+    user_id,
+    createdAt: { $gte: dateLimit }
+  })
+    .select('shop_id createdAt')
+    .lean()
+}

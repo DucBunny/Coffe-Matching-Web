@@ -53,7 +53,7 @@ const transformServerToHistory = (
       id: it._id,
       shopId: shop._id || '',
       time,
-      cafe: shop,
+      shop: shop,
     }
 
     if (!map.has(dateKey)) map.set(dateKey, { display: displayDate, items: [] })
@@ -159,7 +159,7 @@ export default function HistoryPage() {
     <>
       <main className="mx-auto max-w-[96%] space-y-12 p-4 md:p-8">
         <div className="mb-8 flex justify-center">
-          <div className="relative rounded bg-[#FF6347] px-12 py-3 text-center text-xl font-bold text-white shadow-sm">
+          <div className="border-b-4 border-[#ff6347] pb-1 text-center text-3xl font-bold text-[#ff6347]">
             閲覧履歴
           </div>
         </div>

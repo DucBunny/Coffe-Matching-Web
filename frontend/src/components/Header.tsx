@@ -193,7 +193,11 @@ export default function Header() {
                       履歴
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={signout}>
+                  <DropdownMenuItem
+                    onClick={() => {
+                      signout()
+                      navigate({ to: '/' })
+                    }}>
                     ログアウト
                   </DropdownMenuItem>
                 </DropdownMenuContent>

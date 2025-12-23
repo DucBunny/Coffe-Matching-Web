@@ -1,0 +1,1441 @@
+[
+  {
+    "id": 1,
+    "name": "ハイランズコーヒー",
+    "rating": 4.5,
+    "hours": "7:00 ~ 23:00",
+    "address": "16 Le Thanh Nghi",
+    "area": "hbt",
+    "purpose": "study",
+    "lat": 21.0045,
+    "lng": 105.8412,
+    "description": "広くて開放的な空間で、グループ作業や勉強に最適です。Wi-Fiが強く、電源コンセントも多く設置されています。",
+    "phone": "090-1234-5678",
+    "priceRange": "50000-100000",
+    "amenities": ["wifi", "parking", "quiet", "ac", "outdoor"],
+    "features": [
+      "高速無料Wi-Fi",
+      "エアコン完備",
+      "広い駐車スペース",
+      "軽食あり",
+      "カード決済対応"
+    ],
+    "images": [
+      "https://media.vneconomy.vn/1200x630/images/upload/2021/04/20/highland-coffee-15641309357751048105759-crop-156413094980996963270.jpg",
+      "https://dn.baophapluat.vn/images/upload/nhanpham/09082025/dsc00995-750x468.jpg",
+      "https://aeonmall-hadong.com.vn/wp-content/uploads/2019/08/dsc00991-750x468.jpg"
+    ],
+    "menu": [
+      {
+        "name": "フィン・スア・ダー",
+        "price": "30000 VND",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUKtlhRUNzksfbbzUGBkelT0MxrnhjU-sExw&s"
+      },
+      {
+        "name": "トラ・セン・ヴァン",
+        "price": "45000 VND",
+        "image": "https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/HLC_New_logo_5.1_Products__TSV.jpg"
+      },
+      {
+        "name": "抹茶フリーズ",
+        "price": "55000 VND",
+        "image": "https://noithatcaphe.vn/images/2022/07/14/freeze-tra-xanh-highlands-coffee-%201.jpg"
+      },
+      {
+        "name": "フィンディ マッチャ ストロベリー",
+        "price": "70000 VND",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ3vyOozc6PQCP2JT76rSvHZ05NkRYeKzXHQ&s"
+      },
+      {
+        "name": "フィンコーヒー（ブラックアイス）",
+        "price": "30000 VND",
+        "image": "https://bizweb.dktcdn.net/100/487/455/products/phin-den-da-1698982738181.jpg?v=1724205162483"
+      },
+      {
+        "name": "ライチゼリーティー",
+        "price": "50000 VND",
+        "image": "https://www.highlandscoffee.com.vn/vnt_upload/product/HLCPOSTOFFICE_DRAFT/PNG_FINAL/3_MENU_NGUYEN_BAN/Tra_Thach_Vai.jpg"
+      },
+      {
+        "name": "チョコレートフリーズ",
+        "price": "55000 VND",
+        "image": "https://www.highlandscoffee.com.vn/vnt_upload/product/04_2023/New_product/HLC_New_logo_5.1_Products__FREEZE_CHOCO.jpg"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "ザ・コーヒーハウス",
+    "rating": 4.8,
+    "hours": "8:00 ~ 22:30",
+    "address": "23 Ba Trieu",
+    "area": "hk",
+    "purpose": "work",
+    "lat": 21.0227,
+    "lng": 105.8513,
+    "description": "モダンで若々しいデザイン。オフィスワーカーやフリーランサーに最適な場所です。",
+    "phone": "024-3939-3939",
+    "priceRange": "30000-70000",
+    "features": [
+      "静かな空間",
+      "非常に強いWi-Fi",
+      "快適なソファ席",
+      "中心地に近い"
+    ],
+    "images": [
+      "https://file.hstatic.net/1000075078/article/2_c7d67b2212114f29a2db4e0b6643825e.jpg",
+      "https://tripping.jp/wp-content/uploads/2019/08/DSC02176-700x466.jpg",
+      "https://dn.baophapluat.vn/images/upload/hongtuyet/09202024/cfh.jpeg"
+    ],
+    "menu": [
+      {
+        "name": "カフェスアダー",
+        "price": "35000 VND",
+        "image": "https://file.hstatic.net/1000075078/file/blog_adda9e9ccb2a495fb063ec50f0af8cda_grande.jpg"
+      },
+      {
+        "name": "ピーチオレンジ・レモングラスティー",
+        "price": "50000 VND",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_CWCFnEM4SZQzXLSomUMx8M0t8wwNj53yUQ&s"
+      },
+      {
+        "name": "蓮の実ウーロン茶",
+        "price": "55000 VND",
+        "image": "https://winci.com.vn/wp-content/uploads/2024/02/Tra-Long-Nhan-Hat-Sen.webp"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "id": 3,
+    "name": "スターバックス",
+    "rating": 4.9,
+    "hours": "7:30 ~ 22:00",
+    "address": "241 Xuan Thuy",
+    "area": "cg",
+    "purpose": "work",
+    "lat": 21.0405,
+    "lng": 105.7989,
+    "description": "世界的ブランドでプロフェッショナルなサービス基準。高級感のある空間です。",
+    "phone": "024-7777-8888",
+    "priceRange": "100000-200000",
+    "amenities": ["wifi", "ac", "quiet", "power"],
+    "features": ["国際ブランド", "高級感ある空間", "多様なドリンクメニュー"],
+    "images": [
+      "https://vcdn1-kinhdoanh.vnecdn.net/2025/11/04/starbucks-china-1762230665-9707-1762230777.jpg?w=680&h=0&q=100&dpr=2&fit=crop&s=T6ScN8umeQxPYtISEatCeQ",
+      "https://dol.ismcdn.jp/mwimgs/6/e/-/img_6eea15cf97d4705854acf4cd7f17633f487416.jpg",
+      "https://www.gransta.jp/gr_cswp/wp-content/uploads/2022/04/%E3%82%B9%E3%82%BF%E3%83%90.jpg"
+    ],
+    "menu": [
+      {
+        "name": "カフェラテ",
+        "price": "60000 VND",
+        "image": "https://aeonmall-review-rikkei.cdn.vccloud.vn/public/wp/15/editors/WnI89i8FBAWrzx3PRXFXo25GAPzQqDdYe2NIOGnt.jpg"
+      },
+      {
+        "name": "カフェアメリカーノ",
+        "price": "70000 VND",
+        "image": "https://aeonmall-review-rikkei.cdn.vccloud.vn/public/wp/15/editors/KL3JpFuZvQfUdoTvCGteC6F6u1vnFF5OM3LQemMO.jpg"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "id": 4,
+    "name": "オールデイコーヒー",
+    "rating": 4.6,
+    "hours": "8:00 ~ 23:00",
+    "address": "37 Quang Trung",
+    "area": "hk",
+    "purpose": "date",
+    "lat": 21.0178,
+    "lng": 105.8469,
+    "description": "温かくロマンチックな空間で、デートにぴったりのカフェです。",
+    "phone": "098-765-4321",
+    "priceRange": "70000-150000",
+    "amenities": ["wifi", "ac", "outdoor"],
+    "features": ["ロマンチックな雰囲気", "穏やかな音楽", "美しい装飾"],
+    "images": [
+      "https://takeout-coffee.com/img/photo/all-day-coffee03.jpg",
+      "https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1000&auto=format&fit=crop",
+      "https://osakakita-journal.com/wp-content/uploads/2019/09/DSC01228-e1568011590139.jpg"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 5,
+    "name": "トランキルブックス",
+    "rating": 5,
+    "hours": "8:00 ~ 22:00",
+    "address": "5 Nguyen Quang Bich",
+    "area": "hk",
+    "purpose": "study",
+    "lat": 21.0311,
+    "lng": 105.8516,
+    "description": "静かなブックカフェで、本の世界に没頭できる空間です。",
+    "phone": "091-234-5678",
+    "priceRange": "40000-80000",
+    "amenities": ["wifi", "quiet", "power"],
+    "features": ["豊富な本", "完全な静けさ", "レトロな雰囲気"],
+    "images": [
+      "https://lh3.ggpht.com/p/AF1QipOI9BZ-p-tyVuS1xneEfQ3o5gWz8OL8MBrZJRWS=s800",
+      "https://cdn.xanhsm.com/2025/01/ace7a67d-tranquil-books-coffee-1.jpg",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/71/92/ca/tranquil-18-b-nguy-n.jpg?w=900&h=500&s=1",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/89/d8/bc/afternoon.jpg?w=1100&h=1100&s=1"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 6,
+    "name": "コン・カフェ",
+    "rating": 4.4,
+    "hours": "7:00 ~ 23:30",
+    "address": "116 Cau Go",
+    "area": "hk",
+    "purpose": "relax",
+    "lat": 21.0298,
+    "lng": 105.8536,
+    "description": "独特なレトロスタイルで、古きハノイを感じられる空間です。",
+    "phone": "024-3333-4444",
+    "priceRange": "30000-100000",
+    "amenities": ["wifi", "outdoor", "vintage"],
+    "features": [
+      "レトロスタイル",
+      "ココナッツクリームの特製ドリンク",
+      "眺めの良い席"
+    ],
+    "images": [
+      "https://cong-news.appwifi.com/wp-content/uploads/2020/07/Website-Our-Story-TVV.jpg",
+      "https://cong-news.appwifi.com/wp-content/uploads/2023/05/IMG_4045.jpg",
+      "https://skynext.vn/wp-content/uploads/2021/09/DSC9877.jpg",
+      "https://noithatkendesign.vn/storage/app/media/uploaded-files/thiet-ke-cong-ca-phe.jpg"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 7,
+    "name": "ラ・ヴィエットコーヒー",
+    "rating": 4.7,
+    "hours": "7:00 ~ 22:00",
+    "address": "3 Ngo Quyen",
+    "area": "hk",
+    "purpose": "work",
+    "lat": 21.0267,
+    "lng": 105.8523,
+    "description": "ダラット産の高品質コーヒー、インダストリアル空間が魅力。",
+    "phone": "090-999-8888",
+    "priceRange": "50000-100000",
+    "amenities": ["wifi", "power", "ac", "quiet"],
+    "features": ["純粋なコーヒー", "開放的な空間", "仕事向け"],
+    "images": [
+      "https://vietair.com.vn/Media/Images/la-viet-coffee-menu.jpg?w=1200&h=630&c=true",
+      "https://viet-tsu.com/wp-content/uploads/2023/12/6B78944F-AD69-4A2F-B461-A6C3416CC102.jpg",
+      "https://vietnamag.com/wp-content/uploads/2021/11/254575161_2989394578044005_1870753101041857689_n-1024x722.jpg"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 8,
+    "name": "フックロン",
+    "rating": 4.2,
+    "hours": "8:00 ~ 22:00",
+    "address": "82 Hang Dieu",
+    "area": "hk",
+    "purpose": "relax",
+    "lat": 21.0334,
+    "lng": 105.8512,
+    "description": "伝統的な味わいの茶とコーヒーが有名です。",
+    "phone": "1800-6779",
+    "priceRange": "40000-90000",
+    "amenities": ["wifi", "ac", "parking"],
+    "features": ["深い味の紅茶", "迅速なサービス", "便利な立地"],
+    "images": [
+      "https://statics.vincom.com.vn/vincom-ho/gioi-thieu-1657095406.jpg",
+      "https://jp.gurutto-vietnam.com/db_img/site_img/images/37c90973c1facc271338f41351b503d0.jpg",
+      "https://hataraku-mama.info/wp-content/uploads/2022/09/2022-09-20-10-37-22-026-1.jpg",
+      "https://gucci-vietnam.com/wp-content/uploads/2018/03/o0775051612924891995.jpg",
+      "https://gucci-vietnam.com/wp-content/uploads/2018/03/o0800060013482040711.jpg"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 9,
+    "name": "メゾン・ド・ブラン",
+    "rating": 4.8,
+    "hours": "9:00 ~ 21:00",
+    "address": "5 Tay Ho",
+    "area": "th",
+    "purpose": "date",
+    "lat": 21.0545,
+    "lng": 105.8234,
+    "description": "ヨーロッパ風の白い邸宅で、広い庭付きの高級カフェです。",
+    "phone": "024-6666-7777",
+    "priceRange": "55000-300000",
+    "amenities": ["wifi", "outdoor", "ac", "parking", "luxury"],
+    "features": ["フランス建築", "庭園スペース", "美味しいスイーツ"],
+    "images": [
+      "https://oms.hotdeal.vn/images/editors/sources/000367901728/367901-367901-Maison-de-Blanc-Set-Au-Happy-New-Year-Cho-2-Nguoi-body-chung(8).jpg",
+      "https://yp.vn/wp-content/uploads/2021/01/20171120225856417.jpg"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 10,
+    "name": "ツイッタービーンズ",
+    "rating": 4.3,
+    "hours": "7:00 ~ 22:00",
+    "address": "56 Vu Trong Phung",
+    "area": "cg",
+    "purpose": "study",
+    "lat": 21.0021,
+    "lng": 105.8156,
+    "description": "学生に人気の便利なカフェスタイル。",
+    "phone": "1900-1234",
+    "priceRange": "20000-50000",
+    "amenities": ["wifi", "power", "ac", "spacious"],
+    "features": ["手頃な価格", "安定したWi-Fi", "座席数が多い"],
+    "images": [
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/1e/ca/88/twitter-beans-coffee.jpg?w=500&h=-1&s=1",
+      "https://upload.urbox.vn/strapi/Twitter_beans_coffee_005_a467f07906.jpg",
+      "https://gamudagardens.vn/wp-content/uploads/2016/05/Twitter-Beans-coffee-gamuda-garden.jpg"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 11,
+    "name": "カファカフェ",
+    "rating": 4.1,
+    "hours": "7:00 ~ 23:00",
+    "address": "101 Ba Trieu",
+    "area": "hbt",
+    "purpose": "relax",
+    "lat": 21.0189,
+    "lng": 105.8501,
+    "description": "ハノイらしいストリートコーヒーで、街並みを眺めながら楽しめます。",
+    "phone": "098-888-8888",
+    "priceRange": "15000-40000",
+    "amenities": ["outdoor", "street_view"],
+    "features": ["ストリートコーヒー", "歩道席あり", "涼しい空間"],
+    "images": [
+      "https://cdn.4travel.jp/img/thumbnails/imk/tips_pict/16/49/28/650x450_16492852.jpg?updated_at=1558584219",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/66/cb/8e/caption.jpg?w=1100&h=1100&s=1",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/d3/5f/b7/getlstd-property-photo.jpg?w=800&h=400&s=1"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 1,
+    "name": "ハイランズコーヒー",
+    "rating": 4.5,
+    "hours": "7:00 ~ 23:00",
+    "address": "7 Dinh Tien Hoang",
+    "area": "hk",
+    "purpose": "view",
+    "lat": 21.029,
+    "lng": 105.853,
+    "description": "「サメの顎」と呼ばれるビル。ホアンキエム湖を一望できる絶好のロケーション。",
+    "phone": "024-3936-3228",
+    "priceRange": "60000-110000",
+    "amenities": [
+      "wifi",
+      "lake_view",
+      "outdoor",
+      "spacious",
+      "landmark",
+      "family"
+    ],
+    "features": ["湖の眺め", "テラス席", "観光名所"],
+    "images": [
+      "https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 2,
+    "name": "ザ・コーヒーハウス",
+    "rating": 4.8,
+    "hours": "8:00 ~ 22:30",
+    "address": "23 Ba Trieu",
+    "area": "hk",
+    "purpose": "work",
+    "lat": 21.0227,
+    "lng": 105.8513,
+    "description": "モダンで機能的なデザイン。オフィスワーカーやノマドに最適。",
+    "phone": "024-3939-3939",
+    "priceRange": "30000-70000",
+    "amenities": ["wifi", "power", "ac", "spacious", "modern"],
+    "features": ["高速Wi-Fi", "電源完備", "中心地"],
+    "images": [
+      "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 3,
+    "name": "トランキル・ブックス＆コーヒー",
+    "rating": 5,
+    "hours": "8:00 ~ 22:00",
+    "address": "5 Nguyen Quang Bich",
+    "area": "hk",
+    "purpose": "study",
+    "lat": 21.0311,
+    "lng": 105.8516,
+    "description": "本に囲まれた静寂な空間。一人での読書や作業に。",
+    "phone": "091-234-5678",
+    "priceRange": "40000-80000",
+    "amenities": ["wifi", "quiet", "vintage", "hidden"],
+    "features": ["豊富な本", "絶対的な静けさ", "隠れ家"],
+    "images": [
+      "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 4,
+    "name": "カフェ・ジャン",
+    "rating": 4.6,
+    "hours": "7:00 ~ 22:00",
+    "address": "39 Nguyen Huu Huan",
+    "area": "hk",
+    "purpose": "relax",
+    "lat": 21.0336,
+    "lng": 105.8532,
+    "description": "ハノイ名物「エッグコーヒー」発祥の伝説的な店。",
+    "phone": "098-989-8989",
+    "priceRange": "25000-50000",
+    "amenities": ["vintage", "hidden", "street_view"],
+    "features": ["エッグコーヒー発祥", "観光名所", "ローカル感"],
+    "images": [
+      "https://hataraku-mama.info/wp-content/uploads/2024/09/2024-09-05-09-55-53-733-EDIT.jpg"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 5,
+    "name": "ソファ・カフェ＆ビストロ",
+    "rating": 4.5,
+    "hours": "24h",
+    "address": "14 Tong Duy Tan",
+    "area": "hk",
+    "purpose": "relax",
+    "lat": 21.0289,
+    "lng": 105.8445,
+    "description": "24時間営業。緑に囲まれた洋風の居心地の良いカフェ。",
+    "phone": "024-3717-1555",
+    "priceRange": "50000-120000",
+    "amenities": ["late_night", "food", "garden", "cozy", "vintage"],
+    "features": ["24時間営業", "食事メニュー充実", "ソファ席"],
+    "images": [
+      "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1453614512568-c4024d13c247?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 6,
+    "name": "コン・カフェ",
+    "rating": 4.4,
+    "hours": "7:00 ~ 23:00",
+    "address": "46 Trang Tien",
+    "area": "hk",
+    "purpose": "meetup",
+    "lat": 21.0255,
+    "lng": 105.8565,
+    "description": "ベトナム共産主義時代のレトロな装飾。ココナッツコーヒーが有名。",
+    "phone": "024-3939-3939",
+    "priceRange": "30000-60000",
+    "amenities": ["vintage", "street_view", "wifi"],
+    "features": ["レトロスタイル", "ココナッツコーヒー", "オペラハウス近く"],
+    "images": [
+      "https://assets.st-note.com/production/uploads/images/149453748/rectangle_large_type_2_bc14f8d18223299aa4875c80d6ae55dd.jpeg?width=1280",
+      "https://sorairo.blog/wp-content/uploads/2019/04/s-IMG_5687-768x576.jpg"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 7,
+    "name": "6ディグリーズ",
+    "rating": 4.5,
+    "hours": "8:00 ~ 23:00",
+    "address": "189 Nghi Tam",
+    "area": "th",
+    "purpose": "date",
+    "lat": 21.0558,
+    "lng": 105.8365,
+    "description": "西湖を見下ろすルーフトップカフェ。夕日が非常に美しい。",
+    "phone": "098-524-9189",
+    "priceRange": "85000-255000",
+    "amenities": ["rooftop", "lake_view", "food", "luxury", "parking"],
+    "features": ["絶景ルーフトップ", "ロマンチック", "ディナー可"],
+    "images": [
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 8,
+    "name": "オールデイ・コーヒー",
+    "rating": 4.6,
+    "hours": "8:00 ~ 23:00",
+    "address": "37 Quang Trung",
+    "area": "hk",
+    "purpose": "date",
+    "lat": 21.0178,
+    "lng": 105.8469,
+    "description": "ヨーロッパ風の温かみのある空間。エッグコーヒーも美味しい。",
+    "phone": "098-765-4321",
+    "priceRange": "70000-155000",
+    "amenities": ["cozy", "vintage", "rooftop", "wifi"],
+    "features": ["ロマンチック", "美しい建築", "エッグコーヒー"],
+    "images": [
+      "https://images.unsplash.com/photo-1508766917616-d22f3f1eea14?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1481833761820-0509d3217039?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 9,
+    "name": "ザ・ランニング・ビーン",
+    "rating": 4.8,
+    "hours": "8:00 ~ 22:00",
+    "address": "22 Nha Tho",
+    "area": "hk",
+    "purpose": "work",
+    "lat": 21.0292,
+    "lng": 105.8495,
+    "description": "大聖堂近くのモダンなビル。ブランチとコーヒーの質が高い。",
+    "phone": "024-3333-5555",
+    "priceRange": "75000-155000",
+    "amenities": ["modern", "food", "wifi", "ac"],
+    "features": ["ブランチ", "スタイリッシュ", "明るい"],
+    "images": [
+      "https://d1u7goitqk7klj.cloudfront.net/usanndk399ndj26iydtk2j3dqso0"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 10,
+    "name": "セレイン・カフェ＆ラウンジ",
+    "rating": 4.6,
+    "hours": "8:00 ~ 23:00",
+    "address": "16 Tran Nhat Duat",
+    "area": "hk",
+    "purpose": "view",
+    "lat": 21.0368,
+    "lng": 105.852,
+    "description": "ロンビエン橋を真横から眺められる絶景スポット。列車が通る瞬間が人気。",
+    "phone": "093-644-6221",
+    "priceRange": "75000-135000",
+    "amenities": ["rooftop", "street_view", "vintage", "luxury"],
+    "features": ["ロンビエン橋ビュー", "列車の写真", "テラス"],
+    "images": [
+      "https://www.lemon8-app.com/seo/image?item_id=7208941246167990789&index=5&sign=9f0262058ac126f4a4d7d941aab478c6"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 11,
+    "name": "ラ・ヴィエット・コーヒー",
+    "rating": 4.7,
+    "hours": "7:00 ~ 22:00",
+    "address": "3 Ngo Quyen",
+    "area": "hk",
+    "purpose": "work",
+    "lat": 21.0267,
+    "lng": 105.8523,
+    "description": "ダラット産コーヒーを使用。工場のような広々としたインダストリアル空間。",
+    "phone": "090-999-8888",
+    "priceRange": "50000-100000",
+    "amenities": ["wifi", "power", "spacious", "industrial"],
+    "features": ["純粋なコーヒー", "作業向き", "天井が高い"],
+    "images": [
+      "https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 12,
+    "name": "カフェ・ディン",
+    "rating": 4.5,
+    "hours": "7:00 ~ 21:30",
+    "address": "13 Dinh Tien Hoang",
+    "area": "hk",
+    "purpose": "view",
+    "lat": 21.0292,
+    "lng": 105.8535,
+    "description": "Giang Cafeの娘さんが開いた店。バルコニーから湖が見える隠れ家。",
+    "phone": "024-3824-2960",
+    "priceRange": "25000-45000",
+    "amenities": ["vintage", "hidden", "lake_view"],
+    "features": ["エッグコーヒー", "湖の眺め", "ローカル"],
+    "images": [
+      "https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1549488344-c73885698b7f?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 13,
+    "name": "マンジ・アート・スペース",
+    "rating": 4.8,
+    "hours": "8:00 ~ 22:00",
+    "address": "14 Phan Huy Ich",
+    "area": "bd",
+    "purpose": "relax",
+    "lat": 21.0385,
+    "lng": 105.8423,
+    "description": "アートギャラリーを兼ねた静かなヴィラカフェ。芸術的な雰囲気。",
+    "phone": "024-3719-8462",
+    "priceRange": "60000-100000",
+    "amenities": ["quiet", "garden", "vintage"],
+    "features": ["アート展示", "静寂", "庭園"],
+    "images": [
+      "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 14,
+    "name": "スターバックス",
+    "rating": 4.7,
+    "hours": "7:00 ~ 23:00",
+    "address": "6 Nha Tho",
+    "area": "hk",
+    "purpose": "relax",
+    "lat": 21.0288,
+    "lng": 105.8492,
+    "description": "ハノイ大聖堂の目の前。観光の休憩に最適なロケーション。",
+    "phone": "024-3938-8888",
+    "priceRange": "100000-200000",
+    "amenities": ["wifi", "ac", "modern", "street_view", "landmark"],
+    "features": ["大聖堂ビュー", "安定の品質", "テラス"],
+    "images": [
+      "https://d1uzk9o9cg136f.cloudfront.net/f/16783624/rc/2023/12/25/97e7dda16ca42271e2a8405e35e02506dbb502fa_xlarge.jpg"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 15,
+    "name": "カップ・オブ・ティー",
+    "rating": 4.4,
+    "hours": "7:30 ~ 22:30",
+    "address": "109 Nguyen Dinh Thi",
+    "area": "th",
+    "purpose": "relax",
+    "lat": 21.0482,
+    "lng": 105.8123,
+    "description": "白を基調とした明るい店内。西湖を眺めながらケーキを楽しめる。",
+    "phone": "024-3759-1999",
+    "priceRange": "45000-95000",
+    "amenities": [
+      "lake_view",
+      "food",
+      "spacious",
+      "modern",
+      "outdoor",
+      "family"
+    ],
+    "features": ["レイクビュー", "手作りケーキ", "明るい"],
+    "images": [
+      "https://digiticket.vn/blog/wp-content/uploads/2021/07/cup-of-tea-cafe-bistro-4.jpg"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 16,
+    "name": "ブラックバード・コーヒー",
+    "rating": 4.6,
+    "hours": "7:00 ~ 21:30",
+    "address": "63B Chan Cam",
+    "area": "hk",
+    "purpose": "work",
+    "lat": 21.0303,
+    "lng": 105.8495,
+    "description": "コーヒー好きが集まる店。本格的なハンドドリップとエスプレッソ。",
+    "phone": "024-3200-5656",
+    "priceRange": "60000-100000",
+    "amenities": ["wifi", "modern", "quiet"],
+    "features": ["スペシャルティ", "プロのバリスタ", "オレンジ色の外観"],
+    "images": [
+      "https://lh5.googleusercontent.com/proxy/FbGzX2QUWcGzl7JWl5G98qfgnDaO-69733_CNib1xTjZH8FjCu6ZzLtAQi7eNAfAjHi2f-2HvJqbEmoy0l-oZnKyNir6se7erEzS06JB_NbzFxLbkkEbvX5R5RSW-6rh1bk0QabfHtA",
+      "https://bogey.co.jp/wp-content/uploads/2025/04/blackbirdcoffee_02.webp"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 17,
+    "name": "ザ・ノート・コーヒー",
+    "rating": 4.7,
+    "hours": "6:30 ~ 23:00",
+    "address": "64 Luong Van Can",
+    "area": "hk",
+    "purpose": "date",
+    "lat": 21.0315,
+    "lng": 105.853,
+    "description": "壁一面にメッセージ付箋が貼られたユニークなカフェ。湖のそば。",
+    "phone": "097-519-4466",
+    "priceRange": "35000-75000",
+    "amenities": ["lake_view", "vintage", "wifi"],
+    "features": ["付箋アート", "写真映え", "フレンドリー"],
+    "images": [
+      "https://images.unsplash.com/photo-1516912481808-3406841bd33c?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1511537632536-b7a4896848a4?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 18,
+    "name": "バンコン",
+    "rating": 4.5,
+    "hours": "7:00 ~ 23:00",
+    "address": "2 Dinh Liet",
+    "area": "hk",
+    "purpose": "date",
+    "lat": 21.0331,
+    "lng": 105.8528,
+    "description": "古い貴族の家を改装したアールデコ調のカフェ。バルコニー席が人気。",
+    "phone": "024-3999-9999",
+    "priceRange": "70000-135000",
+    "amenities": ["vintage", "street_view", "food", "luxury"],
+    "features": ["美しいバルコニー", "花", "ブランチ"],
+    "images": [
+      "https://images.unsplash.com/photo-1554232682-b9ef9c92f8de?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 19,
+    "name": "アハ・コーヒー",
+    "rating": 4,
+    "hours": "7:00 ~ 23:00",
+    "address": "26 Trang Tien",
+    "area": "hk",
+    "purpose": "meetup",
+    "lat": 21.0256,
+    "lng": 105.8567,
+    "description": "ハノイっ子のように路上でアイスティーを楽しむならここ。",
+    "phone": "096-555-6666",
+    "priceRange": "25000-50000",
+    "amenities": ["street_view", "outdoor"],
+    "features": ["路面店", "賑やか", "人間観察"],
+    "images": [
+      "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1463797221720-6b07e6426c24?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 20,
+    "name": "アトリエ・コーヒー・ロースター",
+    "rating": 4.7,
+    "hours": "8:00 ~ 18:00",
+    "address": "65A Ton That Thi",
+    "area": "bd",
+    "purpose": "work",
+    "lat": 21.0295,
+    "lng": 105.8398,
+    "description": "静かな路地裏にある自家焙煎所。コーヒーの質が高い。",
+    "phone": "091-234-9999",
+    "priceRange": "50000-85000",
+    "amenities": ["quiet", "wifi", "modern"],
+    "features": ["自家焙煎", "ミニマル", "静か"],
+    "images": [
+      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1525610553991-2bede1a236e2?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 21,
+    "name": "ガーデニスタ",
+    "rating": 4.3,
+    "hours": "7:00 ~ 23:00",
+    "address": "2 Le Thach",
+    "area": "hk",
+    "purpose": "relax",
+    "lat": 21.0272,
+    "lng": 105.8555,
+    "description": "植物園のようなガラス張りの温室カフェ。緑に癒やされる。",
+    "phone": "096-698-7269",
+    "priceRange": "60000-100000",
+    "amenities": ["garden", "outdoor", "wifi", "spacious", "family"],
+    "features": ["植物", "温室", "中心地"],
+    "images": [
+      "https://images.unsplash.com/photo-1466781783364-36c955e42a7f?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 22,
+    "name": "ネオ・カフェ",
+    "rating": 4.8,
+    "hours": "7:00 ~ 22:30",
+    "address": "35B Le Dai Hanh",
+    "area": "hbt",
+    "purpose": "work",
+    "lat": 21.0123,
+    "lng": 105.8475,
+    "description": "アプリで注文できるハイテクカフェ。エッグコーヒーも美味しい。",
+    "phone": "088-888-2345",
+    "priceRange": "45000-75000",
+    "amenities": ["wifi", "power", "modern", "ac"],
+    "features": ["アプリ注文", "美味しい", "清潔"],
+    "images": [
+      "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1507133750069-4126456910d3?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 23,
+    "name": "ローディング・ティー・カフェ",
+    "rating": 4.9,
+    "hours": "8:00 ~ 18:00",
+    "address": "8 Chan Cam",
+    "area": "hk",
+    "purpose": "date",
+    "lat": 21.0305,
+    "lng": 105.8498,
+    "description": "フランス植民地時代の古い建物の2階。雰囲気がとても良い。",
+    "phone": "090-456-7890",
+    "priceRange": "50000-85000",
+    "amenities": ["vintage", "hidden", "quiet"],
+    "features": ["建築美", "シナモンティー", "隠れ家"],
+    "images": [
+      "https://images.unsplash.com/photo-1493857671505-72967e2e2760?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 24,
+    "name": "メゾン・ド・ブラン",
+    "rating": 4.8,
+    "hours": "9:00 ~ 21:00",
+    "address": "5 Tay Ho",
+    "area": "th",
+    "purpose": "date",
+    "lat": 21.0545,
+    "lng": 105.8234,
+    "description": "ヨーロッパ風の白い邸宅。テラス席が人気。",
+    "phone": "024-6666-7777",
+    "priceRange": "55000-300000",
+    "amenities": ["garden", "outdoor", "luxury", "food", "parking", "family"],
+    "features": ["庭園", "ケーキ", "写真映え"],
+    "images": [
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1555529733-0e670560f7e1?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 25,
+    "name": "ハイランズコーヒー",
+    "rating": 4.6,
+    "hours": "7:00 ~ 23:00",
+    "address": "1 Trang Tien",
+    "area": "hk",
+    "purpose": "relax",
+    "lat": 21.0254,
+    "lng": 105.8572,
+    "description": "オペラハウスの敷地内にある特別な店舗。夜風が気持ちいい。",
+    "phone": "024-3933-5555",
+    "priceRange": "60000-110000",
+    "amenities": ["outdoor", "spacious", "landmark", "family"],
+    "features": ["テラス広々", "オペラハウス", "夜景"],
+    "images": [
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1549488344-c73885698b7f?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 26,
+    "name": "ツイッター・ビーンズ",
+    "rating": 4.3,
+    "hours": "7:00 ~ 22:00",
+    "address": "5 Duy Tan",
+    "area": "cg",
+    "purpose": "study",
+    "lat": 21.0312,
+    "lng": 105.7865,
+    "description": "IT企業が集まるエリア。勉強や仕事に集中しやすい。",
+    "phone": "1900-1235",
+    "priceRange": "20000-50000",
+    "amenities": ["wifi", "power", "ac", "spacious"],
+    "features": ["電源豊富", "手頃", "作業向き"],
+    "images": [
+      "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 27,
+    "name": "カファ・カフェ",
+    "rating": 4.2,
+    "hours": "7:00 ~ 24:00",
+    "address": "75 Nguyen Huu Huan",
+    "area": "hk",
+    "purpose": "meetup",
+    "lat": 21.0345,
+    "lng": 105.854,
+    "description": "深夜まで営業しているストリートカフェ。若者で賑わう。",
+    "phone": "098-111-2222",
+    "priceRange": "15000-45000",
+    "amenities": ["street_view", "late_night", "outdoor"],
+    "features": ["深夜営業", "路上席", "活気"],
+    "images": [
+      "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1522204538344-922f76ecc041?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 28,
+    "name": "フックロン",
+    "rating": 4.2,
+    "hours": "8:00 ~ 22:00",
+    "address": "82 Hang Dieu",
+    "area": "hk",
+    "purpose": "meetup",
+    "lat": 21.0334,
+    "lng": 105.8512,
+    "description": "濃いめのお茶が人気。いつも混雑している。",
+    "phone": "1800-6779",
+    "priceRange": "40000-90000",
+    "amenities": ["wifi", "ac", "spacious"],
+    "features": ["お茶", "便利", "賑やか"],
+    "images": [
+      "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 29,
+    "name": "チーズ・コーヒー",
+    "rating": 4.6,
+    "hours": "7:00 ~ 22:30",
+    "address": "50 Le Dai Hanh",
+    "area": "hbt",
+    "purpose": "relax",
+    "lat": 21.0118,
+    "lng": 105.848,
+    "description": "フレンチスタイルの装飾がおしゃれ。チーズドリンクが有名。",
+    "phone": "1900-6024",
+    "priceRange": "60000-110000",
+    "amenities": ["modern", "luxury", "wifi", "ac"],
+    "features": ["写真映え", "チーズドリンク", "おしゃれ"],
+    "images": [
+      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1507133750069-4126456910d3?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 30,
+    "name": "ザ・ハノイ・ソーシャル・クラブ",
+    "rating": 4.6,
+    "hours": "8:00 ~ 23:00",
+    "address": "6 Hoi Vu",
+    "area": "hk",
+    "purpose": "relax",
+    "lat": 21.0285,
+    "lng": 105.8462,
+    "description": "外国人客が多いボヘミアンスタイルのカフェ。ヘルシーフードあり。",
+    "phone": "024-3938-2117",
+    "priceRange": "70000-155000",
+    "amenities": ["food", "vintage", "wifi", "cozy"],
+    "features": ["ヴィーガン", "音楽", "欧米風"],
+    "images": [
+      "https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1546452179-c56b46427d14?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 31,
+    "name": "ルナム・ビストロ",
+    "rating": 4.7,
+    "hours": "7:00 ~ 23:00",
+    "address": "13 Nha Tho",
+    "area": "hk",
+    "purpose": "date",
+    "lat": 21.029,
+    "lng": 105.849,
+    "description": "非常に豪華で高級感のあるインテリア。特別な日に。",
+    "phone": "024-3928-6697",
+    "priceRange": "135000-340000",
+    "amenities": ["luxury", "food", "ac", "wifi"],
+    "features": ["高級感", "ギフト", "サービス良"],
+    "images": [
+      "https://www.tnkjapan.com/jvs/img/recommended/hochiminh/runam/runam02.jpg"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 32,
+    "name": "ザ・コーヒーハウス",
+    "rating": 4.7,
+    "hours": "8:00 ~ 22:30",
+    "address": "1 Thai Ha",
+    "area": "dd",
+    "purpose": "work",
+    "lat": 21.0125,
+    "lng": 105.8212,
+    "description": "広々とした空間と大きなガラス窓。作業に集中できる。",
+    "phone": "024-3535-3535",
+    "priceRange": "35000-75000",
+    "amenities": ["wifi", "parking", "ac", "power", "spacious"],
+    "features": ["電源豊富", "明るい", "バイク駐車場"],
+    "images": [
+      "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 33,
+    "name": "タン・トレット・コスモ",
+    "rating": 4.7,
+    "hours": "8:00 ~ 22:00",
+    "address": "10 Khuc Hao",
+    "area": "bd",
+    "purpose": "date",
+    "lat": 21.0318,
+    "lng": 105.8375,
+    "description": "古いヴィラをおしゃれに改装したカフェ。テラスが素敵。",
+    "phone": "096-888-7777",
+    "priceRange": "70000-130000",
+    "amenities": ["outdoor", "vintage", "quiet", "garden"],
+    "features": ["ヴィラ改装", "おしゃれなテラス", "静かな通り"],
+    "images": [
+      "https://images.unsplash.com/photo-1525610553991-2bede1a236e2?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 34,
+    "name": "ハイランズコーヒー",
+    "rating": 4.6,
+    "hours": "7:00 ~ 23:00",
+    "address": "9 Thanh Nien",
+    "area": "th",
+    "purpose": "view",
+    "lat": 21.0425,
+    "lng": 105.836,
+    "description": "西湖に浮かぶ船の上にある店舗。360度レイクビュー。",
+    "phone": "024-3715-1234",
+    "priceRange": "60000-110000",
+    "amenities": ["lake_view", "outdoor", "landmark", "spacious", "family"],
+    "features": ["水上店舗", "夕日が綺麗", "ユニーク"],
+    "images": [
+      "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 35,
+    "name": "カフェ・フォー・コー",
+    "rating": 4.4,
+    "hours": "7:00 ~ 22:00",
+    "address": "11 Hang Gai",
+    "area": "hk",
+    "purpose": "view",
+    "lat": 21.0328,
+    "lng": 105.8525,
+    "description": "シルク店の奥にある細い路地を抜けた先にある超隠れ家。",
+    "phone": "024-3928-8153",
+    "priceRange": "35000-60000",
+    "amenities": ["hidden", "lake_view", "vintage"],
+    "features": ["超隠れ家", "エッグコーヒー", "アンティーク"],
+    "images": [
+      "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 36,
+    "name": "オヒ・ツリー＆コーヒー",
+    "rating": 4.4,
+    "hours": "8:00 ~ 22:30",
+    "address": "55 Phan Chu Trinh",
+    "area": "hk",
+    "purpose": "relax",
+    "lat": 21.0225,
+    "lng": 105.856,
+    "description": "花屋とカフェが一体化した店。緑があふれる。",
+    "phone": "091-666-8888",
+    "priceRange": "50000-95000",
+    "amenities": ["garden", "quiet", "cozy"],
+    "features": ["植物", "花屋併設", "癒やし"],
+    "images": [
+      "https://images.unsplash.com/photo-1466781783364-36c955e42a7f?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 37,
+    "name": "ハイランズコーヒー",
+    "rating": 4.5,
+    "hours": "7:00 ~ 23:00",
+    "address": "28A Dien Bien Phu",
+    "area": "bd",
+    "purpose": "relax",
+    "lat": 21.0325,
+    "lng": 105.8395,
+    "description": "ハノイの国旗掲揚塔（フラッグタワー）の足元にある。開放的。",
+    "phone": "024-3823-5555",
+    "priceRange": "50000-100000",
+    "amenities": ["outdoor", "landmark", "spacious", "parking", "family"],
+    "features": ["歴史的遺産内", "完全屋外", "広大"],
+    "images": [
+      "https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1561344640-2453889cde5b?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 38,
+    "name": "アン・カフェ",
+    "rating": 4.3,
+    "hours": "7:00 ~ 22:00",
+    "address": "15 Truc Bach",
+    "area": "bd",
+    "purpose": "relax",
+    "lat": 21.0455,
+    "lng": 105.8385,
+    "description": "チュックバック湖のほとりにある静かなカフェ。",
+    "phone": "090-333-4444",
+    "priceRange": "35000-70000",
+    "amenities": ["lake_view", "quiet", "wifi"],
+    "features": ["湖畔", "静か", "読書向け"],
+    "images": [
+      "https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 39,
+    "name": "カフェヴィル",
+    "rating": 4.8,
+    "hours": "7:30 ~ 21:00",
+    "address": "23 Yen Ninh",
+    "area": "bd",
+    "purpose": "work",
+    "lat": 21.041,
+    "lng": 105.8435,
+    "description": "静かな通りにあるスペシャルティコーヒー専門店。",
+    "phone": "091-234-5678",
+    "priceRange": "60000-100000",
+    "amenities": ["quiet", "wifi", "modern"],
+    "features": ["ハンドドリップ", "豆販売", "コーヒー愛好家"],
+    "images": [
+      "https://dondonvietnam.com/wp-content/uploads/2024/09/2022023265-1024x577.jpg"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 40,
+    "name": "スターバックス",
+    "rating": 4.9,
+    "hours": "7:00 ~ 22:00",
+    "address": "15 Ngo Quyen",
+    "area": "hk",
+    "purpose": "date",
+    "lat": 21.0258,
+    "lng": 105.8552,
+    "description": "歴史あるメトロポールホテルの隣。落ち着いた雰囲気。",
+    "phone": "024-3936-8888",
+    "priceRange": "120000-220000",
+    "amenities": ["luxury", "quiet", "ac", "wifi"],
+    "features": ["リザーブ店", "静か", "高級ホテル"],
+    "images": [
+      "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1579888944880-d98341245702?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 41,
+    "name": "コン・カフェ",
+    "rating": 4.5,
+    "hours": "7:00 ~ 23:00",
+    "address": "32 Dien Bien Phu",
+    "area": "bd",
+    "purpose": "relax",
+    "lat": 21.0322,
+    "lng": 105.8415,
+    "description": "軍事博物館の近く。木陰が多く、テラス席がとても気持ちいい。",
+    "phone": "024-3734-9999",
+    "priceRange": "30000-60000",
+    "amenities": ["outdoor", "vintage", "wifi", "street_view"],
+    "features": ["博物館近く", "広いテラス", "観光休憩"],
+    "images": [
+      "https://images.unsplash.com/photo-1533090631-338411005233?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 42,
+    "name": "ザ・コーヒーハウス",
+    "rating": 4.6,
+    "hours": "8:00 ~ 22:00",
+    "address": "Times City, 458 Minh Khai",
+    "area": "hbt",
+    "purpose": "relax",
+    "lat": 20.9955,
+    "lng": 105.8685,
+    "description": "大型マンション群の中にあり、家族連れに人気。",
+    "phone": "024-3636-3636",
+    "priceRange": "30000-70000",
+    "amenities": ["spacious", "ac", "parking", "modern", "family"],
+    "features": ["家族向け", "モール内", "明るい"],
+    "images": [
+      "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 43,
+    "name": "ジェミニ・コーヒー",
+    "rating": 4,
+    "hours": "7:00 ~ 23:00",
+    "address": "105 Nguyen Thi Dinh",
+    "area": "cg",
+    "purpose": "meetup",
+    "lat": 21.0085,
+    "lng": 105.8055,
+    "description": "気取らない雰囲気のローカルチェーン。雑談に。",
+    "phone": "098-999-0000",
+    "priceRange": "25000-50000",
+    "amenities": ["street_view", "wifi"],
+    "features": ["リーズナブル", "気楽", "緑色の看板"],
+    "images": [
+      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1520978294860-709d2715443c?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 44,
+    "name": "フックロン",
+    "rating": 4.3,
+    "hours": "8:00 ~ 22:00",
+    "address": "241 Xuan Thuy",
+    "area": "cg",
+    "purpose": "meetup",
+    "lat": 21.0365,
+    "lng": 105.7825,
+    "description": "インドチャイナプラザ1階。学生や若者でいつも賑わう。",
+    "phone": "024-3795-1234",
+    "priceRange": "40000-90000",
+    "amenities": ["ac", "parking", "modern"],
+    "features": ["モール内", "ミルクティー", "活気"],
+    "images": [
+      "https://images.unsplash.com/photo-1556742521-9713bf272865?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 45,
+    "name": "ハイランズコーヒー",
+    "rating": 4.5,
+    "hours": "7:00 ~ 23:00",
+    "address": "16 Le Thanh Nghi",
+    "area": "hbt",
+    "purpose": "study",
+    "lat": 21.0045,
+    "lng": 105.8412,
+    "description": "大学近くで広くて開放的。グループ作業に最適。",
+    "phone": "090-1234-5678",
+    "priceRange": "50000-100000",
+    "amenities": ["wifi", "parking", "spacious", "ac"],
+    "features": ["学生多い", "広い", "作業向き"],
+    "images": [
+      "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 46,
+    "name": "オールデイ・コーヒー",
+    "rating": 4.7,
+    "hours": "7:00 ~ 23:00",
+    "address": "55 Mai Hac De",
+    "area": "hbt",
+    "purpose": "date",
+    "lat": 21.0145,
+    "lng": 105.851,
+    "description": "レンガ造りの美しい建築。コーヒーの質が高い。",
+    "phone": "024-3636-5555",
+    "priceRange": "75000-160000",
+    "amenities": ["vintage", "cozy", "ac"],
+    "features": ["建築美", "エッグコーヒー", "デート"],
+    "images": [
+      "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1529940316268-e245e031bcd1?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 47,
+    "name": "スターバックス",
+    "rating": 4.9,
+    "hours": "7:30 ~ 22:00",
+    "address": "241 Xuan Thuy",
+    "area": "cg",
+    "purpose": "work",
+    "lat": 21.0405,
+    "lng": 105.7989,
+    "description": "世界的ブランド。高級感のある空間。",
+    "phone": "024-7777-8888",
+    "priceRange": "100000-200000",
+    "amenities": ["wifi", "ac", "power", "modern"],
+    "features": ["高級感", "電源完備", "スタバ"],
+    "images": [
+      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 48,
+    "name": "ツイッター・ビーンズ",
+    "rating": 4.3,
+    "hours": "7:00 ~ 22:00",
+    "address": "56 Vu Trong Phung",
+    "area": "cg",
+    "purpose": "study",
+    "lat": 21.0021,
+    "lng": 105.8156,
+    "description": "学生に人気の便利なカフェ。",
+    "phone": "1900-1234",
+    "priceRange": "20000-50000",
+    "amenities": ["wifi", "power", "ac", "spacious"],
+    "features": ["手頃", "Wi-Fi", "広い"],
+    "images": [
+      "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 49,
+    "name": "カファ・カフェ",
+    "rating": 4.1,
+    "hours": "7:00 ~ 23:00",
+    "address": "101 Ba Trieu",
+    "area": "hbt",
+    "purpose": "meetup",
+    "lat": 21.0189,
+    "lng": 105.8501,
+    "description": "ストリートコーヒーのチェーン店。",
+    "phone": "098-888-8888",
+    "priceRange": "15000-40000",
+    "amenities": ["outdoor", "street_view", "late_night"],
+    "features": ["歩道席", "賑やか", "涼しい"],
+    "images": [
+      "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1542181961-9590d0c79dab?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  },
+  {
+    "id": 50,
+    "name": "ラ・ヴィエット・コーヒー",
+    "rating": 4.7,
+    "hours": "7:00 ~ 22:00",
+    "address": "3 Ngo Quyen",
+    "area": "hk",
+    "purpose": "work",
+    "lat": 21.0267,
+    "lng": 105.8523,
+    "description": "ダラット産の高品質コーヒー。",
+    "phone": "090-999-8888",
+    "priceRange": "50000-100000",
+    "amenities": ["wifi", "power", "ac", "quiet", "industrial"],
+    "features": ["純粋なコーヒー", "開放的", "仕事向け"],
+    "images": [
+      "https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "menu": [],
+    "reviews": []
+  }
+]
