@@ -6,6 +6,7 @@ import SelectLocationMap from './search/SelectLocationMap'
 import { Button } from './ui/button'
 import { getShopBySearch } from '@/services/search.api'
 import { ITEMS_PER_PAGE } from '@/util/constant'
+import { useLocationStore } from '@/stores/useLocationStore'
 
 interface Filters {
   area: string | null
@@ -27,9 +28,10 @@ export default function SearchPage({
 }: {
   initialKeyword?: string
 }) {
+  const { userLocation, requestUserLocation, setUserLocation, isLocating } =
+    useLocationStore()
   const [isOpenMap, setIsOpenMap] = useState(false)
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const [isLocating, setIsLocating] = useState(false)
   const [filters, setFilters] = useState<Filters>({
     area: null,
     purpose: null,
@@ -45,15 +47,11 @@ export default function SearchPage({
     max: '',
   })
   const [priceApplied, setPriceApplied] = useState<boolean>(false)
-  const [userLocation, setUserLocation] = useState<{
-    lat: number
-    lng: number
-  } | null>(null)
+
   const [shops, setShops] = useState<Array<IShop>>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [meta, setMeta] = useState<Meta | null>(null)
-  const [currentPlace, setCurrentPlace] = useState('現在地')
 
   // Fetch data từ API
   const fetchShops = async () => {
@@ -110,32 +108,6 @@ export default function SearchPage({
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [filters, initialKeyword, sortBy])
 
-  const requestUserLocation = () => {
-    setIsLocating(true)
-
-    const geoOptions = {
-      enableHighAccuracy: true,
-      timeout: 15000,
-      maximumAge: 0,
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords
-        setUserLocation({ lat: latitude, lng: longitude })
-        setIsLocating(false)
-      },
-      (err) => {
-        setIsLocating(false)
-        console.error('Lỗi: ', err)
-        if (!userLocation) {
-          setUserLocation({ lat: 21.0285, lng: 105.8542 })
-        }
-      },
-      geoOptions,
-    )
-  }
-
   const handleSortChange = (type: 'distance' | 'rating') => {
     setSortBy((prev) => {
       const next = prev === type ? null : type
@@ -160,17 +132,31 @@ export default function SearchPage({
 
   return (
     <div className="min-h-screen w-full bg-[#F7F7F7] font-sans">
-      {/* ===== Location bar ===== */}
-      <div className="flex items-center border-b bg-white px-4 py-3 md:px-8">
-        <div className="mr-5 flex items-center gap-2 text-[#FF6A4D]">
-          <MapPinned size={16} />
-          <span>{currentPlace}</span>
-        </div>
+      {isLocating && <p>位置を取っています...</p>}
 
-        <Button size="sm" variant="outline" onClick={() => setIsOpenMap(true)}>
-          地図で選択
-        </Button>
-      </div>
+      {!isLocating && (
+        <div className="flex items-center border-b bg-white px-4 py-3 md:px-8">
+          <div className="mr-5 flex items-center gap-2 text-[#FF6A4D]">
+            <MapPinned size={16} />
+            <span>{userLocation?.address ?? '現在地'}</span>
+          </div>
+
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => setIsOpenMap(true)}>
+            地図で選択
+          </Button>
+
+          <Button
+            size="sm"
+            variant="primary"
+            className="ml-auto"
+            onClick={() => requestUserLocation()}>
+            位置をリセット
+          </Button>
+        </div>
+      )}
 
       {/* ===== Main content ===== */}
       <div className="flex gap-6 px-4 py-6 md:px-8">
@@ -209,8 +195,7 @@ export default function SearchPage({
           <div className="w-[95%] rounded-xl bg-white md:w-[700px]">
             <SelectLocationMap
               onConfirm={(lat, lng, address) => {
-                setCurrentPlace(address)
-                setUserLocation({ lat, lng })
+                setUserLocation({ lat, lng, address })
                 setIsOpenMap(false)
               }}
               onClose={() => setIsOpenMap(false)}
