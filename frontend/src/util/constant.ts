@@ -1,5 +1,17 @@
 export const ITEMS_PER_PAGE = 12
 
+// Review Form constants
+export const MAX_REVIEW_LENGTH = 500
+export const MAX_FILE_SIZE = 5 * 1024 * 1024
+export const MAX_IMAGES = 5
+export const ALLOWED_FILE_TYPES = [
+  'image/jpeg',
+  'image/png',
+  'image/gif',
+  'image/webp',
+]
+
+// Maps for area, purpose, and amenities
 export const AREA_MAP = [
   { id: 'hbt', label: 'Hai Ba Trung', jpLabel: 'ハイバーチュン区' },
   { id: 'hk', label: 'Hoan Kiem', jpLabel: 'ホアンキエム区' },
@@ -61,6 +73,7 @@ export const PURPOSE_MAP_DESCRIPTION: Record<string, string> = {
   view: '美しい景色やユニークなデザインが楽しめるカフェ',
 }
 
+// Styles Profile
 export const STYLES: Array<string> = [
   '勉強',
   '仕事',

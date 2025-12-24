@@ -42,6 +42,17 @@ export async function updateReview(req, res, next) {
     const { reviewId } = req.params
     const { rating, content } = req.body
     const images = req.files || []
+    // Parse existingImages if provided (sent as JSON string)
+    let existingImages = []
+    if (req.body.existingImages) {
+      try {
+        existingImages = JSON.parse(req.body.existingImages)
+      } catch (e) {
+        existingImages = Array.isArray(req.body.existingImages)
+          ? req.body.existingImages
+          : []
+      }
+    }
     const userId = req.user.id
 
     const updatedReview = await reviewService.updateReview({
@@ -49,7 +60,8 @@ export async function updateReview(req, res, next) {
       userId,
       rating,
       content,
-      images
+      images,
+      existingImages
     })
 
     res.status(200).json({

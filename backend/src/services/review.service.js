@@ -23,7 +23,8 @@ export async function updateReview({
   userId,
   rating,
   content,
-  images
+  images,
+  existingImages = []
 }) {
   const review = await reviewRepo.findById(reviewId)
 
@@ -35,7 +36,11 @@ export async function updateReview({
     throw new AppError('Permission denied', 403)
   }
 
-  const imageUrls = images.map((file) => file.filename)
+  const newImageUrls = images.map((file) => file.filename)
+  // merge existing filenames with newly uploaded files
+  const imageUrls = Array.isArray(existingImages)
+    ? [...existingImages, ...newImageUrls]
+    : [...newImageUrls]
 
   return reviewRepo.updateById(reviewId, {
     rating,

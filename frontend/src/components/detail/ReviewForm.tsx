@@ -1,4 +1,4 @@
-import { Star, Upload, User, X } from 'lucide-react'
+import { Eye, Star, Upload, User, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { z } from 'zod'
@@ -7,17 +7,12 @@ import type { Review } from '@/types/review'
 import { useAuthStore } from '@/stores/useAuthStore'
 import { Button } from '@/components/ui/button'
 import { reviewAPI } from '@/services/review.api'
-
-/* ===================== CONSTANT ===================== */
-const MAX_REVIEW_LENGTH = 500
-const MAX_FILE_SIZE = 5 * 1024 * 1024
-const MAX_IMAGES = 5
-const ALLOWED_FILE_TYPES = [
-  'image/jpeg',
-  'image/png',
-  'image/gif',
-  'image/webp',
-]
+import {
+  ALLOWED_FILE_TYPES,
+  MAX_FILE_SIZE,
+  MAX_IMAGES,
+  MAX_REVIEW_LENGTH,
+} from '@/util/constant'
 
 /* ===================== TYPES ===================== */
 type ReviewImage = {
@@ -66,10 +61,12 @@ export default function ReviewForm({
     rating: number
     content: string
     images: Array<ReviewImage>
+    existingImages?: Array<string>
   }>({
     rating: 0,
     content: '',
     images: [],
+    existingImages: [],
   })
 
   /* ===================== MUTATION ===================== */
@@ -90,7 +87,8 @@ export default function ReviewForm({
     const files = Array.from(e.target.files || [])
     if (!files.length) return
 
-    if (formData.images.length + files.length > MAX_IMAGES) {
+    const existingCount = (formData.existingImages || []).length
+    if (existingCount + formData.images.length + files.length > MAX_IMAGES) {
       setImageError(`Chỉ được phép tối đa ${MAX_IMAGES} ảnh`)
       return
     }
@@ -135,6 +133,15 @@ export default function ReviewForm({
     }))
   }
 
+  const handleRemoveExistingImage = (index: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      existingImages: (prev.existingImages || []).filter((_, i) => i !== index),
+    }))
+  }
+
+  const [previewImage, setPreviewImage] = useState<string | null>(null)
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -165,6 +172,11 @@ export default function ReviewForm({
       data.append('images', img.file)
     })
 
+    // include existing image filenames so backend can keep them
+    if (formData.existingImages && formData.existingImages.length) {
+      data.append('existingImages', JSON.stringify(formData.existingImages))
+    }
+
     if (review) {
       updateMutation.mutate({ reviewId: review._id, payload: data })
     } else {
@@ -174,7 +186,7 @@ export default function ReviewForm({
 
   const handleCancel = () => {
     onCancelEdit()
-    setFormData({ rating: 0, content: '', images: [] })
+    setFormData({ rating: 0, content: '', images: [], existingImages: [] })
     setErrors({})
     setImageError(undefined)
   }
@@ -186,6 +198,7 @@ export default function ReviewForm({
         rating: review.rating,
         content: review.content,
         images: [],
+        existingImages: review.images || [],
       })
     }
   }, [review])
@@ -201,7 +214,7 @@ export default function ReviewForm({
     onSuccess: () => {
       toast.success('レビューを更新しました')
       onSuccess()
-      setFormData({ rating: 0, content: '', images: [] })
+      setFormData({ rating: 0, content: '', images: [], existingImages: [] })
       setErrors({})
       setImageError(undefined)
     },
@@ -267,23 +280,55 @@ export default function ReviewForm({
         {/* IMAGES */}
         <div className="mt-4">
           <div className="mb-2 flex flex-wrap gap-3">
-            {formData.images.map((img, index) => (
-              <div key={index} className="relative">
+            {(formData.existingImages || []).map((imgName, index) => (
+              <div
+                key={`existing-${index}`}
+                className="group relative cursor-pointer">
                 <img
-                  src={img.preview}
+                  src={`${import.meta.env.VITE_BASE_URL_BACKEND}/images/review/${imgName}`}
                   className="h-20 w-20 rounded-lg border object-cover"
                   alt="preview"
                 />
+                <div
+                  className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/0 opacity-0 transition group-hover:bg-black/30 group-hover:opacity-100"
+                  onClick={() =>
+                    setPreviewImage(
+                      `${import.meta.env.VITE_BASE_URL_BACKEND}/images/review/${imgName}`,
+                    )
+                  }>
+                  <Eye className="text-white" />
+                </div>
                 <button
-                  type="button"
-                  onClick={() => handleRemoveImage(index)}
-                  className="absolute -top-2 -right-2 rounded-full bg-red-500 p-1 text-white">
+                  onClick={() => handleRemoveExistingImage(index)}
+                  className="absolute -top-2 -right-2 cursor-pointer rounded-full bg-red-500 p-1 text-white hover:bg-red-700">
                   <X size={12} />
                 </button>
               </div>
             ))}
 
-            {formData.images.length < MAX_IMAGES && (
+            {formData.images.map((img, index) => (
+              <div key={index} className="group relative cursor-pointer">
+                <img
+                  src={img.preview}
+                  className="h-20 w-20 rounded-lg border object-cover"
+                  alt="preview"
+                />
+                <div
+                  className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/0 opacity-0 transition group-hover:bg-black/30 group-hover:opacity-100"
+                  onClick={() => setPreviewImage(img.preview)}>
+                  <Eye className="text-white" />
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleRemoveImage(index)}
+                  className="absolute -top-2 -right-2 cursor-pointer rounded-full bg-red-500 p-1 text-white hover:bg-red-700">
+                  <X size={12} />
+                </button>
+              </div>
+            ))}
+
+            {(formData.existingImages?.length || 0) + formData.images.length <
+              MAX_IMAGES && (
               <label className="flex h-20 w-20 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed text-gray-400 hover:bg-white">
                 <Upload size={20} />
                 <span className="text-[10px]">イメージ</span>
@@ -298,6 +343,30 @@ export default function ReviewForm({
               </label>
             )}
           </div>
+
+          {/* Preview modal */}
+          {previewImage && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+              onClick={() => setPreviewImage(null)}>
+              <div
+                className="relative max-h-full max-w-full"
+                onClick={(e) => e.stopPropagation()}>
+                <Button
+                  variant="icon"
+                  size="icon"
+                  onClick={() => setPreviewImage(null)}
+                  className="absolute top-2 right-2 rounded-full bg-white/30 hover:bg-gray-100">
+                  <X size={20} />
+                </Button>
+                <img
+                  src={previewImage}
+                  alt="Full"
+                  className="max-h-[90vh] max-w-[90vw] rounded shadow-lg"
+                />
+              </div>
+            </div>
+          )}
           {imageError && <p className="text-xs text-red-500">{imageError}</p>}
         </div>
 

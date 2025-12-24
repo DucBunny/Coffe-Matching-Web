@@ -7,6 +7,7 @@ import {
   Clock,
   Coffee,
   DollarSign,
+  Eye,
   ImageIcon,
   MapPin,
   Pencil,
@@ -15,6 +16,7 @@ import {
   Star,
   Trash2,
   User,
+  X,
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
@@ -50,6 +52,7 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
   const [editingReview, setEditingReview] = useState<Review | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isFavoriteStatus, setIsFavoriteStatus] = useState<boolean>(false)
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
   // Delete review
   const deleteMutation = useMutation({
@@ -133,7 +136,10 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
                 <img
                   src={cafe.images[currentImageIndex]}
                   alt={cafe.name}
-                  className="h-full w-full object-cover transition-opacity duration-300"
+                  onClick={() =>
+                    setSelectedImage(cafe.images[currentImageIndex])
+                  }
+                  className="h-full w-full cursor-pointer object-cover transition-opacity duration-300"
                 />
               ) : (
                 <ImageIcon size={64} className="text-gray-400" />
@@ -162,7 +168,10 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
                     {cafe.images.map((_, idx) => (
                       <div
                         key={idx}
-                        onClick={() => setCurrentImageIndex(idx)}
+                        onClick={() => {
+                          setCurrentImageIndex(idx)
+                          setSelectedImage(cafe.images[idx])
+                        }}
                         className={`h-2 w-2 cursor-pointer rounded-full shadow-sm transition-all ${idx === currentImageIndex ? 'w-4 bg-white' : 'bg-white/60 hover:bg-white'}`}
                       />
                     ))}
@@ -285,7 +294,10 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
                 {cafe.images.map((img, idx) => (
                   <div
                     key={idx}
-                    onClick={() => setCurrentImageIndex(idx)}
+                    onClick={() => {
+                      setCurrentImageIndex(idx)
+                      setSelectedImage(img)
+                    }}
                     className={`w-1/6 shrink-0 px-2`}>
                     <div
                       className={`flex aspect-square cursor-pointer items-center justify-center overflow-hidden rounded-lg border bg-gray-100 transition ${currentImageIndex === idx ? 'border-custom-primary ring-custom-primary/20 ring-2' : 'border-gray-100 hover:shadow-md'}`}>
@@ -416,6 +428,7 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
                           <AlertDialogFooter>
                             <AlertDialogCancel>キャンセル</AlertDialogCancel>
                             <AlertDialogAction
+                              className="bg-red-600 text-white hover:bg-red-700"
                               onClick={() => deleteMutation.mutate(review._id)}>
                               削除する
                             </AlertDialogAction>
@@ -444,13 +457,24 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
                 <p className="mt-3 text-gray-700">{review.content}</p>
 
                 {review.images && review.images.length > 0 && (
-                  <div className="mt-4 grid grid-cols-5 gap-2">
+                  <div className="mt-4 flex gap-2">
                     {review.images.map((img, i) => (
-                      <img
-                        key={i}
-                        src={`${import.meta.env.VITE_BASE_URL_BACKEND}/images/review/${img}`}
-                        className="h-24 w-full rounded-lg object-cover"
-                      />
+                      <div key={i} className="group relative cursor-pointer">
+                        <img
+                          src={`${import.meta.env.VITE_BASE_URL_BACKEND}/images/review/${img}`}
+                          className="h-24 w-24 rounded-lg object-cover"
+                        />
+
+                        <div
+                          className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/0 opacity-0 transition group-hover:bg-black/30 group-hover:opacity-100"
+                          onClick={() =>
+                            setSelectedImage(
+                              `${import.meta.env.VITE_BASE_URL_BACKEND}/images/review/${img}`,
+                            )
+                          }>
+                          <Eye className="text-white" />
+                        </div>
+                      </div>
                     ))}
                   </div>
                 )}
@@ -459,6 +483,30 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
           })}
         </>
       </SectionCard>
+
+      {/* Image dialog */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+          onClick={() => setSelectedImage(null)}>
+          <div
+            className="relative max-h-full max-w-full"
+            onClick={(e) => e.stopPropagation()}>
+            <Button
+              variant="icon"
+              size="icon"
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-2 right-2 rounded-full bg-white/30 hover:bg-gray-100">
+              <X size={20} />
+            </Button>
+            <img
+              src={selectedImage}
+              alt="Full"
+              className="max-h-[90vh] max-w-[90vw] rounded shadow-lg"
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
