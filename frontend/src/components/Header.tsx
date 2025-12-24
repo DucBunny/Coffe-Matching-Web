@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { Bookmark, LogIn, MapPin, Search, User, X } from 'lucide-react'
-import { useAuthStore } from '../stores/useAuthStore'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
+import { useAuthStore } from '@/stores/useAuthStore'
 import { Button } from '@/components/ui/button'
 import logo from '/logo.png'
 import { getShopBySearch } from '@/services/search.api'
@@ -93,11 +93,10 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#FF6347] shadow-md">
+    <header className="bg-custom-primary sticky top-0 z-50 w-full shadow-md">
       <div className="container mx-auto flex h-16 items-center justify-between gap-4 px-6">
         {/* Logo */}
         <Link
-          // to={isAuthenticated ? '/home' : '/'}
           to="/"
           className="flex items-center gap-2 transition-opacity hover:opacity-90">
           <img
@@ -177,7 +176,7 @@ export default function Header() {
 
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button className="bg-white text-[#FF6347] hover:bg-white/90">
+                  <Button className="text-custom-primary bg-white hover:bg-white/90">
                     {user?.username.split(' ')[0]}
                     <User size={16} />
                   </Button>
@@ -206,13 +205,13 @@ export default function Header() {
           ) : (
             <div className="flex gap-2">
               <Link to="/signin" className="flex items-center gap-2">
-                <Button className="bg-white text-[#FF6347] hover:bg-white/90">
+                <Button className="text-custom-primary bg-white hover:bg-white/90">
                   <span className="hidden sm:inline-block">ログイン</span>
                 </Button>
               </Link>
 
               <Link to="/signup" className="flex items-center gap-2">
-                <Button className="bg-white text-[#FF6347] hover:bg-white/90">
+                <Button className="text-custom-primary bg-white hover:bg-white/90">
                   <LogIn className="sm:hidden" />
                   <span className="hidden sm:inline-block">サインアップ</span>
                 </Button>

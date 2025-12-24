@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from '../ui/button'
+import { Button } from '@/components/ui/button'
 
 type SectionCardRenderProps = {
   pageIndex: number
@@ -32,14 +32,14 @@ const SectionCard: React.FC<{
 
   return (
     <div className="group/row relative mt-8 w-full">
-      <div className="absolute -top-4 left-6 z-10 flex items-center gap-2 rounded-full border border-[#F26546]/20 bg-white px-3 py-1 shadow-sm">
-        {icon && <span className="text-[#F26546]">{icon}</span>}
-        <h2 className="text-sm font-bold tracking-wide text-[#F26546] md:text-base">
+      <div className="border-custom-primary/20 absolute -top-4 left-6 z-10 flex items-center gap-2 rounded-full border bg-white px-3 py-1 shadow-sm">
+        {icon && <span className="text-custom-primary">{icon}</span>}
+        <h2 className="text-custom-primary text-sm font-bold tracking-wide md:text-base">
           {title}
         </h2>
       </div>
 
-      <div className="w-full rounded-xl border border-[#F26546]/30 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md md:p-8">
+      <div className="border-custom-primary/30 w-full rounded-xl border bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md md:p-8">
         {renderedChildren}
 
         {totalPages > 1 && (
@@ -47,14 +47,14 @@ const SectionCard: React.FC<{
             <Button
               onClick={goPrev}
               aria-label="Previous"
-              className="absolute top-1/2 -left-5 z-20 hidden size-11 -translate-y-1/2 scale-90 items-center justify-center rounded-full border border-orange-100 bg-white text-slate-600 opacity-0 shadow-xl transition-all group-hover/row:opacity-100 hover:scale-100 hover:bg-[#ff6347] hover:text-white md:flex">
+              className="hover:bg-custom-primary absolute top-1/2 -left-5 z-20 hidden size-11 -translate-y-1/2 scale-90 items-center justify-center rounded-full border border-orange-100 bg-white text-slate-600 opacity-0 shadow-xl transition-all group-hover/row:opacity-100 hover:scale-100 hover:text-white md:flex">
               <ChevronLeft size={20} strokeWidth={3} />
             </Button>
 
             <Button
               onClick={goNext}
               aria-label="Next"
-              className="absolute top-1/2 -right-5 z-20 hidden size-11 -translate-y-1/2 scale-90 items-center justify-center rounded-full border border-orange-100 bg-white text-slate-600 opacity-0 shadow-xl transition-all group-hover/row:opacity-100 hover:scale-100 hover:bg-[#ff6347] hover:text-white md:flex">
+              className="hover:bg-custom-primary absolute top-1/2 -right-5 z-20 hidden size-11 -translate-y-1/2 scale-90 items-center justify-center rounded-full border border-orange-100 bg-white text-slate-600 opacity-0 shadow-xl transition-all group-hover/row:opacity-100 hover:scale-100 hover:text-white md:flex">
               <ChevronRight size={20} strokeWidth={3} />
             </Button>
           </>

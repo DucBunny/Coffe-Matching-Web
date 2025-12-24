@@ -10,8 +10,8 @@ import L from 'leaflet'
 import { useState } from 'react'
 import { X } from 'lucide-react'
 import { toast } from 'sonner'
-import { Button } from '../ui/button'
-import { Input } from '../ui/input'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 
 const markerIcon = new L.Icon({
   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',

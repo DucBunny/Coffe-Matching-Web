@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import { Card } from '../ui/card'
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
-import { Input } from '../ui/input'
-import { Button } from '../ui/button'
+import { Card } from '@/components/ui/card'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 
 type ProfileInfoProps = {
   name: string
@@ -13,9 +13,9 @@ type ProfileInfoProps = {
   setAddress: (address: string) => void
   setAge: (age: number) => void
   isEditing: boolean
-  avatar: string // URL avatar hiện tại
-  newAvatarFile: File | null // Tệp avatar mới được chọn
-  setNewAvatarFile: (file: File | null) => void // Hàm để cập nhật tệp mới
+  avatar: string
+  newAvatarFile: File | null
+  setNewAvatarFile: (file: File | null) => void
   setIsOpenChangePassword: (v: boolean) => void
 }
 

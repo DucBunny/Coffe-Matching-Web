@@ -159,7 +159,7 @@ export default function HistoryPage() {
     <>
       <main className="mx-auto max-w-[96%] space-y-12 p-4 md:p-8">
         <div className="mb-8 flex justify-center">
-          <div className="border-b-4 border-[#ff6347] pb-1 text-center text-3xl font-bold text-[#ff6347]">
+          <div className="border-custom-primary text-custom-primary border-b-4 pb-1 text-center text-3xl font-bold">
             閲覧履歴
           </div>
         </div>
@@ -167,11 +167,11 @@ export default function HistoryPage() {
         {/* Content */}
         {isLoading ? (
           <div className="flex min-h-[50vh] flex-col items-center justify-center">
-            <Loader2 className="size-10 animate-spin text-[#FF6347]" />
-            <div className="mt-4 text-[#ff6347]">読み込み中...</div>
+            <Loader2 className="text-custom-primary size-10 animate-spin" />
+            <div className="text-custom-primary mt-4">読み込み中...</div>
           </div>
         ) : historyGroups.length === 0 ? (
-          <div className="flex min-h-[50vh] flex-col items-center justify-center gap-6 text-[#ff6347]/50">
+          <div className="text-custom-primary/50 flex min-h-[50vh] flex-col items-center justify-center gap-6">
             <div className="flex size-20 items-center justify-center rounded-full bg-orange-50">
               <Clock className="size-10" />
             </div>
@@ -211,7 +211,7 @@ export default function HistoryPage() {
         <div className="fixed bottom-8 left-1/2 z-40 w-full max-w-xl -translate-x-1/2">
           <div className="flex items-center justify-between rounded-4xl border border-white/10 bg-zinc-900 p-4 text-white shadow-2xl">
             <div className="flex items-center gap-4 pl-3">
-              <span className="flex size-9 items-center justify-center rounded-xl bg-[#ff6347] text-sm font-black text-white">
+              <span className="bg-custom-primary flex size-9 items-center justify-center rounded-xl text-sm font-black text-white">
                 {selectedIds.size}
               </span>
               <p className="hidden text-sm font-black sm:block">選択中</p>
@@ -226,7 +226,7 @@ export default function HistoryPage() {
               </Button>
               <Button
                 onClick={deleteSelected}
-                className="rounded-2xl bg-[#ff6347] text-xs hover:bg-orange-600">
+                className="bg-custom-primary hover:bg-custom-primary/80 rounded-2xl text-xs">
                 <Trash2 className="size-4" />
                 削除
               </Button>

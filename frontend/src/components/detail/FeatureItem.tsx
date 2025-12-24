@@ -10,10 +10,10 @@ const FeatureItem: React.FC<{ text: string }> = ({ text }) => {
 
   return (
     <li className="flex items-center gap-3 rounded-lg border border-orange-100/50 bg-orange-50/50 p-3 transition-colors hover:bg-orange-50">
-      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-orange-100 bg-white text-[#F26546] shadow-sm">
+      <div className="text-custom-primary flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-orange-100 bg-white shadow-sm">
         <Icon size={16} />
       </div>
-      <span className="text-sm font-medium text-gray-700">{text}</span>
+      <span className="text-sm font-medium text-gray-600">{text}</span>
     </li>
   )
 }

@@ -235,7 +235,7 @@ export default function ReviewForm({
                   size={20}
                   className={`cursor-pointer ${
                     s <= (hoverRating || formData.rating)
-                      ? 'fill-[#F26546] text-[#F26546]'
+                      ? 'fill-custom-primary text-custom-primary'
                       : 'text-gray-300'
                   }`}
                   onClick={() => setFormData((p) => ({ ...p, rating: s }))}
@@ -257,7 +257,7 @@ export default function ReviewForm({
           onChange={(e) =>
             setFormData((p) => ({ ...p, content: e.target.value }))
           }
-          className="min-h-[120px] w-full rounded-lg border p-4 text-sm focus:ring-2 focus:ring-[#F26546]/20"
+          className="focus:ring-custom-primary/20 min-h-[120px] w-full rounded-lg border p-4 text-sm focus:ring-2"
           placeholder="このカフェはどうでしたか？"
         />
         {errors.content && (
@@ -317,7 +317,7 @@ export default function ReviewForm({
           <Button
             type="submit"
             disabled={createMutation.isPending || updateMutation.isPending}
-            className="bg-[#F26546] px-8 font-bold text-white hover:bg-[#F26546]/80 disabled:opacity-50">
+            className="bg-custom-primary hover:bg-custom-primary/80 px-8 font-bold text-white disabled:opacity-50">
             {review ? '更新' : '送信'}
           </Button>
         </div>

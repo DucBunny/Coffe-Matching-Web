@@ -1,6 +1,5 @@
 import { Link } from '@tanstack/react-router'
 import { Facebook, Instagram, Twitter } from 'lucide-react'
-import { useAuthStore } from '@/stores/useAuthStore'
 import logo from '/logo.png'
 
 const links = [
@@ -22,13 +21,10 @@ const links = [
 ]
 
 export default function Footer() {
-  const { isAuthenticated } = useAuthStore()
-
   return (
-    <footer className="w-full bg-[#FF6347] px-12 py-3 text-white">
+    <footer className="bg-custom-primary w-full px-12 py-3 text-white">
       <div className="flex justify-between pt-3">
         <Link
-          // to={isAuthenticated ? '/home' : '/'}
           to="/"
           className="flex items-center gap-2 transition-opacity hover:opacity-90">
           <img

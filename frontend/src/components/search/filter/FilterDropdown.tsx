@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 
 interface DropdownOption {
   id: string
-  label: string // Tên hiển thị (Tiếng Nhật)
+  label: string
 }
 
 interface FilterDropdownProps {
@@ -70,7 +70,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
                 onSelect(opt.id)
                 setIsOpen(false)
               }}
-              className={`flex w-full cursor-pointer items-center justify-between px-4 py-3 text-left text-sm transition hover:bg-gray-100 ${selectedId === opt.id ? 'bg-orange-50 font-bold text-[#F26546]' : 'text-gray-700'} `}>
+              className={`flex w-full cursor-pointer items-center justify-between px-4 py-3 text-left text-sm transition hover:bg-gray-100 ${selectedId === opt.id ? 'text-custom-primary bg-orange-50 font-bold' : 'text-gray-700'} `}>
               <span className="font-bold">{opt.label}</span>
               {selectedId === opt.id && <Check size={16} />}
             </button>

@@ -33,7 +33,7 @@ const SectionCard: React.FC<{
   return (
     <div className="group/row relative rounded-[40px] border-2 border-orange-500/20 bg-white p-6 shadow-sm shadow-orange-100/50 transition-all hover:border-orange-500/40 lg:p-10 lg:pt-6">
       <div className="mb-4 flex flex-col">
-        <h3 className="text-2xl font-bold text-orange-500">{title}</h3>
+        <h3 className="text-custom-primary text-2xl font-bold">{title}</h3>
         <p className="mt-1 text-[12px] font-medium tracking-wider text-slate-400">
           {description}
         </p>
@@ -47,7 +47,7 @@ const SectionCard: React.FC<{
             onClick={goPrev}
             aria-label="Previous"
             hidden={pageIndex === 0}
-            className="absolute top-1/2 left-5 z-20 hidden size-14 scale-90 items-center justify-center rounded-full border border-orange-100 bg-white text-slate-600 opacity-0 shadow-xl transition-all group-hover/row:opacity-100 hover:scale-100 hover:bg-[#ff6347] hover:text-white md:flex">
+            className="hover:bg-custom-primary absolute top-1/2 left-5 z-20 hidden size-14 scale-90 items-center justify-center rounded-full border border-orange-100 bg-white text-slate-600 opacity-0 shadow-xl transition-all group-hover/row:opacity-100 hover:scale-100 hover:text-white md:flex">
             <ChevronLeft size={20} strokeWidth={4} />
           </Button>
 
@@ -55,7 +55,7 @@ const SectionCard: React.FC<{
             onClick={goNext}
             aria-label="Next"
             hidden={pageIndex === totalPages - 1}
-            className="absolute top-1/2 right-5 z-20 hidden size-14 scale-90 items-center justify-center rounded-full border border-orange-100 bg-white text-slate-600 opacity-0 shadow-xl transition-all group-hover/row:opacity-100 hover:scale-100 hover:bg-[#ff6347] hover:text-white md:flex">
+            className="hover:bg-custom-primary absolute top-1/2 right-5 z-20 hidden size-14 scale-90 items-center justify-center rounded-full border border-orange-100 bg-white text-slate-600 opacity-0 shadow-xl transition-all group-hover/row:opacity-100 hover:scale-100 hover:text-white md:flex">
             <ChevronRight size={20} strokeWidth={4} />
           </Button>
         </>

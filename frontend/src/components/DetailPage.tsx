@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Loader2 } from 'lucide-react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { useAuthStore } from '../stores/useAuthStore'
 import MainDetail from './detail/MainDetail'
+import { useAuthStore } from '@/stores/useAuthStore'
 import { getShopById } from '@/services/search.api'
 import { historyAPI } from '@/services/history.api'
 import { Route } from '@/routes/_guest/detail/$id'
@@ -52,8 +52,8 @@ export default function DetailPage() {
   if (isLoading) {
     return (
       <div className="flex min-h-[80vh] flex-col items-center justify-center">
-        <Loader2 className="size-10 animate-spin text-[#FF6347]" />
-        <div className="mt-4 text-[#ff6347]">読み込み中...</div>
+        <Loader2 className="text-custom-primary size-10 animate-spin" />
+        <div className="text-custom-primary mt-4">読み込み中...</div>
       </div>
     )
   }
@@ -61,7 +61,7 @@ export default function DetailPage() {
   if (isError || !selectedCafe) {
     return (
       <div className="flex min-h-[80vh] items-center justify-center">
-        <div className="text-center text-[#ff6347]">
+        <div className="text-custom-primary text-center">
           <p className="text-lg font-bold">{'エラーが発生しました'}</p>
           <p className="mt-2 text-sm">ページを再度読み込んでください</p>
         </div>

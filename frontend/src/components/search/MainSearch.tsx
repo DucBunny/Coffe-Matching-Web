@@ -1,8 +1,8 @@
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
-import CafeCard from '../cafe/CafeCard'
-import PaginationButton from '../pagination/PaginationButtonProps'
+import CafeCard from '@/components/cafe/CafeCard'
+import PaginationButton from '@/components/pagination/PaginationButtonProps'
 import { Button } from '@/components/ui/button'
 import { useAuthStore } from '@/stores/useAuthStore'
 import {
@@ -91,7 +91,7 @@ const MainContent: React.FC<MainContentProps> = ({
   return (
     <div className="flex-1">
       <div className="mb-8 flex justify-center">
-        <div className="border-b-4 border-[#ff6347] pb-1 text-center text-3xl font-bold text-[#ff6347]">
+        <div className="border-custom-primary text-custom-primary border-b-4 pb-1 text-center text-3xl font-bold">
           カフェ検索結果
         </div>
       </div>
@@ -104,7 +104,7 @@ const MainContent: React.FC<MainContentProps> = ({
             onClick={() => onSortChange('distance')}
             className={`flex-1 rounded px-8 text-sm font-bold transition sm:flex-none ${
               sortBy === 'distance'
-                ? 'bg-[#ff6347] text-white hover:bg-[#ff6347]/80'
+                ? 'bg-custom-primary hover:bg-custom-primary/80 text-white'
                 : 'bg-[#444] text-white hover:bg-[#555]'
             }`}>
             距離
@@ -114,7 +114,7 @@ const MainContent: React.FC<MainContentProps> = ({
             onClick={() => onSortChange('rating')}
             className={`flex-1 rounded px-8 text-sm font-bold transition sm:flex-none ${
               sortBy === 'rating'
-                ? 'bg-[#ff6347] text-white hover:bg-[#ff6347]/80'
+                ? 'bg-custom-primary hover:bg-custom-primary/80 text-white'
                 : 'bg-[#444] text-white hover:bg-[#555]'
             }`}>
             評価
@@ -138,7 +138,7 @@ const MainContent: React.FC<MainContentProps> = ({
         </div>
       ) : loading ? (
         <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-gray-300 bg-white py-20 text-gray-500">
-          <div className="mb-4 h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-[#F26546]"></div>
+          <div className="border-t-custom-primary mb-4 h-8 w-8 animate-spin rounded-full border-4 border-gray-300"></div>
           <p className="text-lg font-bold">読み込み中...</p>
         </div>
       ) : (

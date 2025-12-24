@@ -186,7 +186,7 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
                       size={18}
                       className={
                         s <= Math.round(cafe.rating)
-                          ? 'fill-[#F26546] text-[#F26546]'
+                          ? 'fill-custom-primary text-custom-primary'
                           : 'text-gray-200'
                       }
                     />
@@ -198,29 +198,29 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
               </div>
             </div>
 
-            <p className="rounded-r border-l-4 border-[#F26546] bg-gray-50 py-2 pl-4 text-left text-sm leading-relaxed text-gray-600 italic md:text-base">
+            <p className="border-custom-primary rounded-r border-l-4 bg-gray-50 py-2 pl-4 text-left text-sm leading-relaxed text-gray-600 italic md:text-base">
               {cafe.description || 'Chưa có mô tả chi tiết cho quán này.'}
             </p>
 
             <div className="space-y-3 text-sm text-gray-700">
               <div className="flex items-center gap-3 rounded p-2 transition hover:bg-gray-50">
-                <MapPin size={20} className="text-[#F26546]" />
+                <MapPin size={20} className="text-custom-primary" />
                 <span className="font-medium">{cafe.address}</span>
               </div>
               <div className="flex items-center gap-3 rounded p-2 transition hover:bg-gray-50">
-                <DollarSign size={20} className="text-[#F26546]" />
+                <DollarSign size={20} className="text-custom-primary" />
                 <span className="font-medium">
                   {cafe.priceRange.min}đ ~ {cafe.priceRange.max}đ
                 </span>
               </div>
               <div className="flex items-center gap-3 rounded p-2 transition hover:bg-gray-50">
-                <Clock size={20} className="text-[#F26546]" />
+                <Clock size={20} className="text-custom-primary" />
                 <span className="font-medium">
                   {cafe.hours.open} ~ {cafe.hours.close}
                 </span>
               </div>
               <div className="flex items-center gap-3 rounded p-2 transition hover:bg-gray-50">
-                <Phone size={20} className="text-[#F26546]" />
+                <Phone size={20} className="text-custom-primary" />
                 <span className="font-medium">
                   {cafe.phone || '090-XXXX-XXXX'}
                 </span>
@@ -232,8 +232,8 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
                 onClick={() => handleToggleFavorite(cafe._id)}
                 className={`h-12 w-48 font-bold transition ${
                   isFavoriteStatus
-                    ? 'bg-[#F26546] text-white shadow-orange-200 hover:bg-[#e05535]'
-                    : 'border border-[#F26546] bg-white text-[#F26546] hover:bg-orange-50'
+                    ? 'bg-custom-primary hover:bg-custom-primary/80 text-white shadow-orange-200'
+                    : 'border-custom-primary text-custom-primary border bg-white hover:bg-orange-50'
                 } `}>
                 <Bookmark size={18} />
                 {isFavoriteStatus ? ' お気に入り解除' : ' お気に入り追加'}
@@ -288,7 +288,7 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
                     onClick={() => setCurrentImageIndex(idx)}
                     className={`w-1/6 shrink-0 px-2`}>
                     <div
-                      className={`flex aspect-square cursor-pointer items-center justify-center overflow-hidden rounded-lg border bg-gray-100 transition ${currentImageIndex === idx ? 'border-[#F26546] ring-2 ring-[#F26546]/20' : 'border-gray-100 hover:shadow-md'}`}>
+                      className={`flex aspect-square cursor-pointer items-center justify-center overflow-hidden rounded-lg border bg-gray-100 transition ${currentImageIndex === idx ? 'border-custom-primary ring-custom-primary/20 ring-2' : 'border-gray-100 hover:shadow-md'}`}>
                       <img
                         src={img}
                         alt={`Thumbnail ${idx}`}
@@ -317,9 +317,9 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
                 style={{ transform: `translateX(-${pageIndex * 100}%)` }}>
                 {cafe.menu.map((item, idx) => (
                   <div key={idx} className={`w-1/6 shrink-0 px-2`}>
-                    <div className="group flex h-full flex-col rounded-lg border border-gray-100 bg-white p-2 transition hover:border-[#F26546]/50">
+                    <div className="group hover:border-custom-primary/50 flex h-full flex-col rounded-lg border border-gray-100 bg-white p-2 transition">
                       <div className="relative mb-2 flex aspect-video items-center justify-center overflow-hidden rounded-md">
-                        <Badge className="absolute top-2 right-2 bg-[#F26546]">
+                        <Badge className="bg-custom-primary absolute top-2 right-2">
                           {item.price} đ
                         </Badge>
 
@@ -333,7 +333,7 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
                           <ImageIcon size={32} className="text-gray-300" />
                         )}
                       </div>
-                      <p className="flex flex-1 items-center justify-center text-center text-sm font-bold text-gray-700 transition group-hover:text-[#F26546]">
+                      <p className="group-hover:text-custom-primary flex flex-1 items-center justify-center text-center text-sm font-bold text-gray-700 transition">
                         {item.name}
                       </p>
                     </div>
@@ -434,7 +434,7 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
                       size={16}
                       className={
                         s <= review.rating
-                          ? 'fill-[#F26546] text-[#F26546]'
+                          ? 'fill-custom-primary text-custom-primary'
                           : 'text-gray-200'
                       }
                     />

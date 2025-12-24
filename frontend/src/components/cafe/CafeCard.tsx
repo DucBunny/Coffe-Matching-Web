@@ -78,9 +78,14 @@ const CafeCard: React.FC<{
             handleToggle(data._id)
           }}
           className={`absolute top-2 right-2 cursor-pointer rounded-full p-1 shadow-sm transition hover:scale-110 ${
-            isFavorite ? 'bg-white text-[#F26546]' : 'bg-white text-gray-400'
+            isFavorite
+              ? 'text-custom-primary bg-white'
+              : 'bg-white text-gray-400'
           }`}>
-          <Bookmark size={16} fill={isFavorite ? '#F26546' : 'white'} />
+          <Bookmark
+            size={16}
+            className={isFavorite ? 'fill-custom-primary' : ''}
+          />
         </button>
       </div>
 
@@ -93,7 +98,10 @@ const CafeCard: React.FC<{
             <span className="text-sm font-bold text-gray-700">
               {data.rating}
             </span>
-            <Star size={14} className="text-[#F26546]" fill="#F26546" />
+            <Star
+              size={14}
+              className="text-custom-primary fill-custom-primary"
+            />
           </div>
         </div>
 
@@ -106,7 +114,7 @@ const CafeCard: React.FC<{
             {areaInfo ? `${areaInfo.jpLabel} (${areaInfo.label})` : 'Hanoi'}
           </p>
           {showDistance && distance !== null && (
-            <p className="text-left font-bold text-[#F26546]">
+            <p className="text-custom-primary text-left font-bold">
               距離: {formatDistance(distance)}
             </p>
           )}

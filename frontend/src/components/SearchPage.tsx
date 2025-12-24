@@ -136,7 +136,7 @@ export default function SearchPage({
 
       {!isLocating && (
         <div className="flex items-center border-b bg-white px-4 py-3 md:px-8">
-          <div className="mr-5 flex items-center gap-2 text-[#FF6A4D]">
+          <div className="text-custom-primary mr-5 flex items-center gap-2">
             <MapPinned size={16} />
             <span>{userLocation?.address ?? '現在地'}</span>
           </div>

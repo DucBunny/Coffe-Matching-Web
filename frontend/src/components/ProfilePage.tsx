@@ -123,7 +123,7 @@ export default function ProfilePage() {
   return (
     <div className="p-4 md:p-8">
       <div className="mb-8 flex justify-center">
-        <div className="border-b-4 border-[#ff6347] pb-1 text-center text-3xl font-bold text-[#ff6347]">
+        <div className="border-custom-primary text-custom-primary border-b-4 pb-1 text-center text-3xl font-bold">
           マイページ
         </div>
       </div>
@@ -181,6 +181,7 @@ export default function ProfilePage() {
                   setIsEditing(false)
                   fetchData()
                 }}
+                variant="outline"
                 className="cursor-pointer">
                 キャンセル
               </Button>

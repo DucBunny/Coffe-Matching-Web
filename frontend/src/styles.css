@@ -40,6 +40,8 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-custom-primary: #ff6347;
 }
 
 :root {
@@ -123,7 +125,7 @@
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
-  background: #ff6347;
+  background: var(--color-custom-primary);
 }
 
 ::-webkit-scrollbar-track {
@@ -132,10 +134,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ff6f47;
+  background: var(--color-custom-primary);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff6347;
+  background: #cc4f38;
 }

@@ -56,14 +56,14 @@ const FavoritePage = () => {
         <main className="flex-1">
           {/* Header Section */}
           <div className="mb-8 flex justify-center">
-            <div className="border-b-4 border-[#ff6347] pb-1 text-center text-3xl font-bold text-[#ff6347]">
+            <div className="border-custom-primary text-custom-primary border-b-4 pb-1 text-center text-3xl font-bold">
               お気に入りのカフェ
             </div>
           </div>
 
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20">
-              <div className="mb-4 h-10 w-10 animate-spin rounded-full border-4 border-gray-300 border-t-[#FF6347]"></div>
+              <div className="border-t-custom-primary mb-4 h-10 w-10 animate-spin rounded-full border-4 border-gray-300"></div>
               <p className="font-medium text-gray-500">読み込み中...</p>
             </div>
           ) : favoriteShops.length > 0 ? (

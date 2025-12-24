@@ -19,16 +19,16 @@ export default function HistoryGroup({
   return (
     <section key={group.date} className="relative mb-12">
       <div className="sticky top-20 z-20 mb-4 flex items-center justify-between bg-transparent">
-        <h2 className="border-b-4 border-[#ff6347] pb-1 text-xl font-black backdrop-blur-md md:text-2xl">
+        <h2 className="border-custom-primary border-b-4 pb-1 text-xl font-black backdrop-blur-md md:text-2xl">
           {group.date}
         </h2>
 
         <div
-          className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-xs font-extrabold ${isGroupSelected ? 'bg-[#ff6347] text-white' : 'border border-orange-200 bg-white text-orange-600'}`}>
+          className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-xs font-extrabold ${isGroupSelected ? 'bg-custom-primary text-white' : 'border border-orange-200 bg-white text-orange-600'}`}>
           {isGroupSelected ? '選択解除' : 'すべて選択'}
 
           <Checkbox
-            className="border-orange-300 data-[state=checked]:bg-[#ff6347]"
+            className="data-[state=checked]:bg-custom-primary border-orange-300"
             checked={isGroupSelected}
             onClick={() => onToggleGroup(group.items)}
           />

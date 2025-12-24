@@ -27,7 +27,7 @@ export default function HistoryItem({
       className={`flex h-32 items-stretch overflow-hidden rounded-3xl border bg-white shadow-sm transition-all duration-300 ${
         isSelected
           ? 'border-orange-400 shadow-xl ring-4 ring-orange-500/5'
-          : 'border-[#F9F9FB] hover:border-orange-100 hover:shadow-lg'
+          : 'hover:border-orange-100 hover:shadow-lg'
       }`}>
       <div className="flex w-24 shrink-0 items-center justify-center gap-3 border-r border-gray-100 bg-gray-50/50 px-2 sm:w-32 md:px-4">
         <Checkbox
@@ -36,7 +36,7 @@ export default function HistoryItem({
             e.stopPropagation()
             onToggle(item.id)
           }}
-          className="size-6 border-orange-300 data-[state=checked]:border-[#ff6347] data-[state=checked]:bg-[#ff6347]"
+          className="data-[state=checked]:border-custom-primary data-[state=checked]:bg-custom-primary size-6 border-orange-300"
         />
 
         <span className="font-mono text-xs font-black md:text-base">
@@ -58,7 +58,7 @@ export default function HistoryItem({
             <h3 className="truncate text-sm font-black md:text-lg">
               {item.shop.name}
             </h3>
-            <Badge className="bg-[#ff6347]">
+            <Badge className="bg-custom-primary">
               {item.shop.rating}
               <Star size={12} className="text-white" fill="white" />
             </Badge>

@@ -126,7 +126,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             <input
               type="text"
               placeholder="Min"
-              className="w-full rounded border border-gray-300 px-2 py-1.5 pr-8 text-sm focus:border-[#F26546] focus:outline-none"
+              className="focus:border-custom-primary w-full rounded border border-gray-300 px-2 py-1.5 pr-8 text-sm focus:outline-none"
               value={priceInputs.min}
               onChange={(e) => {
                 setPriceInputs((prev) => ({ ...prev, min: e.target.value }))
@@ -142,7 +142,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             <input
               type="text"
               placeholder="Max"
-              className="w-full rounded border border-gray-300 px-2 py-1.5 pr-8 text-sm focus:border-[#F26546] focus:outline-none"
+              className="focus:border-custom-primary w-full rounded border border-gray-300 px-2 py-1.5 pr-8 text-sm focus:outline-none"
               value={priceInputs.max}
               onChange={(e) => {
                 setPriceInputs((prev) => ({ ...prev, max: e.target.value }))
@@ -156,10 +156,10 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
           size="lg"
           type="button"
           onClick={onApplyPrice}
-          className={`mb-6 w-full rounded font-bold transition hover:bg-[#ff6347]/90 ${
+          className={`hover:bg-custom-primary/90 mb-6 w-full rounded font-bold transition ${
             priceApplied
               ? 'bg-[#e85f2f] shadow-md ring-2'
-              : 'bg-[#ff6347] hover:opacity-90'
+              : 'bg-custom-primary hover:opacity-90'
           }`}>
           適用
         </Button>
@@ -172,7 +172,6 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <Button
                 size="lg"
                 key={amenity.id}
-                type="button"
                 onClick={() => {
                   setFilters((prev) => {
                     const exists = prev.amenities.includes(amenity.id)
@@ -186,7 +185,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                 }}
                 className={`rounded font-bold transition ${
                   isActive
-                    ? 'border-[#F26546] bg-[#F26546] text-white shadow-sm hover:bg-[#ff6347]/90'
+                    ? 'hover:bg-custom-primary/90 border-custom-primary bg-custom-primary text-white shadow-sm'
                     : 'border-[#444444] bg-[#444444] text-white hover:bg-[#555]'
                 }`}>
                 {amenity.label}

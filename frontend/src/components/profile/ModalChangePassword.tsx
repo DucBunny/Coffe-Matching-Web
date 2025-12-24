@@ -1,4 +1,4 @@
-import { useState } from 'react' // Thêm type FormEvent
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -27,7 +27,7 @@ export function ModalChangePassword({
   handleClosePassword,
   handleChangePassword,
 }: ModalChangePasswordProps) {
-  const [currentPassword, setCurrentPassword] = useState<string>('') // Định nghĩa kiểu string
+  const [currentPassword, setCurrentPassword] = useState<string>('')
   const [newPassword, setNewPassword] = useState<string>('')
   const [confirmPassword, setConfirmPassword] = useState<string>('')
 
@@ -35,13 +35,13 @@ export function ModalChangePassword({
     <Dialog open={isOpenChangePassword} onOpenChange={handleClosePassword}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>パスワードの変更</DialogTitle> {/* Đổi mật khẩu */}
+          <DialogTitle>パスワードの変更</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4">
           <div className="grid gap-3">
             <Label htmlFor="old-password">現在のパスワード</Label>
             <Input
-              id="old-password" // Thêm id để kết nối với Label
+              id="old-password"
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
               type="password"
@@ -71,8 +71,7 @@ export function ModalChangePassword({
             <Button
               onClick={handleClosePassword}
               type="button"
-              variant="outline"
-            >
+              variant="outline">
               キャンセル
             </Button>
           </DialogClose>
@@ -83,8 +82,7 @@ export function ModalChangePassword({
                 newPassword,
                 confirmPassword,
               )
-            } // Đảm bảo đây là nút submit của form
-          >
+            }>
             保存
           </Button>
         </DialogFooter>
