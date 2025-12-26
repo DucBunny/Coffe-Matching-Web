@@ -132,31 +132,34 @@ export default function SearchPage({
 
   return (
     <div className="min-h-screen w-full bg-[#F7F7F7] font-sans">
-      {isLocating && <p>位置を取っています...</p>}
-
-      {!isLocating && (
-        <div className="flex items-center border-b bg-white px-4 py-3 md:px-8">
-          <div className="text-custom-primary mr-5 flex items-center gap-2">
+      <div className="flex items-center border-b bg-white px-4 py-3 md:px-8">
+        {isLocating ? (
+          <div className="text-custom-primary flex h-8 items-center gap-2">
             <MapPinned size={16} />
-            <span>{userLocation?.address ?? '現在地'}</span>
+            <span>位置情報を取得中...</span>
           </div>
-
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => setIsOpenMap(true)}>
-            地図で選択
-          </Button>
-
-          <Button
-            size="sm"
-            variant="primary"
-            className="ml-auto"
-            onClick={() => requestUserLocation()}>
-            位置をリセット
-          </Button>
-        </div>
-      )}
+        ) : (
+          <>
+            <div className="text-custom-primary mr-5 flex items-center gap-2">
+              <MapPinned size={16} />
+              <span>{userLocation?.address ?? '現在地'}</span>
+            </div>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => setIsOpenMap(true)}>
+              地図で選択
+            </Button>
+            <Button
+              size="sm"
+              variant="primary"
+              className="ml-auto"
+              onClick={() => requestUserLocation()}>
+              位置をリセット
+            </Button>
+          </>
+        )}
+      </div>
 
       {/* ===== Main content ===== */}
       <div className="flex gap-6 px-4 py-6 md:px-8">
