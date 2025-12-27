@@ -95,7 +95,8 @@ export const STYLE_TO_TAGS_MAP = {
   },
   ファミリー: {
     // Gia đình
-    amenities: ['family', 'spacious', 'parking']
+    purpose: ['with_child'],
+    amenities: ['family', 'spacious', 'parking', 'food']
   },
 
   // --- NHÓM 5: ĐẶC BIỆT ---

@@ -28,6 +28,7 @@ export const PURPOSE_MAP: Record<string, string> = {
   work: '仕事',
   meetup: 'おしゃべり',
   view: '観光・絶景',
+  with_child: '子連れ',
 }
 
 export const AMENITY_MAP: Record<string, string> = {
@@ -71,6 +72,7 @@ export const PURPOSE_MAP_DESCRIPTION: Record<string, string> = {
   work: '仕事やミーティングに適した設備と雰囲気のカフェ',
   meetup: '友人とのおしゃべりや交流に最適なカフェ',
   view: '美しい景色やユニークなデザインが楽しめるカフェ',
+  with_child: '子連れで安心して利用できるカフェ',
 }
 
 // Styles Profile

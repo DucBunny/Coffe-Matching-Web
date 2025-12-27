@@ -357,132 +357,136 @@ const MainDetail: React.FC<{ cafe: IShop }> = ({ cafe }) => {
         </SectionCard>
       )}
 
-      <SectionCard
-        title="レビューを追加"
-        icon={<User size={18} />}
-        itemsLength={1}
-        itemsPerPage={1}>
-        <>
-          {isAuthenticated && (
-            <ReviewForm
-              shopId={cafe._id}
-              review={editingReview}
-              onCancelEdit={() => setEditingReview(null)}
-              onSuccess={() => {
-                setEditingReview(null)
-                refetchReviews()
-              }}
-            />
-          )}
+      {(reviews.length > 0 || isAuthenticated) && (
+        <SectionCard
+          title="レビューを追加"
+          icon={<User size={18} />}
+          itemsLength={1}
+          itemsPerPage={1}>
+          <>
+            {isAuthenticated && (
+              <ReviewForm
+                shopId={cafe._id}
+                review={editingReview}
+                onCancelEdit={() => setEditingReview(null)}
+                onSuccess={() => {
+                  setEditingReview(null)
+                  refetchReviews()
+                }}
+              />
+            )}
 
-          {reviews.map((review, idx) => {
-            const isOwner = review.user._id === user?._id
+            {reviews.map((review, idx) => {
+              const isOwner = review.user._id === user?._id
 
-            return (
-              <div
-                key={idx}
-                className="mb-4 rounded-lg border border-gray-100 bg-white p-4 shadow-sm">
-                {/* HEADER */}
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200">
-                      <User size={20} />
+              return (
+                <div
+                  key={idx}
+                  className="mb-4 rounded-lg border border-gray-100 bg-white p-4 shadow-sm">
+                  {/* HEADER */}
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200">
+                        <User size={20} />
+                      </div>
+                      <div>
+                        <p className="font-bold">{review.user.username}</p>
+                        <span className="text-sm text-gray-500">
+                          {new Date(review.createdAt).toLocaleDateString()}
+                        </span>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-bold">{review.user.username}</p>
-                      <span className="text-sm text-gray-500">
-                        {new Date(review.createdAt).toLocaleDateString()}
-                      </span>
-                    </div>
+
+                    {isOwner && (
+                      <div>
+                        <Button
+                          variant="icon"
+                          size="icon"
+                          onClick={() => setEditingReview(review)}
+                          className="text-sm text-blue-500 hover:text-blue-700">
+                          <Pencil size={20} />
+                        </Button>
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button
+                              variant="icon"
+                              size="icon"
+                              className="text-sm text-red-500 hover:text-red-700">
+                              <Trash2 size={20} />
+                            </Button>
+                          </AlertDialogTrigger>
+
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>
+                                本当にこのレビューを削除しますか？
+                              </AlertDialogTitle>
+                              <AlertDialogDescription>
+                                この操作は取り消せません。削除すると、このレビューは完全に削除されます。
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>キャンセル</AlertDialogCancel>
+                              <AlertDialogAction
+                                className="bg-red-600 text-white hover:bg-red-700"
+                                onClick={() =>
+                                  deleteMutation.mutate(review._id)
+                                }>
+                                削除する
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      </div>
+                    )}
                   </div>
 
-                  {isOwner && (
-                    <div>
-                      <Button
-                        variant="icon"
-                        size="icon"
-                        onClick={() => setEditingReview(review)}
-                        className="text-sm text-blue-500 hover:text-blue-700">
-                        <Pencil size={20} />
-                      </Button>
-                      <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                          <Button
-                            variant="icon"
-                            size="icon"
-                            className="text-sm text-red-500 hover:text-red-700">
-                            <Trash2 size={20} />
-                          </Button>
-                        </AlertDialogTrigger>
+                  {/* RATING */}
+                  <div className="mt-2 flex">
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <Star
+                        key={s}
+                        size={16}
+                        className={
+                          s <= review.rating
+                            ? 'fill-custom-primary text-custom-primary'
+                            : 'text-gray-200'
+                        }
+                      />
+                    ))}
+                  </div>
 
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>
-                              本当にこのレビューを削除しますか？
-                            </AlertDialogTitle>
-                            <AlertDialogDescription>
-                              この操作は取り消せません。削除すると、このレビューは完全に削除されます。
-                            </AlertDialogDescription>
-                          </AlertDialogHeader>
+                  <p className="mt-3 text-gray-700">{review.content}</p>
 
-                          <AlertDialogFooter>
-                            <AlertDialogCancel>キャンセル</AlertDialogCancel>
-                            <AlertDialogAction
-                              className="bg-red-600 text-white hover:bg-red-700"
-                              onClick={() => deleteMutation.mutate(review._id)}>
-                              削除する
-                            </AlertDialogAction>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
+                  {review.images && review.images.length > 0 && (
+                    <div className="mt-4 flex gap-2">
+                      {review.images.map((img, i) => (
+                        <div key={i} className="group relative cursor-pointer">
+                          <img
+                            src={`${import.meta.env.VITE_BASE_URL_BACKEND}/images/review/${img}`}
+                            className="h-24 w-24 rounded-lg object-cover"
+                          />
+
+                          <div
+                            className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/0 opacity-0 transition group-hover:bg-black/30 group-hover:opacity-100"
+                            onClick={() =>
+                              setSelectedImage(
+                                `${import.meta.env.VITE_BASE_URL_BACKEND}/images/review/${img}`,
+                              )
+                            }>
+                            <Eye className="text-white" />
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   )}
                 </div>
-
-                {/* RATING */}
-                <div className="mt-2 flex">
-                  {[1, 2, 3, 4, 5].map((s) => (
-                    <Star
-                      key={s}
-                      size={16}
-                      className={
-                        s <= review.rating
-                          ? 'fill-custom-primary text-custom-primary'
-                          : 'text-gray-200'
-                      }
-                    />
-                  ))}
-                </div>
-
-                <p className="mt-3 text-gray-700">{review.content}</p>
-
-                {review.images && review.images.length > 0 && (
-                  <div className="mt-4 flex gap-2">
-                    {review.images.map((img, i) => (
-                      <div key={i} className="group relative cursor-pointer">
-                        <img
-                          src={`${import.meta.env.VITE_BASE_URL_BACKEND}/images/review/${img}`}
-                          className="h-24 w-24 rounded-lg object-cover"
-                        />
-
-                        <div
-                          className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/0 opacity-0 transition group-hover:bg-black/30 group-hover:opacity-100"
-                          onClick={() =>
-                            setSelectedImage(
-                              `${import.meta.env.VITE_BASE_URL_BACKEND}/images/review/${img}`,
-                            )
-                          }>
-                          <Eye className="text-white" />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )
-          })}
-        </>
-      </SectionCard>
+              )
+            })}
+          </>
+        </SectionCard>
+      )}
 
       {/* Image dialog */}
       {selectedImage && (
